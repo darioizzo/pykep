@@ -1,0 +1,179 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>Welcome to PyKEP’s documentation! &mdash; PyKEP 1.1.4 documentation</title>
+    
+    <link rel="stylesheet" href="_static/default.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    './',
+        VERSION:     '1.1.4',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <link rel="top" title="PyKEP 1.1.4 documentation" href="#" />
+    <link rel="next" title="Preparing your system to compile PyKEP" href="system.html" /> 
+  </head>
+  <body>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="system.html" title="Preparing your system to compile PyKEP"
+             accesskey="N">next</a> |</li>
+        <li><a href="#">PyKEP 1.1.4 documentation</a> &raquo;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body">
+            
+  <div class="section" id="welcome-to-pykep-s-documentation">
+<h1>Welcome to PyKEP&#8217;s documentation!<a class="headerlink" href="#welcome-to-pykep-s-documentation" title="Permalink to this headline">¶</a></h1>
+<table border="1" class="docutils">
+<colgroup>
+<col width="47%" />
+<col width="53%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td>&nbsp;</td>
+<td rowspan="3"><img alt="_images/logo_act.png" class="first last" src="_images/logo_act.png" />
+</td>
+</tr>
+<tr class="row-even"><td><img alt="_images/logo.png" class="first last" src="_images/logo.png" />
+</td>
+</tr>
+<tr class="row-odd"><td>&nbsp;</td>
+</tr>
+</tbody>
+</table>
+<p>PyKEP is a scientific library providing basic tools for astrodynamics research. Algoritmic efficiency is
+a main focus of the library, which is written in C++ and exposed to Python using the boost::python library. At the library core
+is the implementation of an efficient solver for the multiple revolutions Lambert&#8217;s problem, objects representing the Sims-Flanagan low-thrust model,
+efficient keplerian propagators, Taylor-integrators and more ....</p>
+<img alt="_images/traj1.gif" src="_images/traj1.gif" />
+<img alt="_images/traj2.gif" src="_images/traj2.gif" />
+<img alt="_images/traj3.gif" src="_images/traj3.gif" />
+<img alt="_images/traj4.gif" src="_images/traj4.gif" />
+<img alt="_images/traj5.gif" src="_images/traj5.gif" />
+<img alt="_images/traj6.gif" src="_images/traj6.gif" />
+<p>PyKEP has been compiled and installed succesfully on the following platforms and with Python 2.7:</p>
+<ul class="simple">
+<li>Windows (XP) [<a class="reference external" href="http://sourceforge.net/projects/keptoolbox/files/Windows/">binaries available</a>]</li>
+<li>Linux (Gentoo) [Follow the guide below and compile the code]</li>
+<li>Apple OSX (Leopard) [Follow the guide below and compile the code]</li>
+</ul>
+<p>PyKEP has been used by the European Space Agency&#8217;s Advanced Concepts Team during the Global Trajectory Optimization
+Competitions (GTOC), in particular <a class="reference external" href="http://cct.cnes.fr/cct02/gtoc4/index.htm">GTOC4</a> and <a class="reference external" href="http://gtoc5.math.msu.su/">GTOC5</a>.</p>
+<div class="section" id="contents">
+<h2>Contents:<a class="headerlink" href="#contents" title="Permalink to this headline">¶</a></h2>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="system.html">Preparing your system to compile PyKEP</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="system.html#compiling-under-a-unix-system">Compiling under a Unix System</a></li>
+<li class="toctree-l2"><a class="reference internal" href="system.html#compiling-under-windows">Compiling under Windows</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="downloading.html">Download PyKEP code</a></li>
+<li class="toctree-l1"><a class="reference internal" href="installation.html">Install PyKEP</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="installation.html#using-windows-binaries">Using Windows Binaries</a></li>
+<li class="toctree-l2"><a class="reference internal" href="installation.html#compiling-and-installing-under-unix">Compiling and Installing under Unix</a></li>
+<li class="toctree-l2"><a class="reference internal" href="installation.html#compiling-and-installing-under-windows">Compiling and Installing under Windows</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="documentation.html">PyKEP Documentation</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="documentation.html#the-core-module">The core module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="documentation.html#the-sims-flanagan-module">The sims_flanagan module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="documentation.html#the-traj-module">The traj module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="documentation.html#constants-defined-within-pykep-namespace">Constants defined within PyKEP namespace</a></li>
+<li class="toctree-l2"><a class="reference internal" href="documentation.html#detailed-documentation">Detailed Documentation</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="examples/index.html">Examples</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="examples/ex1.html">Low-thrust global optimization (Nuclear electric propulsion)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="examples/ex2.html">Multi-revs Lambert Problem</a></li>
+<li class="toctree-l2"><a class="reference internal" href="examples/ex3.html">LT-MGA global optimization (Nuclear electric propulsion)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="examples/ex4.html">Automated Mesh Adaptation in Interplanetary Trajectory Optimization</a></li>
+<li class="toctree-l2"><a class="reference internal" href="examples/ex5.html">MGA 1DSM global optimization</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="credits.html">Credits</a></li>
+</ul>
+</div>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar">
+        <div class="sphinxsidebarwrapper">
+  <h3><a href="#">Table Of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">Welcome to PyKEP&#8217;s documentation!</a><ul>
+<li><a class="reference internal" href="#contents">Contents:</a></li>
+</ul>
+</li>
+</ul>
+
+  <h4>Next topic</h4>
+  <p class="topless"><a href="system.html"
+                        title="next chapter">Preparing your system to compile PyKEP</a></p>
+  <h3>This Page</h3>
+  <ul class="this-page-menu">
+    <li><a href="_sources/index.txt"
+           rel="nofollow">Show Source</a></li>
+  </ul>
+<div id="searchbox" style="display: none">
+  <h3>Quick search</h3>
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="system.html" title="Preparing your system to compile PyKEP"
+             >next</a> |</li>
+        <li><a href="#">PyKEP 1.1.4 documentation</a> &raquo;</li> 
+      </ul>
+    </div>
+    <div class="footer">
+        &copy; Copyright 2013, PyKEP Development Team.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.2.1.
+    </div>
+  </body>
+</html>

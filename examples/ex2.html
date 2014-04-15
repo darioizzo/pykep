@@ -1,0 +1,128 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>Multi-revs Lambert Problem &mdash; PyKEP 1.1.4 documentation</title>
+    
+    <link rel="stylesheet" href="../_static/default.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../',
+        VERSION:     '1.1.4',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/underscore.js"></script>
+    <script type="text/javascript" src="../_static/doctools.js"></script>
+    <link rel="top" title="PyKEP 1.1.4 documentation" href="../index.html" />
+    <link rel="up" title="Examples" href="index.html" />
+    <link rel="next" title="LT-MGA global optimization (Nuclear electric propulsion)" href="ex3.html" />
+    <link rel="prev" title="Low-thrust global optimization (Nuclear electric propulsion)" href="ex1.html" /> 
+  </head>
+  <body>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="ex3.html" title="LT-MGA global optimization (Nuclear electric propulsion)"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="ex1.html" title="Low-thrust global optimization (Nuclear electric propulsion)"
+             accesskey="P">previous</a> |</li>
+        <li><a href="../index.html">PyKEP 1.1.4 documentation</a> &raquo;</li>
+          <li><a href="index.html" accesskey="U">Examples</a> &raquo;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body">
+            
+  <div class="section" id="multi-revs-lambert-problem">
+<h1>Multi-revs Lambert Problem<a class="headerlink" href="#multi-revs-lambert-problem" title="Permalink to this headline">¶</a></h1>
+<div class="figure align-right">
+<img alt="multi-rev Lambert Problem" src="../_images/gallery2.png" />
+</div>
+<p>This plot is produced by the following code:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="kn">from</span> <span class="nn">PyKEP</span> <span class="kn">import</span> <span class="o">*</span>
+<span class="n">kep_examples</span><span class="o">.</span><span class="n">run_example2</span><span class="p">()</span>
+</pre></div>
+</div>
+<p>The example demonstrates the basic use of the multiple revolution Lambert solver. In particualar, it defines a fixed geometry of the
+Earth-Mars constellation and plots all possible resulting solution to the Lambert&#8217;s problem. The chosen geometry is such that one revolution solutions
+exists and are thus visualized.</p>
+<p>While not published yet, the multi-rev solver implemented in PyKEP is extremely efficient, if anyone knows about a faster implementation of
+a Lambert&#8217;s solver, please contact us. In our solver we use a transformation that deforms the time of flight curves into lines, thus allowing uniform
+consistent convergence properties for all possible geometries.</p>
+<p>The code for this example can be studied <a class="reference external" href="http://sourceforge.net/p/keptoolbox/code/ci/ef0454a6a69403a1786a4e7920c3fe036a916ad2/tree/PyKEP/examples/_ex2.py">here</a></p>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar">
+        <div class="sphinxsidebarwrapper">
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="ex1.html"
+                        title="previous chapter">Low-thrust global optimization (Nuclear electric propulsion)</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="ex3.html"
+                        title="next chapter">LT-MGA global optimization (Nuclear electric propulsion)</a></p>
+  <h3>This Page</h3>
+  <ul class="this-page-menu">
+    <li><a href="../_sources/examples/ex2.txt"
+           rel="nofollow">Show Source</a></li>
+  </ul>
+<div id="searchbox" style="display: none">
+  <h3>Quick search</h3>
+    <form class="search" action="../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="ex3.html" title="LT-MGA global optimization (Nuclear electric propulsion)"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="ex1.html" title="Low-thrust global optimization (Nuclear electric propulsion)"
+             >previous</a> |</li>
+        <li><a href="../index.html">PyKEP 1.1.4 documentation</a> &raquo;</li>
+          <li><a href="index.html" >Examples</a> &raquo;</li> 
+      </ul>
+    </div>
+    <div class="footer">
+        &copy; Copyright 2013, PyKEP Development Team.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.2.1.
+    </div>
+  </body>
+</html>

@@ -1,0 +1,134 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>MGA 1DSM global optimization &mdash; PyKEP 1.1.4 documentation</title>
+    
+    <link rel="stylesheet" href="../_static/default.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../',
+        VERSION:     '1.1.4',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/underscore.js"></script>
+    <script type="text/javascript" src="../_static/doctools.js"></script>
+    <link rel="top" title="PyKEP 1.1.4 documentation" href="../index.html" />
+    <link rel="up" title="Examples" href="index.html" />
+    <link rel="next" title="Credits" href="../credits.html" />
+    <link rel="prev" title="Automated Mesh Adaptation in Interplanetary Trajectory Optimization" href="ex4.html" /> 
+  </head>
+  <body>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="../credits.html" title="Credits"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="ex4.html" title="Automated Mesh Adaptation in Interplanetary Trajectory Optimization"
+             accesskey="P">previous</a> |</li>
+        <li><a href="../index.html">PyKEP 1.1.4 documentation</a> &raquo;</li>
+          <li><a href="index.html" accesskey="U">Examples</a> &raquo;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body">
+            
+  <div class="section" id="mga-1dsm-global-optimization">
+<h1>MGA 1DSM global optimization<a class="headerlink" href="#mga-1dsm-global-optimization" title="Permalink to this headline">¶</a></h1>
+<div class="figure align-left">
+<img alt="../_images/gallery5.png" src="../_images/gallery5.png" />
+</div>
+<div class="figure align-right">
+<img alt="&quot;Earth-Venus-Earth transfer via impulsive maneuvers&quot;" src="../_images/gallery5b.png" />
+</div>
+<p>These plots are produced by the following code:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="kn">from</span> <span class="nn">PyKEP</span> <span class="kn">import</span> <span class="o">*</span>
+<span class="n">kep_examples</span><span class="o">.</span><span class="n">run_example5</span><span class="p">()</span>
+</pre></div>
+</div>
+<p>after the self-adaptive differential evolution algorithm concludes its computations.</p>
+<p>The example demonstrates the use of the mga_1dsm problem constructor of the <em>interplanetary</em> module.
+This helper class allows to construct a PyGMO global optimization problem (<a class="reference external" href="http://pagmo.sourceforge.net/pygmo/index.html">PyGMO project</a>)
+representing a Multiple Gravity Assist Interplanetary Trajectory where only one Deep Space Manouvre is allowed in each leg. The problem is quickly constructed as either a single objective (total DV) or
+even a multiobjective optimization problem (DV and time of flight)</p>
+<p>In the particular instance constructed in the example, we have an Earth-Venus-Earth transfer with a Venus intermediate
+fly-by. he selected launch windows is 2016-2017, the launch hyperbolic velocity is 2.5 km/s and the allowed time of flight is in [0.5,3] years.</p>
+<p>To solve such a global optimization problem, we use jDE, a self-adaptive version of differential evolution and the generalized migration
+operator, thus computing the solution in eight paralel threads.</p>
+<p>The code for this example can be studied <a class="reference external" href="http://sourceforge.net/p/keptoolbox/code/ci/ef0454a6a69403a1786a4e7920c3fe036a916ad2/tree/PyKEP/examples/_ex5.py">here</a></p>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar">
+        <div class="sphinxsidebarwrapper">
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="ex4.html"
+                        title="previous chapter">Automated Mesh Adaptation in Interplanetary Trajectory Optimization</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="../credits.html"
+                        title="next chapter">Credits</a></p>
+  <h3>This Page</h3>
+  <ul class="this-page-menu">
+    <li><a href="../_sources/examples/ex5.txt"
+           rel="nofollow">Show Source</a></li>
+  </ul>
+<div id="searchbox" style="display: none">
+  <h3>Quick search</h3>
+    <form class="search" action="../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="../credits.html" title="Credits"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="ex4.html" title="Automated Mesh Adaptation in Interplanetary Trajectory Optimization"
+             >previous</a> |</li>
+        <li><a href="../index.html">PyKEP 1.1.4 documentation</a> &raquo;</li>
+          <li><a href="index.html" >Examples</a> &raquo;</li> 
+      </ul>
+    </div>
+    <div class="footer">
+        &copy; Copyright 2013, PyKEP Development Team.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.2.1.
+    </div>
+  </body>
+</html>
