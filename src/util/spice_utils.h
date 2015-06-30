@@ -1,9 +1,8 @@
 /*****************************************************************************
  *   Copyright (C) 2004-2015 The PyKEP development team,                     *
  *   Advanced Concepts Team (ACT), European Space Agency (ESA)               *
- *                                                                           *
- *   https://gitter.im/esa/pykep                                             *
- *   https://github.com/esa/pykep                                            *
+ *   http://keptoolbox.sourceforge.net/index.html                            *
+ *   http://keptoolbox.sourceforge.net/credits.html                          *
  *                                                                           *
  *   act@esa.int                                                             *
  *                                                                           *
@@ -39,6 +38,9 @@
 namespace kep_toolbox { namespace util {
 
 __KEP_TOOL_VISIBLE void load_spice_kernel(std::string file_name);
+__KEP_TOOL_VISIBLE void inspect_kernels();
+__KEP_TOOL_VISIBLE void unload_spice_kernel(std::string file_name);
+__KEP_TOOL_VISIBLE void get_eph_coverage(std::string lsk, std::string spk);
 __KEP_TOOL_VISIBLE SpiceDouble epoch_to_spice(kep_toolbox::epoch ep);
 __KEP_TOOL_VISIBLE SpiceDouble epoch_to_spice(double mjd2000);
 
