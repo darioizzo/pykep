@@ -1,9 +1,5 @@
 # -*- coding: iso-8859-1 -*-
 
-#sudo cp -v /home/mint/pykep/build/src/libkeplerian_toolbox.so /usr/local/lib/
-#sudo cp -v /home/mint/pykep/build/PyKEP/util/_util.so /usr/lib/python2.7/dist-packages/PyKEP/util
-#sudo cp -v /home/mint/Desktop/__init__.py /usr/lib/python2.7/dist-packages/PyKEP/planet/
-
 """
 This module contains all the classes that allow to construct efficiently
 low-thrust tajectories using our own flavour of the Sims-Flanagan model: a trajectory
