@@ -1,7 +1,6 @@
 /*****************************************************************************
  *   Copyright (C) 2004-2015 The PyKEP development team,                     *
  *   Advanced Concepts Team (ACT), European Space Agency (ESA)               *
- *                                                                           *
  *   https://gitter.im/esa/pykep                                             *
  *   https://github.com/esa/pykep                                            *
  *                                                                           *
@@ -57,6 +56,109 @@ void load_spice_kernel(std::string file_name) {
         reset_c();
     	throw_value_error(msg.str());
     }
+}
+void inspect_kernels() {
+    /* Based on the examples in the SPICE documentation. */
+    SpiceInt FILLEN = 128;
+    SpiceInt  TYPLEN = 32;
+    SpiceInt  SRCLEN = 128;
+
+    SpiceInt which;
+    SpiceInt handle;
+
+    SpiceChar file[FILLEN];
+    SpiceChar filtyp[TYPLEN];
+    SpiceChar source[SRCLEN];
+
+    SpiceBoolean    found;
+    int count;
+
+    ktotal_c ( "all", &count );
+
+    if ( count == 0 ) {
+        printf ( "No kernel files loaded.\n" );
+    }
+    else {
+        printf ( "List of the loaded kernel files: \n" );
+
+        for ( which = 0;  which < count;  which++ ) {
+            kdata_c ( which,  "all",    FILLEN,   TYPLEN, SRCLEN, file,   filtyp,  source, &handle,  &found );
+            std::ostringstream msg;
+            printf("\t#%d: %s (%s type)\n", which, file, filtyp, source);
+        }
+    }
+}
+void unload_spice_kernel(std::string file_name) {
+    unload_c(file_name.c_str());
+}
+void get_eph_coverage(std::string lsk, std::string spk) {
+     /* Based on the examples in the SPICE documentation. */
+     #define  FILSIZ         256
+     #define  MAXIV          1000
+     #define  WINSIZ         ( 2 * MAXIV )
+     #define  TIMLEN         51
+     #define  MAXOBJ         1000
+
+     SPICEDOUBLE_CELL        ( cover, WINSIZ );
+     SPICEINT_CELL           ( ids,   MAXOBJ );
+
+     //SpiceChar               lsk     [ FILSIZ ];
+     //SpiceChar               spk     [ FILSIZ ];
+     SpiceChar               timstr  [ TIMLEN ];
+
+     SpiceDouble             b;
+     SpiceDouble             e;
+
+     SpiceInt                i;
+     SpiceInt                j;
+     SpiceInt                niv;
+     SpiceInt                obj;
+
+
+     //prompt_c ( "Name of leapseconds kernel > ", FILSIZ, lsk );
+     furnsh_c ( lsk.c_str() );
+
+     //prompt_c ( "Name of SPK file           > ", FILSIZ, spk    );
+
+     spkobj_c ( spk.c_str(), &ids );
+
+     for ( i = 0;  i < card_c( &ids );  i++  )
+     {
+        obj  =  SPICE_CELL_ELEM_I( &ids, i );
+
+        scard_c  ( 0,        &cover );
+        spkcov_c ( spk.c_str(), obj, &cover );
+
+        niv = wncard_c ( &cover );
+
+        printf ( "%s\n", "========================================" );
+
+        printf ( "Coverage for object %ld\n", obj );
+
+        for ( j = 0;  j < niv;  j++  )
+        {
+           wnfetd_c ( &cover, j, &b, &e );
+
+           timout_c ( b, 
+                      "YYYY MON DD HR:MN:SC.### (TDB) ::TDB",  
+                      TIMLEN,
+                      timstr                                  );
+
+           printf ( "\n"
+                    "Interval:  %ld\n"
+                    "Start:     %s\n",
+                    j,
+                    timstr            );
+
+           timout_c ( e, 
+                      "YYYY MON DD HR:MN:SC.### (TDB) ::TDB",  
+                      TIMLEN,
+                      timstr                                  );
+           printf ( "Stop:      %s\n", timstr );
+
+        }
+
+     }
 }
 
 /// Transforms kep_toolbox epoch to SPICE epoch
