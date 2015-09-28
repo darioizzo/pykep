@@ -53,23 +53,6 @@ BOOST_PYTHON_MODULE(_util) {
 			  "Example:: \n\n"
 			  "  util.load_spice_kernel('de432s.bsp')"
 	);
-	def("inspect_kernels",&kep_toolbox::util::inspect_kernels,
-			  "PyKEP.util.inspect_kernels()\n\n"
-			  "Lists the SPICE kernels in memory that have been loaded with load_spice_kernel().\n\n"
-	);
-	def("unload_spice_kernel",&kep_toolbox::util::unload_spice_kernel,
-			  "PyKEP.util.unload_spice_kernel(file_name)\n\n"
-              "- file_name: string containing the kernel file to unload\n\n"
-              "Unloads the SPICE kernel specified by the filename from memory. \n\n"
-              ".. note::\n\n"
-              "   It is safe to unload a kernel that hasn't loaded - in that case, no action is taken.\n\n"
-			  "Example:: \n\n"
-			  "  util.unload_spice_kernel('de432s.bsp')"
-	);
-	def("get_eph_coverage",&kep_toolbox::util::get_eph_coverage,
-			  "PyKEP.util.get_eph_coverage(lsk, spk)\n\n"
-			  "Reports the timespan for the ephemerides kernel.\n\n"
-	);
 #endif
 }
 
