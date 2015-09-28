@@ -46,6 +46,7 @@
 #include "../../src/planet/gtoc5.h"
 #include "../../src/planet/gtoc6.h"
 #include "../../src/planet/gtoc7.h"
+#include "../../src/planet/fixed_point.h"
 #include "../utils.h"
 #include "python_base.h"
 
@@ -294,4 +295,12 @@ BOOST_PYTHON_MODULE(_planet) {
 			"Example::\n\n"
 			"  earth = planet.gtoc7(0)"
 		));
+
+        // 3 - test planets
+		planet_kep_wrapper<planet::fixedp>("fixedp","A planet representing a fixed point, derives from :py:class:`PyKEP.planet.base`")
+		.def(init<double,double,double,double,double,double>(
+			"PyKEP.planet.fixed(r1,r2,r3,v1,v2,v3)\n\n"
+			"- r1 to r3: position elements, v1 to v3: velocity elements\n\n"
+		));
+
 }
