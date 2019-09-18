@@ -10,9 +10,9 @@ from copy import deepcopy
 class _juice_udp(mga_1dsm):
     """
     This class represents a rendezvous mission to Jupiter modelled as an MGA-1DSM transfer. The selected fly-by sequence,
-    E-EVEME-J, and other parameters are inspired to the ESA Juice mission. A luncher model is included, namely an Ariane5 
-    launch from Kourou. 
-    JUICE - JUpiter ICy moons Explorer - is the first large-class mission in ESA's Cosmic Vision 2015-2025 programme. 
+    E-EVEME-J, and other parameters are inspired to the ESA Juice mission. A luncher model is included, namely an Ariane5
+    launch from Kourou.
+    JUICE - JUpiter ICy moons Explorer - is the first large-class mission in ESA's Cosmic Vision 2015-2025 programme.
     Planned for launch in 2022 and arrival at Jupiter in 2029, it will spend at least three years making detailed
     observations of the giant gaseous planet Jupiter and three of its largest moons, Ganymede, Callisto and Europa.
     """
@@ -53,7 +53,7 @@ class _juice_udp(mga_1dsm):
 
     def fitness(self, x):
         T, Vinfx, Vinfy, Vinfz = self._decode_times_and_vinf(x)
-        # We transform it (only the needed component) to an equatorial system rotating along x 
+        # We transform it (only the needed component) to an equatorial system rotating along x
         # (this is an approximation, assuming vernal equinox is roughly x and the ecliptic plane is roughly xy)
         earth_axis_inclination = 0.409072975
         # This is different from the GTOP tanmEM problem, I think it was bugged there as the rotation was in the wrong direction.
@@ -72,10 +72,17 @@ class _juice_udp(mga_1dsm):
         # Numerical guard for the exponential
         if m_final == 0:
             m_final = 1e-320
-        return [-log(m_final), ]
+
+        if self._multi_objective:
+            return [-log(m_final), sum(T)]
+        else:
+            return [-log(m_final), ]
 
     def get_name(self):
         return "Juice (Trajectory Optimisation Gym P13-14)"
+
+    def get_nobj(self):
+        return self._multi_objective + 1
 
     def __repr__(self):
         return self.get_name()
@@ -99,7 +106,7 @@ class _juice_udp(mga_1dsm):
         """
         super().pretty(x)
         T, Vinfx, Vinfy, Vinfz = self._decode_times_and_vinf(x)
-        # We transform it (only the needed component) to an equatorial system rotating along x 
+        # We transform it (only the needed component) to an equatorial system rotating along x
         # (this is an approximation, assuming vernal equinox is roughly x and the ecliptic plane is roughly xy)
         earth_axis_inclination = 0.409072975
         # This is different from the GTOP tanmEM problem, I think it was bugged there as the rotation was in the wrong direction.
