@@ -696,7 +696,7 @@ tof \cdot
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(-1.2139815874778748e-08, 1.7177998051787213e-08)
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(-6.5424469730679391e-09, 2.5453145580806025e-09)
 </pre></div>
 </div>
 </div>
@@ -712,7 +712,7 @@ tof \cdot
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/f8be2c85500e3531301766f2d129fdd34cc4d2244c33aa22795e34d7632147f5.png" src="../_images/f8be2c85500e3531301766f2d129fdd34cc4d2244c33aa22795e34d7632147f5.png" />
+<img alt="../_images/896413a90c84ceaeee5b78b5dc7670b7f9e2b6649a5df849db508a75c5ec028e.png" src="../_images/896413a90c84ceaeee5b78b5dc7670b7f9e2b6649a5df849db508a75c5ec028e.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -733,6 +733,7 @@ tof \cdot
 <span class="ne">----&gt; </span><span class="mi">2</span> <span class="n">pop</span> <span class="o">=</span> <span class="n">algo</span><span class="o">.</span><span class="n">evolve</span><span class="p">(</span><span class="n">pop</span><span class="p">)</span>
 <span class="g g-Whitespace">      </span><span class="mi">3</span> <span class="nb">print</span><span class="p">(</span><span class="n">prob</span><span class="o">.</span><span class="n">feasibility_f</span><span class="p">(</span><span class="n">pop</span><span class="o">.</span><span class="n">champion_f</span><span class="p">))</span>
 <span class="g g-Whitespace">      </span><span class="mi">4</span> <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Final mass:&quot;</span><span class="p">,</span> <span class="n">pop</span><span class="o">.</span><span class="n">champion_x</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">*</span> <span class="n">MASS</span><span class="p">)</span>
+<span class="g g-Whitespace">      </span><span class="mi">5</span> <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Final tof:&quot;</span><span class="p">,</span> <span class="n">pop</span><span class="o">.</span><span class="n">champion_x</span><span class="p">[</span><span class="mi">4</span><span class="o">*</span><span class="n">nseg</span><span class="o">+</span><span class="mi">1</span><span class="p">]</span> <span class="o">*</span> <span class="n">TIME</span> <span class="o">*</span> <span class="n">pk</span><span class="o">.</span><span class="n">SEC2DAY</span><span class="p">)</span>
 
 <span class="ne">ValueError</span>: 
 <span class="ne">function</span>: evolve_version

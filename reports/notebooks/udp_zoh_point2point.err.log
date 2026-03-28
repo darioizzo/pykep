@@ -40,9 +40,10 @@ print("Final tof:", pop.champion_x[4*nseg+1] * TIME * pk.SEC2DAY)
 [31mValueError[39m                                Traceback (most recent call last)
 [36mCell[39m[36m [39m[32mIn[8][39m[32m, line 2[39m
 [32m      1[39m pop = pg.population(prob, [32m1[39m)
-[32m----> [39m[32m2[39m pop = [43malgo[49m[43m.[49m[43mevolve[49m[43m([49m[43mpop[49m[43m)[49m
-[32m      3[39m [38;5;28mprint[39m(prob.feasibility_f(pop.champion_f))
-[32m      4[39m [38;5;28mprint[39m([33m"[39m[33mFinal mass:[39m[33m"[39m, pop.champion_x[[32m0[39m] * MASS)
+[32m----> [39m[32m2[39m pop = algo.evolve(pop)
+[32m      3[39m print(prob.feasibility_f(pop.champion_f))
+[32m      4[39m print([33m"Final mass:"[39m, pop.champion_x[[32m0[39m] * MASS)
+[32m      5[39m print([33m"Final tof:"[39m, pop.champion_x[[32m4[39m*nseg+[32m1[39m] * TIME * pk.SEC2DAY)
 
 [31mValueError[39m: 
 function: evolve_version
