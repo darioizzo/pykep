@@ -546,6 +546,7 @@ and in the process we learn how to instantiate and use the class.</p>
 
 <span class="c1"># leg random data</span>
 <span class="n">nseg</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">uniform</span><span class="p">(</span><span class="mi">4</span><span class="p">,</span> <span class="mi">20</span><span class="p">))</span>
+<span class="n">nseg</span><span class="o">=</span><span class="mi">10</span>
 <span class="n">veff</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">uniform</span><span class="p">(</span><span class="mi">4000</span><span class="p">,</span> <span class="mi">8000</span><span class="p">)</span> <span class="o">*</span> <span class="n">pk</span><span class="o">.</span><span class="n">G0</span>
 <span class="n">controls</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">uniform</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span> <span class="p">(</span><span class="mi">4</span><span class="o">*</span><span class="n">nseg</span><span class="p">,))</span>
 <span class="n">controls</span><span class="p">[</span><span class="mi">0</span><span class="p">::</span><span class="mi">4</span><span class="p">]</span> <span class="o">/=</span> <span class="p">(</span><span class="n">F</span><span class="p">)</span>  <span class="c1"># force will be in [-1, 1] N</span>
@@ -564,6 +565,7 @@ and in the process we learn how to instantiate and use the class.</p>
 
 <span class="c1"># Instantiate the leg</span>
 <span class="n">leg</span> <span class="o">=</span> <span class="n">pk</span><span class="o">.</span><span class="n">leg</span><span class="o">.</span><span class="n">zoh</span><span class="p">(</span><span class="n">state0</span><span class="p">,</span> <span class="n">controls</span><span class="o">.</span><span class="n">tolist</span><span class="p">(),</span> <span class="n">state1</span><span class="p">,</span> <span class="n">tgrid</span><span class="p">,</span> <span class="n">cut</span> <span class="o">=</span> <span class="n">cut</span><span class="p">,</span> <span class="n">tas</span> <span class="o">=</span> <span class="p">[</span><span class="n">ta_global</span><span class="p">,</span> <span class="n">ta_var_global</span><span class="p">])</span>
+<span class="n">leg_cpp</span> <span class="o">=</span> <span class="n">pk</span><span class="o">.</span><span class="n">leg</span><span class="o">.</span><span class="n">zoh_cpp</span><span class="p">(</span><span class="n">state0</span><span class="p">,</span> <span class="n">controls</span><span class="o">.</span><span class="n">tolist</span><span class="p">(),</span> <span class="n">state1</span><span class="p">,</span> <span class="n">tgrid</span><span class="p">,</span> <span class="n">cut</span> <span class="o">=</span> <span class="n">cut</span><span class="p">,</span> <span class="n">ta</span> <span class="o">=</span> <span class="n">ta_global</span><span class="p">,</span> <span class="n">ta_var</span><span class="o">=</span><span class="n">ta_var_global</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -588,7 +590,7 @@ and in the process we learn how to instantiate and use the class.</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>2.5548245388195163e-07
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>2.5817384526129999e-07
 </pre></div>
 </div>
 </div>
@@ -603,7 +605,7 @@ and in the process we learn how to instantiate and use the class.</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>2.4309500270712283e-07
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>7.944414735193909e-08
 </pre></div>
 </div>
 </div>
@@ -618,7 +620,7 @@ and in the process we learn how to instantiate and use the class.</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>2.0730164844958789e-07
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>2.2843060236555025e-07
 </pre></div>
 </div>
 </div>
@@ -632,7 +634,7 @@ and in the process we learn how to instantiate and use the class.</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>4.1131327000375998e-08
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>2.1771217695332281e-08
 </pre></div>
 </div>
 </div>
@@ -646,7 +648,7 @@ and in the process we learn how to instantiate and use the class.</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>4.1011786861281373e-08
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>5.9643714946546278e-08
 </pre></div>
 </div>
 </div>
@@ -671,7 +673,7 @@ and in the process we learn how to instantiate and use the class.</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/0b75aaca3f8ff9e5963c4a9a7bb6b35ec9d82e928363579dc623a41c090ad082.png" src="../_images/0b75aaca3f8ff9e5963c4a9a7bb6b35ec9d82e928363579dc623a41c090ad082.png" />
+<img alt="../_images/e1afe3413f16df6db57ca731c85ac2ba1428eaa221930d5ecae08846e6919116.png" src="../_images/e1afe3413f16df6db57ca731c85ac2ba1428eaa221930d5ecae08846e6919116.png" />
 </div>
 </div>
 </section>
@@ -832,7 +834,7 @@ be readily used.</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>The mismatch constraints are:  [-4.431122135883925e-12, 1.0724754417879012e-13, -8.318808333464277e-42, -6.573498689821378e-12, -3.090860900556436e-13, -1.7606964879625245e-41, 0.0]
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>The mismatch constraints are:  [-1.0231426816886824e-11, -3.875316734180956e-12, -2.71004116508098e-41, -1.9326762412674725e-11, -5.415734527502991e-11, -8.172512773788766e-41, 0.0]
 </pre></div>
 </div>
 </div>
@@ -858,7 +860,7 @@ be readily used.</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/29673998798d980203be4f0ab1dcf167bc818af7505d25f524a74f2d5539ae4c.png" src="../_images/29673998798d980203be4f0ab1dcf167bc818af7505d25f524a74f2d5539ae4c.png" />
+<img alt="../_images/bb27dd2e7fd2db78f3f4a72dcd1a223e9621647a8a054e26bf054b562e833848.png" src="../_images/bb27dd2e7fd2db78f3f4a72dcd1a223e9621647a8a054e26bf054b562e833848.png" />
 </div>
 </div>
 <p>YAY! … feels like we have achieved something ….
@@ -874,7 +876,7 @@ Let see what happens if we add some non-zero controls …</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>The mismatch constraints are:  [-0.06166541643317708, 0.012474301078514438, -1.4313465993806888e-31, 0.10124512548174619, 0.027681867021776663, -3.136234940745761e-32, -0.7507725221162382]
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>The mismatch constraints are:  [-0.017972134923222183, -0.018656623176540682, -1.361308832679306e-31, 0.07808891218195813, -0.2841475291333222, 2.95348313073024e-31, -0.5185318078132016]
 </pre></div>
 </div>
 </div>
@@ -899,7 +901,7 @@ Let see what happens if we add some non-zero controls …</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/695d51a1f4bf8234731b4fbf98755c7b5140adaf93703e4b1fbab64b6f77f923.png" src="../_images/695d51a1f4bf8234731b4fbf98755c7b5140adaf93703e4b1fbab64b6f77f923.png" />
+<img alt="../_images/8a5cc650f1db10e7df8cac2d488923d6719443a5497c4fc6e6cd7a73b01c81ed.png" src="../_images/8a5cc650f1db10e7df8cac2d488923d6719443a5497c4fc6e6cd7a73b01c81ed.png" />
 </div>
 </div>
 <p>Makes sense ….</p>
@@ -970,7 +972,7 @@ Let see what happens if we add some non-zero controls …</p>
   <div class="footer-item">
     
 <p class="component-author">
-By Dario Izzo and Francesco Biscani
+By Dario Izzo
 </p>
 
   </div>
@@ -980,7 +982,7 @@ By Dario Izzo and Francesco Biscani
 
   <p class="copyright">
     
-      © Copyright 2023, 2024, Dario Izzo and Francesco Biscani.
+      © Copyright Copyright (c) 2023-2026 Advanced Concepts Team, European Space Agency (ESA).
       <br/>
     
   </p>
