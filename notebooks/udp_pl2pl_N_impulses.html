@@ -49,7 +49,7 @@
     <script>DOCUMENTATION_OPTIONS.pagename = 'notebooks/udp_pl2pl_N_impulses';</script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="Low-thrust transfers via indirect methods I (mass, fixed time)" href="pontryagin_cartesian_mass.html" />
+    <link rel="next" title="Indirect methods I (minimum propellant, fixed time)" href="pontryagin_cartesian_mass.html" />
     <link rel="prev" title="Multiple Gravity Assist with one DSM (MGA-1DSM)" href="udp_mga_1dsm.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
@@ -202,7 +202,7 @@
 <li class="toctree-l2"><a class="reference internal" href="udp_sf_point2point.html">Sims-Flanagan: point to point low-thrust transfer</a></li>
 <li class="toctree-l2"><a class="reference internal" href="udp_sf_pl2pl.html">Sims-Flanagan: planet to plane low-thrust transfer</a></li>
 <li class="toctree-l2"><a class="reference internal" href="udp_sf_pl2pl_alpha.html">Sims-Flanagan: planet to plane low-thrust transfer (with Alpha encoding)</a></li>
-<li class="toctree-l2"><a class="reference internal" href="udp_zoh_point2point.html">Zero-Order Hold UDP: point-to-point trajectory optimization</a></li>
+<li class="toctree-l2"><a class="reference internal" href="udp_zoh_point2point.html">Zero-Order Hold: TOPS problems.</a></li>
 
 
 
@@ -212,10 +212,10 @@
 <li class="toctree-l2"><a class="reference internal" href="udp_mga_1dsm.html">Multiple Gravity Assist with one DSM (MGA-1DSM)</a></li>
 <li class="toctree-l2 current active"><a class="current reference internal" href="#">Multiple impulses: planet to planet transfer</a></li>
 
-<li class="toctree-l2"><a class="reference internal" href="pontryagin_cartesian_mass.html">Low-thrust transfers via indirect methods I (mass, fixed time)</a></li>
-<li class="toctree-l2"><a class="reference internal" href="pontryagin_cartesian_time.html">Low-thrust transfers via indirect methods II (time)</a></li>
-<li class="toctree-l2"><a class="reference internal" href="pontryagin_equinoctial_mass.html">Low-thrust transfers via indirect methods III (mass, fixed time, mee)</a></li>
-<li class="toctree-l2"><a class="reference internal" href="pontryagin_equinoctial_time.html">Low-thrust transfers via indirect methods IV (time, mean equinoctial elements)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="pontryagin_cartesian_mass.html">Indirect methods I (minimum propellant, fixed time)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="pontryagin_cartesian_time.html">Indirect methods II (minimum time, Cartesian)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="pontryagin_equinoctial_mass.html">Indirect methods III (minimum propellant, fixed time, MEE)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="pontryagin_equinoctial_time.html">Indirect methods IV (minimum time, MEE)</a></li>
 <li class="toctree-l2"><a class="reference internal" href="primer_vector.html">Primer Vector</a></li>
 <li class="toctree-l2"><a class="reference internal" href="surrogate_primer_vector.html">Surrogate Primer Vector</a></li>
 
@@ -534,30 +534,32 @@
 </div>
 <div class="cell_output docutils container">
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Multi-start:
-0 5986.38945663
-1 6015.3320758
-2 6070.31086818
-3 6312.58212984
-4 5986.38945834
-5 5986.38946109
-6 5986.38946913
-7 5986.38945751
+0 5986.3894634
+1 5986.3894577
+2 5986.3894632
+3 6015.3320758
+4 6312.58212984
+5 6312.58212984
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>8 5986.3894599
-9 5986.38945729
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>6 5986.38945953
+7 6015.33207583
+8 6015.33207582
+9 5986.38945783
 10 6312.58212984
-11 5986.38946048
-12 6015.33207581
-13 5986.389462
-14 5986.38945892
-15 6312.58212984
+11 6169.38349013
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>16 6312.58212984
-17 6015.33207582
-18 6015.3320758
-19 5986.38946582
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>12 6015.33207582
+13 6015.33207584
+14 5986.38946204
+15 5986.38945831
+16 5986.38946866
+17 5986.38946412
+18 6015.33207581
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>19 6015.3320758
 The best solution found has a DV of 5.98639e+00 km/s
 </pre></div>
 </div>
@@ -601,7 +603,7 @@ The best solution found has a DV of 5.98639e+00 km/s
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/a14a7b7a981b5b77c3b8f95835c28d25bb3312ad3dad55a6f3b78d85c0a51268.png" src="../_images/a14a7b7a981b5b77c3b8f95835c28d25bb3312ad3dad55a6f3b78d85c0a51268.png" />
+<img alt="../_images/6897b93ecfdfbed6f31f10d03d24baa10fcbbe8ff7665441d2b3bc31f6124ce3.png" src="../_images/6897b93ecfdfbed6f31f10d03d24baa10fcbbe8ff7665441d2b3bc31f6124ce3.png" />
 </div>
 </div>
 <p>… and quickly investigate a human readable format for the solution found.</p>
@@ -612,10 +614,10 @@ The best solution found has a DV of 5.98639e+00 km/s
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Total DV (m/s):  5986.389456632088
-Dvs (m/s):  [219.51097540137212, 2899.3311408070867, 2867.5473404236286]
-Total DT (m/s):  31104000.0
-Tofs (days):  [17793468.097871333, 13310531.902128669]
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Total DV (m/s):  5986.389457703647
+Dvs (m/s):  [219.50893237228817, 2899.334383389731, 2867.546141941628]
+Total DT (m/s):  31104000.000000004
+Tofs (days):  [17793482.317313444, 13310517.68268656]
 </pre></div>
 </div>
 </div>
@@ -631,7 +633,7 @@ Tofs (days):  [17793468.097871333, 13310531.902128669]
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/a7e09334b046185bae91dcc3572ffa693839389fbee2e589d16abc2fd4303edd.png" src="../_images/a7e09334b046185bae91dcc3572ffa693839389fbee2e589d16abc2fd4303edd.png" />
+<img alt="../_images/149ac4e37702c05807d80a8e885163dec6264b7519453c75c76f9a36a29c3f1f.png" src="../_images/149ac4e37702c05807d80a8e885163dec6264b7519453c75c76f9a36a29c3f1f.png" />
 </div>
 </div>
 <p>… the primer vector goes above one this trajevtory IS NOT OPTIMAL. We need more impulses. Lets add one.</p>
@@ -659,45 +661,50 @@ Tofs (days):  [17793468.097871333, 13310531.902128669]
 </div>
 <div class="cell_output docutils container">
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Multi-start:
-0 6015.33207583
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>1 5986.38945626
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0 6015.33207584
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>2 5986.38945662
-3 5986.38945627
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>1 5986.38945627
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>4
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>2 6312.58212984
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> 5937.92739209
-5 6015.33207584
-6 5986.38945626
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>3 5986.38945626
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>7 5986.38945625
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>4 5986.38945627
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>8 5986.38945628
-9 6015.33207596
-10 5986.38945626
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>5 5938.64670622
+6 5980.19835163
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>11 5980.12401762
-12 6313.59654335
-13 5986.38945627
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>7 5937.92739627
+8 5986.38945626
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>14 6015.33207592
-15 5986.38945625
-16 5986.38945629
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>9 6015.33207582
+10 6015.33207581
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>17 6015.33207611
-18 5986.38945627
-19 5986.38945625
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>11 5986.38945625
+12 5986.38945625
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>13 5986.38945626
+14 6015.43672286
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>15 6015.3320758
+16 6015.3320758
+17 5986.38945628
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>18 6015.42200104
+19 5986.38945629
 The best solution found has a DV of 5.93793e+00 km/s
 </pre></div>
 </div>
@@ -710,7 +717,7 @@ The best solution found has a DV of 5.93793e+00 km/s
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/366bc5e57ed3c2c6ef13724ef869a2ba61c7d1f9e034b23d4483909f50478e21.png" src="../_images/366bc5e57ed3c2c6ef13724ef869a2ba61c7d1f9e034b23d4483909f50478e21.png" />
+<img alt="../_images/eb8b657065addb1620fd5eddee8ff7a7675de64d7e8075ecee0bff700b8589a4.png" src="../_images/eb8b657065addb1620fd5eddee8ff7a7675de64d7e8075ecee0bff700b8589a4.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -720,10 +727,10 @@ The best solution found has a DV of 5.93793e+00 km/s
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Total DV (m/s):  5937.927392094578
-Dvs (m/s):  [197.6865899543195, 2732.331737020644, 231.01121018992285, 2776.897854929691]
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Total DV (m/s):  5937.9273962741045
+Dvs (m/s):  [197.70797726548687, 2732.2658183097965, 231.09365663594988, 2776.8599440628714]
 Total DT (m/s):  31103999.999999996
-Tofs (days):  [18115119.614280768, 8858153.503099475, 4130726.882619754]
+Tofs (days):  [18115147.15640941, 8858464.100260383, 4130388.7433302063]
 </pre></div>
 </div>
 </div>
@@ -738,7 +745,7 @@ Tofs (days):  [18115119.614280768, 8858153.503099475, 4130726.882619754]
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/1124d16d567c6f35ab29276862922845bb017ff5fd6162765097fe4a4dd4bba8.png" src="../_images/1124d16d567c6f35ab29276862922845bb017ff5fd6162765097fe4a4dd4bba8.png" />
+<img alt="../_images/8cee4fa977a6dfc4e31674928faa069a011212d3cebc46249fe44344d4249b9c.png" src="../_images/8cee4fa977a6dfc4e31674928faa069a011212d3cebc46249fe44344d4249b9c.png" />
 </div>
 </div>
 <p>The very same trajectory is also studied in <a class="reference internal" href="primer_vector.html"><span class="std std-doc">the notebook dedicated to the primer vector</span></a> where the whole theory is also developed and coded as to show its inner workings.</p>
@@ -769,7 +776,7 @@ Tofs (days):  [18115119.614280768, 8858153.503099475, 4130726.882619754]
        title="next page">
       <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">Low-thrust transfers via indirect methods I (mass, fixed time)</p>
+        <p class="prev-next-title">Indirect methods I (minimum propellant, fixed time)</p>
       </div>
       <i class="fa-solid fa-angle-right"></i>
     </a>
