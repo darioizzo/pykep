@@ -49,7 +49,7 @@
     <script>DOCUMENTATION_OPTIONS.pagename = 'notebooks/surrogate_primer_vector';</script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="Anomalies Conversions" href="../anomalies.html" />
+    <link rel="next" title="Basic API" href="../api.html" />
     <link rel="prev" title="Primer Vector" href="primer_vector.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
@@ -182,12 +182,12 @@
 <li class="toctree-l2"><a class="reference internal" href="udp_sf_point2point.html">Sims-Flanagan: point to point low-thrust transfer</a></li>
 <li class="toctree-l2"><a class="reference internal" href="udp_sf_pl2pl.html">Sims-Flanagan: planet to plane low-thrust transfer</a></li>
 <li class="toctree-l2"><a class="reference internal" href="udp_sf_pl2pl_alpha.html">Sims-Flanagan: planet to plane low-thrust transfer (with Alpha encoding)</a></li>
-<li class="toctree-l2"><a class="reference internal" href="udp_zoh_point2point.html">Zero-Order Hold: TOPS problems.</a></li>
+<li class="toctree-l2"><a class="reference internal" href="udp_zoh_point2point.html">Zero-Order Hold: TOPS problems I</a></li>
 
 
 
 
-<li class="toctree-l2"><a class="reference internal" href="udp_zoh_pl2pl.html">Zero-Order Hold: Planet-to-Planet Transfers</a></li>
+<li class="toctree-l2"><a class="reference internal" href="udp_zoh_pl2pl.html">Zero-Order Hold: TOPS problems II (free boundaries)</a></li>
 
 
 
@@ -208,26 +208,29 @@
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">API</span></p>
 <ul class="nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="../anomalies.html">Anomalies Conversions</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../api.html">Basic API</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../anomalies.html">Anomalies Conversions</a></li>
 
 
-<li class="toctree-l1"><a class="reference internal" href="../constants.html">Global constants</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../elements.html">Orbital Elements</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../epoch.html">Epoch class</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../planet.html">Planet class</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../udpla.html">User defined planets (UDPLAs)</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../lambert.html">Lambert class</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../flyby.html">Fly-by routines</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../approximations.html">Various approximations for orbital transfers</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../propagation.html">Numerical Propagation</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../leg.html">Interplanetary transfer legs</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../trajopt.html">Trajectory Optimization</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../gym.html">Trajectory Optimization Gym</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../plot.html">The plot module</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../utils.html">Utils</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../constants.html">Global constants</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../elements.html">Orbital Elements</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../epoch.html">Epoch class</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../planet.html">Planet class</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../udpla.html">User defined planets (UDPLAs)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../lambert.html">Lambert class</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../flyby.html">Fly-by routines</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../approximations.html">Various approximations for orbital transfers</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../propagation.html">Numerical Propagation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../leg.html">Interplanetary transfer legs</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../trajopt.html">Trajectory Optimization</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../gym.html">Trajectory Optimization Gym</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../plot.html">The plot module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../utils.html">Utils</a></li>
 
 
 
+</ul>
+</details></li>
 </ul>
 
     </div>
@@ -685,10 +688,10 @@ Larger then one! -&gt; Trajectory can be improved
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.legend.Legend at 0x7f0a0e447cb0&gt;
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.legend.Legend at 0x7fe9d0d17cb0&gt;
 </pre></div>
 </div>
-<img alt="../_images/73295af66ef266bae2e8485db766abab49fb727ee37d8bf9483299f2339688bf.png" src="../_images/73295af66ef266bae2e8485db766abab49fb727ee37d8bf9483299f2339688bf.png" />
+<img alt="../_images/3277c37fd1256db86dc8a25a2fb052fe9918e904d9e4a8cb962e842e5de4a0e1.png" src="../_images/3277c37fd1256db86dc8a25a2fb052fe9918e904d9e4a8cb962e842e5de4a0e1.png" />
 </div>
 </div>
 <p>Revealing all areas where adding two impulses would improve the trajectory leaving all boundary conditions unchanged.</p>
@@ -780,8 +783,8 @@ Larger then one! -&gt; Trajectory can be improved
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Multi-start:
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0 0.331298430740271
-The best solution found has a DV of 3.31298e-01
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0 0.3105384145426516
+The best solution found has a DV of 3.10538e-01
 </pre></div>
 </div>
 </div>
@@ -810,7 +813,7 @@ The best solution found has a DV of 3.31298e-01
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/1100bdf7eff8ef8fba2efb1c045067eb42f71801e7ed016723f1cf5de753b509.png" src="../_images/1100bdf7eff8ef8fba2efb1c045067eb42f71801e7ed016723f1cf5de753b509.png" />
+<img alt="../_images/767e6de1447d79aefa60832c0117d0280da6d9a36e9a42a43a8cdcca112a240f.png" src="../_images/767e6de1447d79aefa60832c0117d0280da6d9a36e9a42a43a8cdcca112a240f.png" />
 </div>
 </div>
 <p>The <strong>surrogate primer vector</strong> correctly had us try to add impulses and, in this case, halved the needed <span class="math notranslate nohighlight">\(\Delta V\)</span>!</p>
@@ -837,11 +840,11 @@ The best solution found has a DV of 3.31298e-01
       </div>
     </a>
     <a class="right-next"
-       href="../anomalies.html"
+       href="../api.html"
        title="next page">
       <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">Anomalies Conversions</p>
+        <p class="prev-next-title">Basic API</p>
       </div>
       <i class="fa-solid fa-angle-right"></i>
     </a>
