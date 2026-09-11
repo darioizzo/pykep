@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>Multiple impulses: planet to planet transfer &#8212; pykep 3.0.1 documentation</title>
+    <title>Multiple impulses: planet to planet transfer &#8212; pykep 3.0.2 documentation</title>
   
   
   
@@ -27,26 +27,27 @@
   </noscript>
   
   <!-- Loaded before other Sphinx assets -->
-  <link href="../_static/styles/theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
-<link href="../_static/styles/pydata-sphinx-theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
+  <link href="../_static/styles/theme.css?digest=90905a2f556bf617f1a9" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=90905a2f556bf617f1a9" rel="stylesheet" />
 
     <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=8f2a1f02" />
-    <link rel="stylesheet" type="text/css" href="../_static/styles/sphinx-book-theme.css?v=3c74b3bc" />
+    <link rel="stylesheet" type="text/css" href="../_static/styles/sphinx-book-theme.css?v=4418a689" />
     <link rel="stylesheet" type="text/css" href="../_static/mystnb.11b39860a7a0cbfd473a3ad8a317855267ff0bd372690045ca344a6b62be495e.css" />
   
   <!-- So that users can add custom icons -->
-  <script src="../_static/scripts/fontawesome.js?digest=8878045cc6db502f8baf"></script>
+  <script defer src="../_static/scripts/fontawesome.js?digest=90905a2f556bf617f1a9"></script>
   <!-- Pre-loaded scripts that we'll load fully later -->
-  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf" />
-<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf" />
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=90905a2f556bf617f1a9" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=90905a2f556bf617f1a9" />
 
-    <script src="../_static/documentation_options.js?v=d1bd4290"></script>
+    <script src="../_static/documentation_options.js?v=c6c9c2f6"></script>
     <script src="../_static/doctools.js?v=9bcbadda"></script>
     <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="../_static/scripts/sphinx-book-theme.js?v=fab101a9"></script>
     <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
     <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <script>DOCUMENTATION_OPTIONS.pagename = 'notebooks/udp_pl2pl_N_impulses';</script>
+    <script>DOCUMENTATION_OPTIONS.search_as_you_type = false;</script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
     <link rel="next" title="Indirect methods I (minimum propellant, fixed time)" href="pontryagin_cartesian_mass.html" />
@@ -54,20 +55,26 @@
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
   <meta name="docsearch:version" content="" />
+  
+    
+    <script src="../_static/searchtools.js"></script>
+    <script src="../_static/language_data.js"></script>
+    <script src="../searchindex.js"></script>
+  
   </head>
-  
-  
-  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
-
+  <body data-default-mode="">
   
   
   <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+
   
   <div id="pst-scroll-pixel-helper"></div>
   
   <button type="button" class="btn rounded-pill" id="pst-back-to-top">
     <i class="fa-solid fa-arrow-up"></i>Back to top</button>
-
+  
+  
+  
   
   <dialog id="pst-search-dialog">
     
@@ -93,7 +100,51 @@
 </div>
 
   
-    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    <header id="pst-header" class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+<div class="bd-header__inner bd-page-width">
+  <button class="pst-navbar-icon sidebar-toggle primary-toggle" aria-label="Site navigation">
+    <span class="fa-solid fa-bars"></span>
+  </button>
+  
+  
+  <div class="col-lg-9 navbar-header-items">
+    
+    
+    <div class="navbar-header-items__end">
+      
+        <div class="navbar-item navbar-persistent--container">
+          
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button>
+        </div>
+      
+      
+    </div>
+    
+  </div>
+  
+  
+    <div class="navbar-persistent--mobile">
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button>
+    </div>
+  
+
+  
+    <button class="pst-navbar-icon sidebar-toggle secondary-toggle" aria-label="On this page">
+      <span class="fa-solid fa-outdent"></span>
+    </button>
+  
+</div>
+
     </header>
   
 
@@ -132,8 +183,8 @@
       
     
     
-    <img src="../_static/pykep_logo.png" class="logo__image only-light" alt="pykep 3.0.1 documentation - Home"/>
-    <img src="../_static/pykep_logo.png" class="logo__image only-dark pst-js-only" alt="pykep 3.0.1 documentation - Home"/>
+    <img src="../_static/pykep_logo.png" class="logo__image only-light" alt="pykep 3.0.2 documentation - Home"/>
+    <img src="../_static/pykep_logo.png" class="logo__image only-dark pst-js-only" alt="pykep 3.0.2 documentation - Home"/>
   
   
 </a></div>
@@ -431,11 +482,18 @@
 
 
 
-<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Color mode" data-bs-title="Color mode"  data-bs-placement="bottom" data-bs-toggle="tooltip">
-  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="Light"></i>
-  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="Dark"></i>
-  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="System Settings"></i>
-</button>
+<div class="theme-switch-container dropdown pst-js-only" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Color mode">
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button dropdown-toggle" aria-label="Color mode" data-bs-toggle="dropdown">
+    <i class="theme-switch fa-solid fa-sun fa-lg fa-fw" data-mode="light" title="Light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg fa-fw" data-mode="dark" title="Dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg fa-fw" data-mode="auto" title="System Settings"></i>
+  </button>
+  <ul class="dropdown-menu dropdown-menu-end">
+    <li><button class="dropdown-item d-flex align-items-center theme-change-button" data-mode="auto"><i class="fa-solid fa-circle-half-stroke fa-lg fa-fw me-1"></i>System Settings</button></li>
+    <li><button class="dropdown-item d-flex align-items-center theme-change-button" data-mode="light"><i class="fa-solid fa-sun fa-lg fa-fw me-1"></i>Light</button></li>
+    <li><button class="dropdown-item d-flex align-items-center theme-change-button" data-mode="dark"><i class="fa-solid fa-moon fa-lg fa-fw me-1"></i>Dark</button></li>
+  </ul>
+</div>
 
 
 <button class="btn btn-sm pst-navbar-icon search-button search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
@@ -463,7 +521,7 @@
                 <h2> Contents </h2>
             </div>
             <nav aria-label="Page">
-                <ul class="visible nav section-nav flex-column">
+                <ul class="pst-show_toc_level nav section-nav flex-column">
 <li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">Multiple impulses: planet to planet transfer</a></li>
 <li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#are-more-impulses-needed">Are more impulses needed?</a></li>
 </ul>
@@ -501,8 +559,8 @@
 <p>We define the problem as an Earth-Venus transfer. We set the transfer time as fixed as well as the departure epoch.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">start</span> <span class="o">=</span> <span class="n">pk</span><span class="o">.</span><span class="n">planet</span><span class="p">(</span><span class="n">pk</span><span class="o">.</span><span class="n">udpla</span><span class="o">.</span><span class="n">jpl_lp</span><span class="p">(</span><span class="s2">&quot;earth&quot;</span><span class="p">))</span>
-<span class="n">target</span> <span class="o">=</span> <span class="n">pk</span><span class="o">.</span><span class="n">planet</span><span class="p">(</span><span class="n">pk</span><span class="o">.</span><span class="n">udpla</span><span class="o">.</span><span class="n">jpl_lp</span><span class="p">(</span><span class="s2">&quot;venus&quot;</span><span class="p">))</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">start</span> <span class="o">=</span> <span class="n">pk</span><span class="o">.</span><span class="n">planet</span><span class="p">(</span><span class="n">pk</span><span class="o">.</span><span class="n">udpla</span><span class="o">.</span><span class="n">jpl_lp</span><span class="p">(</span><span class="s2">"earth"</span><span class="p">))</span>
+<span class="n">target</span> <span class="o">=</span> <span class="n">pk</span><span class="o">.</span><span class="n">planet</span><span class="p">(</span><span class="n">pk</span><span class="o">.</span><span class="n">udpla</span><span class="o">.</span><span class="n">jpl_lp</span><span class="p">(</span><span class="s2">"venus"</span><span class="p">))</span>
 
 <span class="n">tof_bounds</span> <span class="o">=</span> <span class="p">[</span><span class="mf">360.0</span><span class="p">,</span> <span class="mf">360.0</span><span class="p">]</span>
 <span class="n">DV_max_bounds</span> <span class="o">=</span> <span class="p">[</span><span class="mf">0.0</span><span class="p">,</span> <span class="mi">4</span><span class="p">]</span>
@@ -533,19 +591,19 @@
     <span class="c1">#uda = pg.sade(2500, ftol=1e-4, xtol=1e-4)</span>
     <span class="n">algo</span> <span class="o">=</span> <span class="n">pg</span><span class="o">.</span><span class="n">algorithm</span><span class="p">(</span><span class="n">uda</span><span class="p">)</span>
 
-    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Multi-start:&quot;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">"Multi-start:"</span><span class="p">)</span>
 
     <span class="n">res</span> <span class="o">=</span> <span class="nb">list</span><span class="p">()</span>
     <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">N</span><span class="p">):</span>
         <span class="n">pop</span> <span class="o">=</span> <span class="n">pg</span><span class="o">.</span><span class="n">population</span><span class="p">(</span><span class="n">udp</span><span class="p">,</span> <span class="mi">20</span><span class="p">)</span>
         <span class="n">pop</span> <span class="o">=</span> <span class="n">algo</span><span class="o">.</span><span class="n">evolve</span><span class="p">(</span><span class="n">pop</span><span class="p">)</span>
         <span class="n">res</span><span class="o">.</span><span class="n">append</span><span class="p">([</span><span class="n">pop</span><span class="o">.</span><span class="n">champion_f</span><span class="p">,</span> <span class="n">pop</span><span class="o">.</span><span class="n">champion_x</span><span class="p">])</span>
-        <span class="nb">print</span><span class="p">(</span><span class="n">i</span><span class="p">,</span> <span class="n">pop</span><span class="o">.</span><span class="n">champion_f</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">end</span><span class="o">=</span> <span class="s1">&#39;</span><span class="se">\r</span><span class="s1">&#39;</span><span class="p">)</span>
+        <span class="nb">print</span><span class="p">(</span><span class="n">i</span><span class="p">,</span> <span class="n">pop</span><span class="o">.</span><span class="n">champion_f</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">end</span><span class="o">=</span> <span class="s1">'</span><span class="se">\r</span><span class="s1">'</span><span class="p">)</span>
         
 
     <span class="n">best_x</span> <span class="o">=</span> <span class="nb">sorted</span><span class="p">(</span><span class="n">res</span><span class="p">,</span> <span class="n">key</span> <span class="o">=</span>  <span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">x</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="mi">0</span><span class="p">])[</span><span class="mi">0</span><span class="p">][</span><span class="mi">1</span><span class="p">]</span>
 
-    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">The best solution found has a DV of </span><span class="si">{</span><span class="n">udp</span><span class="o">.</span><span class="n">fitness</span><span class="p">(</span><span class="n">best_x</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span><span class="o">/</span><span class="mi">1000</span><span class="si">:</span><span class="s2">.5e</span><span class="si">}</span><span class="s2"> km/s&quot;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"</span><span class="se">\n</span><span class="s2">The best solution found has a DV of </span><span class="si">{</span><span class="n">udp</span><span class="o">.</span><span class="n">fitness</span><span class="p">(</span><span class="n">best_x</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span><span class="o">/</span><span class="mi">1000</span><span class="si">:</span><span class="s2">.5e</span><span class="si">}</span><span class="s2"> km/s"</span><span class="p">)</span>
     <span class="k">return</span> <span class="n">best_x</span>
 
 <span class="n">best_x_3</span> <span class="o">=</span> <span class="n">solve</span><span class="p">(</span><span class="n">udp3</span><span class="p">)</span>
@@ -554,32 +612,32 @@
 </div>
 <div class="cell_output docutils container">
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Multi-start:
-0 5986.38945788
-1 5986.38945872
-2 6015.33207585
-3 5986.3894605
-4 6312.58212984
+0 5986.38946163
+1 5986.38946232
+2 6015.3320758
+3 5986.38946041
+4 5986.38945732
+5 5986.38945846
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>5 6015.3320758
-6 6015.33207581
-7 6015.3320758
-8 5986.38945923
-9 6312.58212984
-10 6015.3320758
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>6 6015.3320758
+7 5986.38945885
+8 6015.3320758
+9 6015.33207589
+10 5986.38945808
+11 6015.3320758
+12 5986.38945994
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>11 6312.58212984
-12 6015.33207581
-13 6015.33207581
-14 6312.58212984
-15 5986.38946036
-16 6015.3320758
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>17 6015.3320758
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>13 6015.33207582
+14 5986.38946313
+15 6015.3320758
+16 5986.38946057
+17 6312.58212984
 18 6015.33207581
-19 5986.38946132
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>19 6015.33207579
 The best solution found has a DV of 5.98639e+00 km/s
 </pre></div>
 </div>
@@ -599,22 +657,22 @@ The best solution found has a DV of 5.98639e+00 km/s
     <span class="p">)</span>
 
     <span class="c1"># Top view (spans rows and columns)</span>
-    <span class="n">ax1</span> <span class="o">=</span> <span class="n">fig</span><span class="o">.</span><span class="n">add_subplot</span><span class="p">(</span><span class="n">gs</span><span class="p">[:,</span> <span class="mi">0</span><span class="p">],</span> <span class="n">projection</span><span class="o">=</span><span class="s2">&quot;3d&quot;</span><span class="p">)</span>
+    <span class="n">ax1</span> <span class="o">=</span> <span class="n">fig</span><span class="o">.</span><span class="n">add_subplot</span><span class="p">(</span><span class="n">gs</span><span class="p">[:,</span> <span class="mi">0</span><span class="p">],</span> <span class="n">projection</span><span class="o">=</span><span class="s2">"3d"</span><span class="p">)</span>
     <span class="n">udp</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">best_x</span><span class="p">,</span> <span class="n">ax</span><span class="o">=</span><span class="n">ax1</span><span class="p">)</span>
     <span class="n">ax1</span><span class="o">.</span><span class="n">view_init</span><span class="p">(</span><span class="mi">90</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
-    <span class="n">ax1</span><span class="o">.</span><span class="n">axis</span><span class="p">(</span><span class="s2">&quot;off&quot;</span><span class="p">)</span>
+    <span class="n">ax1</span><span class="o">.</span><span class="n">axis</span><span class="p">(</span><span class="s2">"off"</span><span class="p">)</span>
 
     <span class="c1"># Ecliptic view 1</span>
-    <span class="n">ax1</span> <span class="o">=</span> <span class="n">fig</span><span class="o">.</span><span class="n">add_subplot</span><span class="p">(</span><span class="n">gs</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span> <span class="n">projection</span><span class="o">=</span><span class="s2">&quot;3d&quot;</span><span class="p">)</span>
+    <span class="n">ax1</span> <span class="o">=</span> <span class="n">fig</span><span class="o">.</span><span class="n">add_subplot</span><span class="p">(</span><span class="n">gs</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span> <span class="n">projection</span><span class="o">=</span><span class="s2">"3d"</span><span class="p">)</span>
     <span class="n">udp</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">best_x</span><span class="p">,</span> <span class="n">ax</span><span class="o">=</span><span class="n">ax1</span><span class="p">)</span>
     <span class="n">ax1</span><span class="o">.</span><span class="n">view_init</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
-    <span class="n">ax1</span><span class="o">.</span><span class="n">axis</span><span class="p">(</span><span class="s2">&quot;off&quot;</span><span class="p">)</span>
+    <span class="n">ax1</span><span class="o">.</span><span class="n">axis</span><span class="p">(</span><span class="s2">"off"</span><span class="p">)</span>
 
     <span class="c1"># Ecliptic view 2</span>
-    <span class="n">ax1</span> <span class="o">=</span> <span class="n">fig</span><span class="o">.</span><span class="n">add_subplot</span><span class="p">(</span><span class="n">gs</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span> <span class="n">projection</span><span class="o">=</span><span class="s2">&quot;3d&quot;</span><span class="p">)</span>
+    <span class="n">ax1</span> <span class="o">=</span> <span class="n">fig</span><span class="o">.</span><span class="n">add_subplot</span><span class="p">(</span><span class="n">gs</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span> <span class="n">projection</span><span class="o">=</span><span class="s2">"3d"</span><span class="p">)</span>
     <span class="n">udp</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">best_x</span><span class="p">,</span> <span class="n">ax</span><span class="o">=</span><span class="n">ax1</span><span class="p">)</span>
     <span class="n">ax1</span><span class="o">.</span><span class="n">view_init</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">90</span><span class="p">)</span>
-    <span class="n">ax1</span><span class="o">.</span><span class="n">axis</span><span class="p">(</span><span class="s2">&quot;off&quot;</span><span class="p">)</span>
+    <span class="n">ax1</span><span class="o">.</span><span class="n">axis</span><span class="p">(</span><span class="s2">"off"</span><span class="p">)</span>
     <span class="k">return</span> <span class="n">fig</span>
 
 
@@ -623,7 +681,7 @@ The best solution found has a DV of 5.98639e+00 km/s
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/fab0ba847e9b4c46faa2bfa40b99bb7ea6ffc32d6296df498eebe2d7e38e1564.png" src="../_images/fab0ba847e9b4c46faa2bfa40b99bb7ea6ffc32d6296df498eebe2d7e38e1564.png" />
+<img alt="../_images/c5d400eeba33bb4cc8946bf56668d60d71b9a28080a77da5e1f31667edad0792.png" src="../_images/c5d400eeba33bb4cc8946bf56668d60d71b9a28080a77da5e1f31667edad0792.png" />
 </div>
 </div>
 <p>… and quickly investigate a human readable format for the solution found.</p>
@@ -634,10 +692,10 @@ The best solution found has a DV of 5.98639e+00 km/s
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Total DV (m/s):  5986.389457884277
-Dvs (m/s):  [219.5331350132911, 2899.300250150328, 2867.5560727206584]
-Total DT (days):  360.0
-Tofs (days):  [205.9433683939432, 154.0566316060568]
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Total DV (m/s):  5986.389457318999
+Dvs (m/s):  [219.52062125257075, 2899.310884039157, 2867.5579520272718]
+Total DT (days):  359.99999999999994
+Tofs (days):  [205.94305097182865, 154.05694902817126]
 </pre></div>
 </div>
 </div>
@@ -653,7 +711,7 @@ Tofs (days):  [205.9433683939432, 154.0566316060568]
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/18e9ca73ec5e51ca71ad7e3b2b044a6eaa4b00ec05381273c6ba066fb3be6341.png" src="../_images/18e9ca73ec5e51ca71ad7e3b2b044a6eaa4b00ec05381273c6ba066fb3be6341.png" />
+<img alt="../_images/c1e52483fe242f478132c43e478e65d83e576cffad32dcfddbe08d8e3ff72b4f.png" src="../_images/c1e52483fe242f478132c43e478e65d83e576cffad32dcfddbe08d8e3ff72b4f.png" />
 </div>
 </div>
 <p>… the primer vector goes above one this trajevtory IS NOT OPTIMAL. We need more impulses. Lets add one.</p>
@@ -683,48 +741,48 @@ Tofs (days):  [205.9433683939432, 154.0566316060568]
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Multi-start:
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0 5986.38945627
-1 5986.38945631
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0 6015.33207585
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>2 5986.38945625
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>1 5986.38945627
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>3 6015.38654333
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>2 6015.39846996
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>4 5986.44300069
-5 6015.33207605
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>3 5986.38945627
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>6 5986.38945627
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>4 6015.34717367
+5 5986.38945626
+6 6015.33207608
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>7 5986.44300037
-8 6015.33207585
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>7 5986.38945627
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>9 5986.38945627
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>8 5986.44294834
+9 5986.38945626
+10 5986.38945626
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>10 5986.44294826
-11 6015.33207587
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>11 6015.33207581
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>12 5986.38945633
-13 5986.38945628
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>12 5986.44295629
+13 5986.38945625
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>14 5986.38945627
-15 5986.38945626
-16 5986.38945625
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>14 5986.38945637
+15 6015.33207581
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>17 5986.38945625
-18 6015.33207585
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>16 6015.33207581
+17 5986.38945626
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>19 6015.35244467
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>18 6015.3320758
+19 6015.33207581
 The best solution found has a DV of 5.98639e+00 km/s
 </pre></div>
 </div>
@@ -737,7 +795,7 @@ The best solution found has a DV of 5.98639e+00 km/s
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/bd4966a0802179bca64358149eb8eef7c10a64196deb914969fce3d851323630.png" src="../_images/bd4966a0802179bca64358149eb8eef7c10a64196deb914969fce3d851323630.png" />
+<img alt="../_images/6de2459cb46623e1de54880b659ca28ae7e4ba5b0bf505bd64072033392e0ede.png" src="../_images/6de2459cb46623e1de54880b659ca28ae7e4ba5b0bf505bd64072033392e0ede.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -747,10 +805,10 @@ The best solution found has a DV of 5.98639e+00 km/s
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Total DV (m/s):  5986.389456251865
-Dvs (m/s):  [219.51483323696357, 0.0, 2899.330774697722, 2867.5438483171793]
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Total DV (m/s):  5986.389456250688
+Dvs (m/s):  [219.51463784364378, 0.0, 2899.33175372087, 2867.543064686175]
 Total DT (days):  360.0
-Tofs (days):  [83.75376687788342, 122.18932539653032, 154.05690772558623]
+Tofs (days):  [94.85969112641094, 111.08341144475172, 154.05689742883735]
 </pre></div>
 </div>
 </div>
@@ -774,7 +832,7 @@ Tofs (days):  [83.75376687788342, 122.18932539653032, 154.05690772558623]
 <span class="g g-Whitespace">    </span><span class="mi">271</span> <span class="n">posvels</span> <span class="o">=</span> <span class="p">[</span><span class="n">it</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="k">for</span> <span class="n">it</span> <span class="ow">in</span> <span class="n">decoded</span><span class="p">]</span>
 <span class="g g-Whitespace">    </span><span class="mi">273</span> <span class="k">if</span> <span class="nb">min</span><span class="p">(</span><span class="n">norm_DVs</span><span class="p">)</span> <span class="o">&lt;</span> <span class="mf">1e-3</span><span class="p">:</span>
 <span class="ne">--&gt; </span><span class="mi">274</span>     <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span>
-<span class="g g-Whitespace">    </span><span class="mi">275</span>         <span class="s2">&quot;Impulse magnitude too small, primer vector computation is not possible. Decrease the number of impulses.&quot;</span>
+<span class="g g-Whitespace">    </span><span class="mi">275</span>         <span class="s2">"Impulse magnitude too small, primer vector computation is not possible. Decrease the number of impulses."</span>
 <span class="g g-Whitespace">    </span><span class="mi">276</span>     <span class="p">)</span>
 <span class="g g-Whitespace">    </span><span class="mi">278</span> <span class="c1"># We create one grid per segment (e.g. part of the trajectory between two impulses)</span>
 <span class="g g-Whitespace">    </span><span class="mi">279</span> <span class="c1"># (this is not guaranteed to have the requested size N, nor has uniform spacing, since all impulses</span>
@@ -837,7 +895,7 @@ Tofs (days):  [83.75376687788342, 122.18932539653032, 154.05690772558623]
     <i class="fa-solid fa-list"></i> Contents
   </div>
   <nav id="pst-page-toc-nav" class="page-toc" aria-labelledby="pst-page-navigation-heading-2">
-    <ul class="visible nav section-nav flex-column">
+    <ul class="pst-show_toc_level nav section-nav flex-column">
 <li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">Multiple impulses: planet to planet transfer</a></li>
 <li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#are-more-impulses-needed">Are more impulses needed?</a></li>
 </ul>
@@ -889,8 +947,8 @@ By Dario Izzo
   </div>
   
   <!-- Scripts loaded after <body> so the DOM is not blocked -->
-  <script defer src="../_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf"></script>
-<script defer src="../_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf"></script>
+  <script defer src="../_static/scripts/bootstrap.js?digest=90905a2f556bf617f1a9"></script>
+<script defer src="../_static/scripts/pydata-sphinx-theme.js?digest=90905a2f556bf617f1a9"></script>
 
   <footer class="bd-footer">
   </footer>
