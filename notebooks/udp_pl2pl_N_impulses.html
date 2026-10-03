@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>Multiple impulses: planet to planet transfer &#8212; pykep 3.0.2 documentation</title>
+    <title>Multiple impulses: planet to planet transfer &#8212; pykep 3.1.0 documentation</title>
   
   
   
@@ -40,7 +40,7 @@
   <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=90905a2f556bf617f1a9" />
 <link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=90905a2f556bf617f1a9" />
 
-    <script src="../_static/documentation_options.js?v=c6c9c2f6"></script>
+    <script src="../_static/documentation_options.js?v=969bf561"></script>
     <script src="../_static/doctools.js?v=9bcbadda"></script>
     <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="../_static/scripts/sphinx-book-theme.js?v=fab101a9"></script>
@@ -183,8 +183,8 @@
       
     
     
-    <img src="../_static/pykep_logo.png" class="logo__image only-light" alt="pykep 3.0.2 documentation - Home"/>
-    <img src="../_static/pykep_logo.png" class="logo__image only-dark pst-js-only" alt="pykep 3.0.2 documentation - Home"/>
+    <img src="../_static/pykep_logo.png" class="logo__image only-light" alt="pykep 3.1.0 documentation - Home"/>
+    <img src="../_static/pykep_logo.png" class="logo__image only-dark pst-js-only" alt="pykep 3.1.0 documentation - Home"/>
   
   
 </a></div>
@@ -224,6 +224,9 @@
 <li class="toctree-l2"><a class="reference internal" href="approximations.html">Approximators for low-thrust transfers</a></li>
 <li class="toctree-l2"><a class="reference internal" href="leg_sims_flanagan.html">The Sims-Flanagan trajectory leg</a></li>
 <li class="toctree-l2"><a class="reference internal" href="leg_zoh.html">The Zero-Order-Hold trajectory leg</a></li>
+
+
+<li class="toctree-l2"><a class="reference internal" href="leg_zoh_ms.html">The Zero-Order-Hold Multiple Shooting trajectory leg</a></li>
 
 
 <li class="toctree-l2"><a class="reference internal" href="plotting.html">Plotting</a></li>
@@ -612,30 +615,32 @@
 </div>
 <div class="cell_output docutils container">
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Multi-start:
-0 6312.58212984
-1 5986.38946128
+0 5986.38945787
+1 5986.38945969
 2 6015.3320758
-3 5986.38945767
-4 5986.3894588
-5 5986.38946559
-6 5986.38945916
+3 5986.38945775
+4 6015.33207581
+5 5986.38945698
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>7 6015.3320758
-8 6015.3320758
-9 5986.38945909
-10 6015.3320758
-11 6015.33207581
-12 6015.3320758
-13 5986.38945725
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>6 5986.38945766
+7 6015.3320758
+8 5986.38945846
+9 6015.3320758
+10 5986.38945778
+11 5986.3894597
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>14 6312.58212984
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>12 5986.38946214
+13 5986.3894601
+14 6015.3320758
 15 6015.3320758
-16 5986.38946004
-17 6015.33207579
-18 5986.38945829
-19 5986.38946149
+16 6312.58212984
+17 5986.38945793
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>18 6015.33207583
+19 5986.38946176
 The best solution found has a DV of 5.98639e+00 km/s
 </pre></div>
 </div>
@@ -679,7 +684,7 @@ The best solution found has a DV of 5.98639e+00 km/s
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/ef97c20f3a85cd880ea4f09e32ee9dc8468971895752218bfd44326f93c81463.png" src="../_images/ef97c20f3a85cd880ea4f09e32ee9dc8468971895752218bfd44326f93c81463.png" />
+<img alt="../_images/cdf6fb9578311a638bd0de3bf892795933fd943d9f9387923c4d59aef9bd7667.png" src="../_images/cdf6fb9578311a638bd0de3bf892795933fd943d9f9387923c4d59aef9bd7667.png" />
 </div>
 </div>
 <p>… and quickly investigate a human readable format for the solution found.</p>
@@ -690,10 +695,10 @@ The best solution found has a DV of 5.98639e+00 km/s
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Total DV (m/s):  5986.389457246735
-Dvs (m/s):  [219.51569114836727, 2899.3207883326263, 2867.5529777657416]
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Total DV (m/s):  5986.389456980943
+Dvs (m/s):  [219.5294257166518, 2899.311483688276, 2867.5485475760147]
 Total DT (days):  360.0
-Tofs (days):  [205.94308155783418, 154.05691844216585]
+Tofs (days):  [205.94345615835638, 154.05654384164362]
 </pre></div>
 </div>
 </div>
@@ -709,7 +714,7 @@ Tofs (days):  [205.94308155783418, 154.05691844216585]
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/a2cea76a0b08a3a5e9436aeca1f43534735d9d3e54de8e27e90f70d9b5ff9a29.png" src="../_images/a2cea76a0b08a3a5e9436aeca1f43534735d9d3e54de8e27e90f70d9b5ff9a29.png" />
+<img alt="../_images/731f79c844e15e9f047a32887e535366ffd595add19e69c62d1d76f384c745a9.png" src="../_images/731f79c844e15e9f047a32887e535366ffd595add19e69c62d1d76f384c745a9.png" />
 </div>
 </div>
 <p>… the primer vector goes above one this trajevtory IS NOT OPTIMAL. We need more impulses. Lets add one.</p>
@@ -739,45 +744,47 @@ Tofs (days):  [205.94308155783418, 154.05691844216585]
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Multi-start:
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0 6015.33207588
-1 5986.38945625
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0 6015.33207584
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>2 5980.12402729
-3 5980.19836664
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>1 5980.12402156
+2 5986.38945626
+3 5986.38945635
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>4 6277.86049593
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>4 5937.92739076
+5 6015.48101451
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>5 5977.20570787
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>6 5938.64538612
+7 5986.38945626
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>6 5986.4446762
-7 5980.12401756
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>8 5986.38945625
+9 5986.38945627
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>8 5986.38945626
-9 5986.38945626
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>10 6015.33207597
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>10 5986.44717462
-11 5986.38945625
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>11 6015.35157933
+12 6015.42873144
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>12 5986.38945627
-13 5986.38945626
-14 5986.38945626
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>13 5986.38945626
+14 6015.33207596
+15 5986.38945626
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>15 5986.38945625
-16 5986.38945626
-17 5986.38945627
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>16 6015.33207607
+17 6015.33207587
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>18 5980.1240121
-19 6015.33207587
-The best solution found has a DV of 5.97721e+00 km/s
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>18 6015.33207582
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>19 5937.92739385
+The best solution found has a DV of 5.93793e+00 km/s
 </pre></div>
 </div>
 </div>
@@ -789,7 +796,7 @@ The best solution found has a DV of 5.97721e+00 km/s
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/30aa12ec9c63107a91135be73c0e38ace840404f4f77ef33936504b9b29dcf66.png" src="../_images/30aa12ec9c63107a91135be73c0e38ace840404f4f77ef33936504b9b29dcf66.png" />
+<img alt="../_images/07781c6cfc7ef756675aace63c782f4527276de934c89edb3c041a1f0f1ef33b.png" src="../_images/07781c6cfc7ef756675aace63c782f4527276de934c89edb3c041a1f0f1ef33b.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -799,10 +806,10 @@ The best solution found has a DV of 5.97721e+00 km/s
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Total DV (m/s):  5977.2057078662
-Dvs (m/s):  [194.72784085678595, 832.535003476989, 2080.056723608495, 2869.88613992393]
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Total DV (m/s):  5937.9273907578545
+Dvs (m/s):  [197.68988619838552, 2732.2740405623063, 230.95981049116133, 2777.0036535060017]
 Total DT (days):  360.0
-Tofs (days):  [193.49593097269292, 19.415311786920572, 147.08875724038649]
+Tofs (days):  [209.66424624050458, 102.50766894789324, 47.82808481160218]
 </pre></div>
 </div>
 </div>
@@ -817,7 +824,7 @@ Tofs (days):  [193.49593097269292, 19.415311786920572, 147.08875724038649]
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/4d79553802ddf3865bdd4132f4697c7c68e004aebb2f6d2bb9a1b82ba994de62.png" src="../_images/4d79553802ddf3865bdd4132f4697c7c68e004aebb2f6d2bb9a1b82ba994de62.png" />
+<img alt="../_images/fe5e396f7cc6550052335a61241a46802843e44f46ec3688a638e1df40cf5404.png" src="../_images/fe5e396f7cc6550052335a61241a46802843e44f46ec3688a638e1df40cf5404.png" />
 </div>
 </div>
 <p>The very same trajectory is also studied in <a class="reference internal" href="primer_vector.html"><span class="std std-doc">the notebook dedicated to the primer vector</span></a> where the whole theory is also developed and coded as to show its inner workings.</p>
