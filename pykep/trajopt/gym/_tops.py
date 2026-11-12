@@ -39,7 +39,8 @@ class tops_twobody:
     the selected time encoding. Different choices of ``nseg`` and
     ``time_encoding`` therefore provide a convenient way to regulate the
     dimensionality and complexity of the benchmark. The formulation is built on
-    :class:`~pykep.trajopt.zoh_point2point`, so the departure and arrival
+    :class:`~pykep.trajopt.zoh_point2point` or, with ``ms=True``,
+    :class:`~pykep.trajopt.zoh_ms_point2point`. The departure and arrival
     states are fixed and moving-end effects are not accounted for.
     """
 
@@ -50,6 +51,7 @@ class tops_twobody:
         nseg=10,
         time_encoding="uniform",
         inequalities_for_tc=True,
+        ms=False,
     ):
         """Construct a two-body TOPS instance from a predefined gym case.
 
@@ -75,6 +77,9 @@ class tops_twobody:
                 boundary relative-velocity direction constraints are formulated as inequalities
                 (``|i_u|**2 - 1 <= 0``), otherwise as equalities.
                 Defaults to True.
+
+            *ms* (:class:`bool`, optional): Use multiple shooting with seven state variables
+                at each interior node and seven defect constraints per segment. Defaults to False.
         """
         self.prob_name = prob_name
         gym_problem = _pk.trajopt.gym.tops_twobody_json[prob_name]
@@ -105,7 +110,7 @@ class tops_twobody:
         statef = [it / self.L for it in gym_problem["state_f"][:3]] + [
             it / self.V for it in gym_problem["state_f"][3:6]
         ]
-        ms = gym_problem["m_s"] / self.MASS
+        initial_mass = gym_problem["m_s"] / self.MASS
         max_thrust = gym_problem["max_thrust"] / self.F
         tof_bounds = [it / self.TIME for it in gym_problem["tof_bounds"]]
 
@@ -114,13 +119,14 @@ class tops_twobody:
         ta_twobody.pars[4] = 1.0 / veff_nd
         ta_twobody_var.pars[4] = 1.0 / veff_nd
 
-        self.udp = _pk.trajopt.zoh_point2point(
+        udp_type = _pk.trajopt.zoh_ms_point2point if ms else _pk.trajopt.zoh_point2point
+        self.udp = udp_type(
             states=states,  # 6D state only (mass handled separately)
             statef=statef,
-            ms=ms,
+            ms=initial_mass,
             max_thrust=max_thrust,
             tof_bounds=tof_bounds,
-            mf_bounds=[ms / 2.0, ms],
+            mf_bounds=[initial_mass / 2.0, initial_mass],
             nseg=nseg,
             cut=cut,
             tas=[ta_twobody, ta_twobody_var],

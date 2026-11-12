@@ -43,7 +43,10 @@ class zoh_ms_point2point:
         state_bounds (:class:`tuple`, optional): Lower and upper bounds for the
             six non-mass components of every interior node, in integrator units.
             Default is ``([-10] * 6, [10] * 6)``; choose bounds appropriate for
-            the dynamics. Interior mass bounds cover `ms` and `mf_bounds`.
+            the dynamics.
+        interior_mass_bounds (:class:`tuple`, optional): Positive lower and upper
+            mass bounds for every interior node, in integrator units. Default is
+            ``(0.1 * ms, 4.0 * ms)``.
     """
 
     def __init__(
@@ -63,6 +66,7 @@ class zoh_ms_point2point:
         max_steps=None,
         state2cart=None,
         state_bounds=None,
+        interior_mass_bounds=None,
     ):
         if not isinstance(nseg, (int, _np.integer)) or nseg <= 0:
             raise ValueError("nseg must be a positive integer")
@@ -80,6 +84,12 @@ class zoh_ms_point2point:
         bounds = _np.asarray(state_bounds, dtype=float)
         if bounds.shape != (2, 6) or not _np.all(_np.isfinite(bounds)) or _np.any(bounds[0] > bounds[1]):
             raise ValueError("state_bounds must contain finite, ordered six-component lower and upper bounds")
+        if interior_mass_bounds is None:
+            interior_mass_bounds = (0.1 * ms, 4.0 * ms)
+        mass_bounds = _np.asarray(interior_mass_bounds, dtype=float)
+        if (mass_bounds.shape != (2,) or not _np.all(_np.isfinite(mass_bounds))
+                or mass_bounds[0] <= 0.0 or mass_bounds[0] > mass_bounds[1]):
+            raise ValueError("interior_mass_bounds must contain positive, finite, ordered bounds")
 
         self.nseg = nseg
         self.tof_bounds = [3.4, 8.6] if tof_bounds is None else tof_bounds
@@ -92,8 +102,9 @@ class zoh_ms_point2point:
         self.max_steps = max_steps
         self.state2cart = state2cart
         self.state_bounds = (bounds[0].tolist(), bounds[1].tolist())
-        self._node_lb = self.state_bounds[0] + [min(ms, self.mf_bounds[0])]
-        self._node_ub = self.state_bounds[1] + [max(ms, self.mf_bounds[1])]
+        self.interior_mass_bounds = mass_bounds.tolist()
+        self._node_lb = self.state_bounds[0] + [mass_bounds[0]]
+        self._node_ub = self.state_bounds[1] + [mass_bounds[1]]
         self._state0 = states + [ms]
         self._statef = statef
         self._single_shooting_size = 2 + 4 * nseg + (nseg if time_encoding == "softmax" else 0)
@@ -170,7 +181,8 @@ class zoh_ms_point2point:
 
         Raises:
             ValueError: If the vector length is invalid or a propagated interior
-                node is outside its bounds. Widen `state_bounds` if needed.
+                node is outside its bounds. Widen `state_bounds` or
+                `interior_mass_bounds` if needed.
 
         Returns:
             :class:`list`: Complete multiple-shooting decision vector.
