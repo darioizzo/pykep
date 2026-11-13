@@ -545,9 +545,7 @@ Unlike in the <a class="reference internal" href="udp_sf_pl2pl.html"><span class
 spacing between impulses. The impulse is still placed at the centre of each (non-uniform) time-interval.</p>
 <p>The decision vector for this class, compatible with pygmo <span class="bibtex-citation" id="id1">[<a class="reference internal" href="../bibliography.html#id9" title="Francesco Biscani and Dario Izzo. A parallel global multiobjective framework for optimization: pagmo. Journal of Open Source Software, 5(53):2338, 2020.">BI20</a>]</span> UDPs (User Defined Problems), is:</p>
 <div class="math notranslate nohighlight">
-\[
-\mathbf x = [t_0, m_f, V_{sx}^\infty, V^\infty_{sy}, V^\infty_{sz}, V^\infty_{fx}, V^\infty_{fy}, V^\infty_{fz}, \alpha_{0}, \alpha_{1}, ..., u_{x0}, u_{y0}, u_{z0}, u_{x1}, u_{y1}, u_{z1}, ..., T_{tof}]
-\]</div>
+\[\mathbf x = [t_0, m_f, V_{sx}^\infty, V^\infty_{sy}, V^\infty_{sz}, V^\infty_{fx}, V^\infty_{fy}, V^\infty_{fz}, \alpha_{0}, \alpha_{1}, ..., u_{x0}, u_{y0}, u_{z0}, u_{x1}, u_{y1}, u_{z1}, ..., T_{tof}]\]</div>
 <p>containing the starting epoch <span class="math notranslate nohighlight">\(t_0\)</span> as a MJD2000, the final mass <span class="math notranslate nohighlight">\(m_f\)</span> as well as the starting and final <span class="math notranslate nohighlight">\(V^{\infty}\)</span>, throttles and the time-of-flight <span class="math notranslate nohighlight">\(T_{tof}\)</span>.</p>
 <p>The time-intervals (direct) are encoded using the alpha encoding and represented in the optimisation vector as <span class="math notranslate nohighlight">\(\alpha_{0}, \alpha_{1}, ...,\)</span>. These can be converted to and from direct times using <code class="docutils literal notranslate"><span class="pre">alpha2direct</span></code> and <code class="docutils literal notranslate"><span class="pre">direct2alpha</span></code>.</p>
 <div class="admonition note">

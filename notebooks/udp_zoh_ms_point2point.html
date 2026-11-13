@@ -1,0 +1,708 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Zero-Order Hold: Multiple Shooting &#8212; pykep 3.1.0 documentation</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  <!--
+    this give us a css class that will be invisible only if js is disabled
+  -->
+  <noscript>
+    <style>
+      .pst-js-only { display: none !important; }
+
+    </style>
+  </noscript>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=90905a2f556bf617f1a9" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=90905a2f556bf617f1a9" rel="stylesheet" />
+
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=8f2a1f02" />
+    <link rel="stylesheet" type="text/css" href="../_static/styles/sphinx-book-theme.css?v=4418a689" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.11b39860a7a0cbfd473a3ad8a317855267ff0bd372690045ca344a6b62be495e.css" />
+  
+  <!-- So that users can add custom icons -->
+  <script defer src="../_static/scripts/fontawesome.js?digest=90905a2f556bf617f1a9"></script>
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=90905a2f556bf617f1a9" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=90905a2f556bf617f1a9" />
+
+    <script src="../_static/documentation_options.js?v=969bf561"></script>
+    <script src="../_static/doctools.js?v=9bcbadda"></script>
+    <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../_static/scripts/sphinx-book-theme.js?v=fab101a9"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'notebooks/udp_zoh_ms_point2point';</script>
+    <script>DOCUMENTATION_OPTIONS.search_as_you_type = false;</script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  <meta name="docsearch:version" content="" />
+  
+    
+    <script src="../_static/searchtools.js"></script>
+    <script src="../_static/language_data.js"></script>
+    <script src="../searchindex.js"></script>
+  
+  </head>
+  <body data-default-mode="">
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+  
+  
+  
+  
+  <dialog id="pst-search-dialog">
+    
+<form class="bd-search d-flex align-items-center"
+      action="../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         placeholder="Search..."
+         aria-label="Search..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form>
+  </dialog>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header id="pst-header" class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+<div class="bd-header__inner bd-page-width">
+  <button class="pst-navbar-icon sidebar-toggle primary-toggle" aria-label="Site navigation">
+    <span class="fa-solid fa-bars"></span>
+  </button>
+  
+  
+  <div class="col-lg-9 navbar-header-items">
+    
+    
+    <div class="navbar-header-items__end">
+      
+        <div class="navbar-item navbar-persistent--container">
+          
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button>
+        </div>
+      
+      
+    </div>
+    
+  </div>
+  
+  
+    <div class="navbar-persistent--mobile">
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button>
+    </div>
+  
+
+  
+</div>
+
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+        
+      
+      <dialog id="pst-primary-sidebar-modal"></dialog>
+      <div id="pst-primary-sidebar" class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="../index.html">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="../_static/pykep_logo.png" class="logo__image only-light" alt="pykep 3.1.0 documentation - Home"/>
+    <img src="../_static/pykep_logo.png" class="logo__image only-dark pst-js-only" alt="pykep 3.1.0 documentation - Home"/>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Main</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../installation.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../changelog.html">Changelog</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../bibliography.html">Bibliography</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Tutorials</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1 has-children"><a class="reference internal" href="../tut_basic.html">Basic</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="anomalies.html">The various anomalies in pykep</a></li>
+<li class="toctree-l2"><a class="reference internal" href="equinoctial_elements.html">Modified equinoctial elements in pykep</a></li>
+<li class="toctree-l2"><a class="reference internal" href="epochs.html">Epochs and Julian Dates</a></li>
+<li class="toctree-l2"><a class="reference internal" href="planet.html">Planets and User Defined Planets (UDPLAs)</a></li>
+
+
+
+<li class="toctree-l2"><a class="reference internal" href="interface_to_spice.html">Interfacing to SPICE and JPL DE ephs</a></li>
+<li class="toctree-l2"><a class="reference internal" href="propagate_lagrangian.html">Lagrange Propagation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ta_zoh_ss.html">The Zero Hold simple sail dynamics</a></li>
+
+
+
+
+<li class="toctree-l2"><a class="reference internal" href="ta_cr3bp_bcp.html">The CR3BP and BCP dynamics</a></li>
+<li class="toctree-l2"><a class="reference internal" href="approximations.html">Low-thrust approximations</a></li>
+<li class="toctree-l2"><a class="reference internal" href="leg_sims_flanagan.html">Sims-Flanagan leg</a></li>
+<li class="toctree-l2"><a class="reference internal" href="leg_zoh.html">Zero-Order-Hold leg</a></li>
+
+
+<li class="toctree-l2"><a class="reference internal" href="leg_zoh_ms.html">Zero-Order-Hold Multiple Shooting leg</a></li>
+
+
+<li class="toctree-l2"><a class="reference internal" href="indirect_methods.html">Indirect methods in pykep</a></li>
+<li class="toctree-l2"><a class="reference internal" href="plotting.html">Plotting</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../tut_trajopt.html">Trajectory Optimization</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="udp_sf_point2point.html">Sims-Flanagan: point to point low-thrust transfer</a></li>
+<li class="toctree-l2"><a class="reference internal" href="udp_sf_pl2pl.html">Sims-Flanagan: planet to plane low-thrust transfer</a></li>
+<li class="toctree-l2"><a class="reference internal" href="udp_sf_pl2pl_alpha.html">Sims-Flanagan: planet to plane low-thrust transfer (with Alpha encoding)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="udp_zoh_point2point.html">Zero-Order Hold I</a></li>
+
+
+
+
+<li class="toctree-l2"><a class="reference internal" href="udp_zoh_pl2pl.html">Zero-Order Hold II</a></li>
+
+
+
+
+<li class="toctree-l2"><a class="reference internal" href="udp_mga.html">Multiple Gravity Assist (MGA)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="udp_mga_1dsm.html">Multiple Gravity Assist with one DSM (MGA-1DSM)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="udp_pl2pl_N_impulses.html">Multiple impulses: planet to planet transfer</a></li>
+
+<li class="toctree-l2"><a class="reference internal" href="pontryagin_cartesian_mass.html">Indirect methods I (minimum propellant, fixed time)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="pontryagin_cartesian_time.html">Indirect methods II (minimum time, Cartesian)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="pontryagin_equinoctial_mass.html">Indirect methods III (minimum propellant, fixed time, MEE)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="pontryagin_equinoctial_time.html">Indirect methods IV (minimum time, MEE)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="primer_vector.html">Primer Vector</a></li>
+<li class="toctree-l2"><a class="reference internal" href="surrogate_primer_vector.html">Surrogate Primer Vector</a></li>
+
+<li class="toctree-l2"><a class="reference internal" href="maximum_initial_mass.html">Maximum Initial Mass</a></li>
+</ul>
+</details></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">API</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1 has-children"><a class="reference internal" href="../api.html">Basic API</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../anomalies.html">Anomalies Conversions</a></li>
+
+
+<li class="toctree-l2"><a class="reference internal" href="../constants.html">Global constants</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../elements.html">Orbital Elements</a></li>
+
+
+<li class="toctree-l2"><a class="reference internal" href="../epoch.html">Epoch class</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../planet.html">Planet class</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../udpla.html">User defined planets (UDPLAs)</a></li>
+
+
+<li class="toctree-l2"><a class="reference internal" href="../lambert.html">Lambert class</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../flyby.html">Fly-by routines</a></li>
+
+<li class="toctree-l2"><a class="reference internal" href="../approximations.html">Various approximations for orbital transfers</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../propagation.html">Numerical Propagation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../leg.html">Interplanetary transfer legs</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../trajopt.html">Trajectory Optimization</a></li>
+
+
+
+
+<li class="toctree-l2"><a class="reference internal" href="../gym.html">Trajectory Optimization Gym</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../plot.html">The plot module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../utils.html">Utils</a></li>
+
+
+
+</ul>
+</details></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+      <div class="sidebar-primary-item">
+<div id="ethical-ad-placement"
+      class="flat"
+      data-ea-publisher="readthedocs"
+      data-ea-type="readthedocs-sidebar"
+      data-ea-manual="true">
+</div></div>
+  </div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-launch-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Launch interactive content">
+    <i class="fas fa-rocket"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://mybinder.org/v2/gh/esa/pykep/main?urlpath=lab/tree/doc/notebooks/udp_zoh_ms_point2point.ipynb" target="_blank"
+   class="btn btn-sm dropdown-item"
+   title="Launch on Binder"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  
+    <img alt="Binder logo" src="../_static/images/logo_binder.svg">
+  </span>
+<span class="btn__text-container">Binder</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/esa/pykep" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/esa/pykep/issues/new?title=Issue%20on%20page%20%2Fnotebooks/udp_zoh_ms_point2point.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../_sources/notebooks/udp_zoh_ms_point2point.ipynb" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.ipynb</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button pst-navbar-icon"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<div class="theme-switch-container dropdown pst-js-only" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Color mode">
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button dropdown-toggle" aria-label="Color mode" data-bs-toggle="dropdown">
+    <i class="theme-switch fa-solid fa-sun fa-lg fa-fw" data-mode="light" title="Light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg fa-fw" data-mode="dark" title="Dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg fa-fw" data-mode="auto" title="System Settings"></i>
+  </button>
+  <ul class="dropdown-menu dropdown-menu-end">
+    <li><button class="dropdown-item d-flex align-items-center theme-change-button" data-mode="auto"><i class="fa-solid fa-circle-half-stroke fa-lg fa-fw me-1"></i>System Settings</button></li>
+    <li><button class="dropdown-item d-flex align-items-center theme-change-button" data-mode="light"><i class="fa-solid fa-sun fa-lg fa-fw me-1"></i>Light</button></li>
+    <li><button class="dropdown-item d-flex align-items-center theme-change-button" data-mode="dark"><i class="fa-solid fa-moon fa-lg fa-fw me-1"></i>Dark</button></li>
+  </ul>
+</div>
+
+
+<button class="btn btn-sm pst-navbar-icon search-button search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+</button>
+
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Zero-Order Hold: Multiple Shooting</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="zero-order-hold-multiple-shooting">
+<h1>Zero-Order Hold: Multiple Shooting<a class="headerlink" href="#zero-order-hold-multiple-shooting" title="Link to this heading">#</a></h1>
+<p>Solve the Cartesian two-body TOPS <code class="docutils literal notranslate"><span class="pre">P0</span></code> benchmark with multiple shooting, following the first example in <a class="reference internal" href="udp_zoh_point2point.html"><span class="std std-doc">Zero-Order Hold I</span></a>. The interior states are initialized by propagating from the fixed endpoints.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">pykep</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">pk</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">pygmo</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">pg</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">matplotlib</span><span class="w"> </span><span class="kn">import</span> <span class="n">pyplot</span> <span class="k">as</span> <span class="n">plt</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">ipopt</span> <span class="o">=</span> <span class="n">pg</span><span class="o">.</span><span class="n">ipopt</span><span class="p">()</span>
+<span class="n">ipopt</span><span class="o">.</span><span class="n">set_integer_options</span><span class="p">({</span><span class="s2">"max_iter"</span><span class="p">:</span> <span class="mi">2000</span><span class="p">})</span>
+<span class="n">ipopt</span><span class="o">.</span><span class="n">set_numeric_options</span><span class="p">({</span><span class="s2">"tol"</span><span class="p">:</span> <span class="mf">1e-10</span><span class="p">})</span>
+<span class="n">ipopt</span><span class="o">.</span><span class="n">set_string_options</span><span class="p">({</span><span class="s2">"sb"</span><span class="p">:</span> <span class="s2">"yes"</span><span class="p">})</span>
+<span class="n">algo</span> <span class="o">=</span> <span class="n">pg</span><span class="o">.</span><span class="n">algorithm</span><span class="p">(</span><span class="n">ipopt</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">prob_name</span> <span class="o">=</span> <span class="s2">"P0"</span>
+<span class="n">udp</span> <span class="o">=</span> <span class="n">pk</span><span class="o">.</span><span class="n">trajopt</span><span class="o">.</span><span class="n">gym</span><span class="o">.</span><span class="n">tops_twobody</span><span class="p">(</span><span class="n">prob_name</span><span class="p">,</span> <span class="n">nseg</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span> <span class="n">time_encoding</span><span class="o">=</span><span class="s2">"softmax"</span><span class="p">,</span> <span class="n">ms</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">udp</span><span class="o">.</span><span class="n">extra_info</span><span class="p">)</span>
+
+<span class="n">prob</span> <span class="o">=</span> <span class="n">pg</span><span class="o">.</span><span class="n">problem</span><span class="p">(</span><span class="n">udp</span><span class="p">)</span>
+<span class="n">prob</span><span class="o">.</span><span class="n">c_tol</span> <span class="o">=</span> <span class="mf">1e-7</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">"Variables:"</span><span class="p">,</span> <span class="n">prob</span><span class="o">.</span><span class="n">get_nx</span><span class="p">(),</span> <span class="s2">"Equalities:"</span><span class="p">,</span> <span class="n">prob</span><span class="o">.</span><span class="n">get_nec</span><span class="p">(),</span> <span class="s2">"Inequalities:"</span><span class="p">,</span> <span class="n">prob</span><span class="o">.</span><span class="n">get_nic</span><span class="p">())</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Mildly-elliptic to mildly-elliptic transfer (e_s~0.201, e_f~0.210) in fixed tof -&gt; T=0.22N, Isp=3000s
+Variables: 115 Equalities: 70 Inequalities: 10
+</pre></div>
+</div>
+</div>
+</div>
+<p>Initialize the internal states of each population member from its controls and time grid. A propagated state outside the node bounds raises <code class="docutils literal notranslate"><span class="pre">ValueError</span></code>. A finite defect or a feasible fitness alone does not establish that every segment propagation succeeded.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">pop</span> <span class="o">=</span> <span class="n">pg</span><span class="o">.</span><span class="n">population</span><span class="p">(</span><span class="n">prob</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">x</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">pop</span><span class="o">.</span><span class="n">get_x</span><span class="p">()):</span>
+    <span class="n">pop</span><span class="o">.</span><span class="n">set_x</span><span class="p">(</span><span class="n">i</span><span class="p">,</span> <span class="n">udp</span><span class="o">.</span><span class="n">guess_internal_states</span><span class="p">(</span><span class="n">x</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Compare the analytical gradient with finite differences. <code class="docutils literal notranslate"><span class="pre">prob.gradient_sparsity()</span></code> supplies the coordinates for either a sparse or dense gradient.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">x</span> <span class="o">=</span> <span class="n">pop</span><span class="o">.</span><span class="n">champion_x</span>
+<span class="n">pattern</span> <span class="o">=</span> <span class="n">prob</span><span class="o">.</span><span class="n">gradient_sparsity</span><span class="p">()</span>
+<span class="n">jacobian</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="n">prob</span><span class="o">.</span><span class="n">get_nf</span><span class="p">(),</span> <span class="n">prob</span><span class="o">.</span><span class="n">get_nx</span><span class="p">()))</span>
+<span class="n">jacobian</span><span class="p">[</span><span class="n">pattern</span><span class="p">[:,</span> <span class="mi">0</span><span class="p">],</span> <span class="n">pattern</span><span class="p">[:,</span> <span class="mi">1</span><span class="p">]]</span> <span class="o">=</span> <span class="n">prob</span><span class="o">.</span><span class="n">gradient</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+<span class="n">numerical</span> <span class="o">=</span> <span class="n">pg</span><span class="o">.</span><span class="n">estimate_gradient_h</span><span class="p">(</span><span class="n">prob</span><span class="o">.</span><span class="n">fitness</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span> <span class="n">dx</span><span class="o">=</span><span class="mf">1e-8</span><span class="p">)</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="n">jacobian</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
+<span class="n">grad_err</span> <span class="o">=</span> <span class="n">numerical</span> <span class="o">-</span> <span class="n">jacobian</span>
+<span class="n">grad_err</span><span class="o">.</span><span class="n">min</span><span class="p">(),</span> <span class="n">grad_err</span><span class="o">.</span><span class="n">max</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(-1.0748347064465369e-07, 1.134445504272219e-07)
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">pop</span> <span class="o">=</span> <span class="n">algo</span><span class="o">.</span><span class="n">evolve</span><span class="p">(</span><span class="n">pop</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">"Feasible:"</span><span class="p">,</span> <span class="n">prob</span><span class="o">.</span><span class="n">feasibility_f</span><span class="p">(</span><span class="n">pop</span><span class="o">.</span><span class="n">champion_f</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">"Objective:"</span><span class="p">,</span> <span class="n">pop</span><span class="o">.</span><span class="n">champion_f</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">"Final mass:"</span><span class="p">,</span> <span class="n">pop</span><span class="o">.</span><span class="n">champion_x</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">*</span> <span class="n">udp</span><span class="o">.</span><span class="n">MASS</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">"Final tof:"</span><span class="p">,</span> <span class="n">pop</span><span class="o">.</span><span class="n">champion_x</span><span class="p">[</span><span class="mi">4</span> <span class="o">*</span> <span class="n">udp</span><span class="o">.</span><span class="n">nseg</span> <span class="o">+</span> <span class="mi">1</span><span class="p">]</span> <span class="o">*</span> <span class="n">udp</span><span class="o">.</span><span class="n">TIME</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Feasible: False
+Objective: -0.81394925764
+Final mass: 0.81394925764
+Final tof: 11.0
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">axes</span> <span class="o">=</span> <span class="n">udp</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">pop</span><span class="o">.</span><span class="n">champion_x</span><span class="p">,</span> <span class="n">N</span><span class="o">=</span><span class="mi">100</span><span class="p">,</span> <span class="n">mark_segments</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">s</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span> <span class="n">c</span><span class="o">=</span><span class="s2">"k"</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/28f4e1873ceb8d7c87ee9d8f0e29d912a647889d82c7be221f975feffdb86c81.png" src="../_images/28f4e1873ceb8d7c87ee9d8f0e29d912a647889d82c7be221f975feffdb86c81.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">udp</span><span class="o">.</span><span class="n">plot_throttle</span><span class="p">(</span><span class="n">pop</span><span class="o">.</span><span class="n">champion_x</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;Axes: xlabel='time grid', ylabel='throttle value (nd)'&gt;
+</pre></div>
+</div>
+<img alt="../_images/cdcfd94a107d8f7dceb8130d3ac00d5355b74b6e1bac532918b95b1d3f536165.png" src="../_images/cdcfd94a107d8f7dceb8130d3ac00d5355b74b6e1bac532918b95b1d3f536165.png" />
+</div>
+</div>
+</section>
+
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Dario Izzo
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright Copyright (c) 2023-2026 Advanced Concepts Team, European Space Agency (ESA).
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script defer src="../_static/scripts/bootstrap.js?digest=90905a2f556bf617f1a9"></script>
+<script defer src="../_static/scripts/pydata-sphinx-theme.js?digest=90905a2f556bf617f1a9"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>

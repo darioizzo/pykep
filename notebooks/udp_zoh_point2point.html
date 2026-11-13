@@ -583,9 +583,7 @@ and all follow the same workflow:</p>
 </ul>
 <p>For <a class="reference internal" href="../trajopt.html#pykep.trajopt.zoh_point2point" title="pykep.trajopt.zoh_point2point"><code class="xref py py-class docutils literal notranslate"><span class="pre">pykep.trajopt.zoh_point2point</span></code></a>, the decision vector is:</p>
 <div class="math notranslate nohighlight">
-\[
-\mathbf{x} = [m_f] + [T_0, i_{x0}, i_{y0}, i_{z0}] + \cdots + [T_{N-1}, i_{x,N-1}, i_{y,N-1}, i_{z,N-1}] + [tof] (+ [w_0,\ldots,w_{N-1}])
-\]</div>
+\[\mathbf{x} = [m_f] + [T_0, i_{x0}, i_{y0}, i_{z0}] + \cdots + [T_{N-1}, i_{x,N-1}, i_{y,N-1}, i_{z,N-1}] + [tof] (+ [w_0,\ldots,w_{N-1}])\]</div>
 <p>where:</p>
 <ul class="simple">
 <li><p><span class="math notranslate nohighlight">\(m_f\)</span> is the final mass,</p></li>
@@ -595,17 +593,13 @@ and all follow the same workflow:</p>
 </ul>
 <p>For <a class="reference internal" href="../trajopt.html#pykep.trajopt.zoh_ss_point2point" title="pykep.trajopt.zoh_ss_point2point"><code class="xref py py-class docutils literal notranslate"><span class="pre">pykep.trajopt.zoh_ss_point2point</span></code></a>, the decision vector is:</p>
 <div class="math notranslate nohighlight">
-\[
-\mathbf{x} = [\alpha_0, \beta_0, \ldots, \alpha_{N-1}, \beta_{N-1}] + [tof] (+ [w_0,\ldots,w_{N-1}])
-\]</div>
+\[\mathbf{x} = [\alpha_0, \beta_0, \ldots, \alpha_{N-1}, \beta_{N-1}] + [tof] (+ [w_0,\ldots,w_{N-1}])\]</div>
 <p>where <span class="math notranslate nohighlight">\((\alpha_k, \beta_k)\)</span> are sail cone and clock angles (RTN frame) held constant on each segment.</p>
 <section id="uniform-vs-softmax-time-grids">
 <h3>Uniform vs softmax time grids<a class="headerlink" href="#uniform-vs-softmax-time-grids" title="Link to this heading">#</a></h3>
 <p>With <code class="docutils literal notranslate"><span class="pre">time_encoding=&quot;uniform&quot;</span></code>, segment durations are equal. With <code class="docutils literal notranslate"><span class="pre">time_encoding=&quot;softmax&quot;</span></code>, durations are learned via weights and satisfy positivity and partition of unity:</p>
 <div class="math notranslate nohighlight">
-\[
-\Delta t_k = tof\,\mathrm{softmax}(\mathbf{w})_k, \qquad t_{k+1}=t_k+\Delta t_k.
-\]</div>
+\[\Delta t_k = tof\,\mathrm{softmax}(\mathbf{w})_k, \qquad t_{k+1}=t_k+\Delta t_k.\]</div>
 <p>We start from a two-body Cartesian case and then repeat the same solver pipeline on MEE, CR3BP, and solar-sail dynamics.</p>
 <p>This makes the notebook useful as both:</p>
 <ul class="simple">

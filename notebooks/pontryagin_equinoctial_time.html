@@ -582,8 +582,7 @@
 <p>The state is <span class="math notranslate nohighlight">\([p,f,g,h,k,L,m]^T\)</span>, where <span class="math notranslate nohighlight">\([p,f,g,h,k,L]^T\)</span> are prograde modified equinoctial elements (see <a class="reference internal" href="../elements.html"><span class="std std-doc">Elements page</span></a>).</p>
 <p>The controlled dynamics are</p>
 <div class="math notranslate nohighlight">
-\[\begin{split}
-\begin{array}{l}
+\[\begin{split}\begin{array}{l}
 \dot p = \sqrt{\frac p\mu} \frac{2p}{w} i_t\, c_1 \frac{u}{m} \\
 \dot f = \sqrt{\frac p\mu} \left\{i_r \sin L + \left[ (1+w)\cos L + f \right] \frac{i_t}{w} - (h\sin L-k\cos L)\frac{g i_n}{w} \right\} c_1\frac{u}{m} \\
 \dot g = \sqrt{\frac p\mu} \left\{ - i_r\cos L + \left[ (1+w)\sin L + g \right] \frac{i_t}{w} + (h\sin L-k\cos L)\frac{f i_n}{w} \right\} c_1\frac{u}{m} \\
@@ -591,23 +590,19 @@
 \dot k = \sqrt{\frac p\mu} \frac{s^2 i_n}{2w}\sin L\, c_1\frac{u}{m} \\
 \dot L = \sqrt{\frac p\mu}\left\{\mu\left(\frac wp\right)^2 + \frac{1}{w}\left(h\sin L-k\cos L\right)i_n c_1\frac{u}{m} \right\} \\
 \dot m = -\frac{c_1}{c_2}u
-\end{array}
-\end{split}\]</div>
+\end{array}\end{split}\]</div>
 <p>with <span class="math notranslate nohighlight">\(w = 1 + f\cos L + g\sin L\)</span>, <span class="math notranslate nohighlight">\(s^2 = 1 + h^2 + k^2\)</span>, control constraints <span class="math notranslate nohighlight">\(0\le u\le1\)</span>, and <span class="math notranslate nohighlight">\(\hat{\mathbf i}_{\tau}=[i_r,i_t,i_n]^T\)</span> such that <span class="math notranslate nohighlight">\(\|\hat{\mathbf i}_{\tau}\|=1\)</span>.</p>
 <p>A compact form is</p>
 <div class="math notranslate nohighlight">
-\[\begin{split}
-\left\{
+\[\begin{split}\left\{
 \begin{array}{l}
 \dot{\mathbf x} = \frac{c_1u(t)}{m}\mathbf B(\mathbf x)\hat{\mathbf i}_{\tau} + \mathbf D(\mathbf x) \\
 \dot m = -\frac{c_1}{c_2}u(t)
 \end{array}
-\right.,
-\end{split}\]</div>
+\right.,\end{split}\]</div>
 <p>where</p>
 <div class="math notranslate nohighlight">
-\[\begin{split}
-\sqrt{\frac{\mu}{p}}\mathbf B(\mathbf x)=
+\[\begin{split}\sqrt{\frac{\mu}{p}}\mathbf B(\mathbf x)=
 \left[
 \begin{array}{ccc}
 0 &amp; \frac{2p}{w} &amp; 0 \\
@@ -617,13 +612,10 @@
 0 &amp; 0 &amp; \frac{s^2}{2w}\sin L \\
 0 &amp; 0 &amp; \frac{1}{w}(h\sin L-k\cos L)
 \end{array}
-\right],
-\end{split}\]</div>
+\right],\end{split}\]</div>
 <p>and</p>
 <div class="math notranslate nohighlight">
-\[
-\mathbf D(\mathbf x)=\left[0,0,0,0,0,\sqrt{\frac{\mu}{p^3}}w^2\right]^T.
-\]</div>
+\[\mathbf D(\mathbf x)=\left[0,0,0,0,0,\sqrt{\frac{\mu}{p^3}}w^2\right]^T.\]</div>
 <p>Using <code class="docutils literal notranslate"><span class="pre">heyoka</span></code>, we now define symbolic variables for states, controls, and costates.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -684,9 +676,7 @@
 </div>
 <p>We introduce the Hamiltonian (<span class="math notranslate nohighlight">\(\mathbf x\)</span> is the full state and <span class="math notranslate nohighlight">\(\boldsymbol\lambda\)</span> the full costate):</p>
 <div class="math notranslate nohighlight">
-\[
-\mathcal H(\mathbf x, \boldsymbol\lambda, \mathbf u) = \boldsymbol\lambda_x\cdot\mathbf f_x + \lambda_m f_m + \lambda_0\frac{c_1}{c_2}.
-\]</div>
+\[\mathcal H(\mathbf x, \boldsymbol\lambda, \mathbf u) = \boldsymbol\lambda_x\cdot\mathbf f_x + \lambda_m f_m + \lambda_0\frac{c_1}{c_2}.\]</div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Time-optimal Hamiltonian</span>
@@ -703,13 +693,11 @@
 <p>As in the Cartesian time-optimal notebook, <span class="math notranslate nohighlight">\(\epsilon\)</span> is retained only for API consistency with the mass-optimal formulation and does not enter the objective in this case. <span class="math notranslate nohighlight">\(\lambda_0\)</span> can be used for normalization but does not change the nature of the minimum-time objective.</p>
 <p>And write the resulting Hamiltonian system:</p>
 <div class="math notranslate nohighlight">
-\[\begin{split}
-\left\{
+\[\begin{split}\left\{
 \begin{array}{l}
 \dot{\mathbf x} = \frac{\partial \mathcal H}{\partial \mathbf \lambda} \\
 \dot{\mathbf \lambda} = - \frac{\partial \mathcal H}{\partial \mathbf x} \\
-\end{array}\right.
-\end{split}\]</div>
+\end{array}\right.\end{split}\]</div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Augmented equations of motion</span>
@@ -725,9 +713,7 @@
 </div>
 <p>Pontryagin’s minimum principle requires pointwise minimization over admissible controls</p>
 <div class="math notranslate nohighlight">
-\[
-\mathbf u^*(t)=\arg\min_{\mathbf u\in\mathcal U}\mathcal H(\mathbf x,\boldsymbol\lambda,\mathbf u),
-\]</div>
+\[\mathbf u^*(t)=\arg\min_{\mathbf u\in\mathcal U}\mathcal H(\mathbf x,\boldsymbol\lambda,\mathbf u),\]</div>
 <p>with <span class="math notranslate nohighlight">\(\mathcal U=\{(u,\hat{\mathbf i}_{\tau})\,|\,0\le u\le 1,\ \|\hat{\mathbf i}_{\tau}\|=1\}\)</span>.</p>
 <p>For this time-optimal problem, the minimizer is:</p>
 <div class="cell docutils container">

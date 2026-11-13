@@ -580,9 +580,7 @@
 <h2>Decision vector<a class="headerlink" href="#decision-vector" title="Link to this heading">#</a></h2>
 <p>The <a class="reference internal" href="../trajopt.html#pykep.trajopt.zoh_pl2pl" title="pykep.trajopt.zoh_pl2pl"><code class="xref py py-class docutils literal notranslate"><span class="pre">pykep.trajopt.zoh_pl2pl</span></code></a> decision vector is:</p>
 <div class="math notranslate nohighlight">
-\[
-\mathbf{x} = [t_0, m_f] + [T_0, i_{x0}, i_{y0}, i_{z0}] + \cdots + [T_{N-1}, i_{x,N-1}, i_{y,N-1}, i_{z,N-1}] + [tof] (+ [w_0,\ldots,w_{N-1}])
-\]</div>
+\[\mathbf{x} = [t_0, m_f] + [T_0, i_{x0}, i_{y0}, i_{z0}] + \cdots + [T_{N-1}, i_{x,N-1}, i_{y,N-1}, i_{z,N-1}] + [tof] (+ [w_0,\ldots,w_{N-1}])\]</div>
 <p>where:</p>
 <ul class="simple">
 <li><p><span class="math notranslate nohighlight">\(t_0\)</span> is the departure epoch (MJD2000),</p></li>
@@ -595,9 +593,7 @@
 <h3>Uniform vs softmax time grids<a class="headerlink" href="#uniform-vs-softmax-time-grids" title="Link to this heading">#</a></h3>
 <p>With <code class="docutils literal notranslate"><span class="pre">time_encoding=&quot;uniform&quot;</span></code>, segment durations are equal. With <code class="docutils literal notranslate"><span class="pre">time_encoding=&quot;softmax&quot;</span></code>, durations are learned via weights and satisfy positivity and partition of unity:</p>
 <div class="math notranslate nohighlight">
-\[
-\Delta t_k = tof\,\mathrm{softmax}(\mathbf{w})_k, \qquad t_{k+1}=t_k+\Delta t_k.
-\]</div>
+\[\Delta t_k = tof\,\mathrm{softmax}(\mathbf{w})_k, \qquad t_{k+1}=t_k+\Delta t_k.\]</div>
 <p>We start with the Earth–Mars custom example and then repeat the same solver pipeline on the TOPS moving-boundary benchmarks.</p>
 <p>This makes the notebook useful as both:</p>
 <ul class="simple">

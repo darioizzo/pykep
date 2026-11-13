@@ -581,15 +581,13 @@
 <h2>Manual construction of the TPBVP<a class="headerlink" href="#manual-construction-of-the-tpbvp" title="Link to this heading">#</a></h2>
 <p>We consider the dynamics</p>
 <div class="math notranslate nohighlight">
-\[\begin{split}
-\left\{
+\[\begin{split}\left\{
 \begin{array}{l}
 \dot{\mathbf r} = \mathbf v \\
 \dot{\mathbf v} = -\frac{\mu}{r^3}\mathbf r + c_1\frac{u}{m}\hat{\mathbf i} \\
 \dot{m} = -\frac{c_1}{c_2}u
 \end{array}
-\right.,
-\end{split}\]</div>
+\right.,\end{split}\]</div>
 <p>with control constraints <span class="math notranslate nohighlight">\(0 \le u \le 1\)</span> and <span class="math notranslate nohighlight">\(\|\hat{\mathbf i}\| = 1\)</span>. Here <span class="math notranslate nohighlight">\(c_1 = T_{\max}\)</span> and <span class="math notranslate nohighlight">\(c_2 = I_{sp}g_0\)</span>.</p>
 <p>To apply PMP, we introduce one costate per state variable. Using <code class="docutils literal notranslate"><span class="pre">heyoka</span></code> as a symbolic manipulator, we define symbols for all time-dependent quantities:</p>
 <div class="cell docutils container">
@@ -636,9 +634,7 @@
 </div>
 <p>We introduce the regularized Hamiltonian (with <span class="math notranslate nohighlight">\(\mathbf x\)</span> the full state, <span class="math notranslate nohighlight">\(\boldsymbol\lambda\)</span> the full costate, and <span class="math notranslate nohighlight">\(\mathbf u\)</span> the control tuple):</p>
 <div class="math notranslate nohighlight">
-\[
-\mathcal H(\mathbf x, \boldsymbol\lambda, \mathbf u) = \boldsymbol\lambda_r \cdot \mathbf f_r + \boldsymbol\lambda_v \cdot \mathbf f_v + \lambda_m f_m + \lambda_0\frac{c_1}{c_2}\left(u - \epsilon\log\left(u(1-u)\right)\right).
-\]</div>
+\[\mathcal H(\mathbf x, \boldsymbol\lambda, \mathbf u) = \boldsymbol\lambda_r \cdot \mathbf f_r + \boldsymbol\lambda_v \cdot \mathbf f_v + \lambda_m f_m + \lambda_0\frac{c_1}{c_2}\left(u - \epsilon\log\left(u(1-u)\right)\right).\]</div>
 <p>The logarithmic barrier regularizes the bang-bang throttle law, enforces interior controls during continuation, and recovers near bang-bang behavior as <span class="math notranslate nohighlight">\(\epsilon \to 0^+\)</span>.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -653,13 +649,11 @@
 <p>In the code, constants are passed as <code class="docutils literal notranslate"><span class="pre">heyoka</span></code> parameters in the order <span class="math notranslate nohighlight">\([\mu, c_1, c_2, \epsilon, \lambda_0]\)</span>, with <span class="math notranslate nohighlight">\(c_1 = T_{\max}\)</span> and <span class="math notranslate nohighlight">\(c_2 = I_{sp}g_0\)</span>. Consequently, <span class="math notranslate nohighlight">\(\frac{c_1}{c_2} = \frac{T_{\max}}{I_{sp}g_0}\)</span>.</p>
 <p>We write the resulting Hamiltonian system:</p>
 <div class="math notranslate nohighlight">
-\[\begin{split}
-\left\{
+\[\begin{split}\left\{
 \begin{array}{l}
 \dot{\mathbf x} = \frac{\partial \mathcal H}{\partial \mathbf \lambda} \\
 \dot{\mathbf \lambda} = - \frac{\partial \mathcal H}{\partial \mathbf x} \\
-\end{array}\right.
-\end{split}\]</div>
+\end{array}\right.\end{split}\]</div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Augmented equations of motion</span>
@@ -675,9 +669,7 @@
 </div>
 <p>Pontryagin’s minimum principle requires pointwise minimization of the Hamiltonian over the admissible control set</p>
 <div class="math notranslate nohighlight">
-\[
-\mathbf u^*(t) = \arg\min_{\mathbf u \in \mathcal U} \mathcal H(\mathbf x, \boldsymbol\lambda, \mathbf u),
-\]</div>
+\[\mathbf u^*(t) = \arg\min_{\mathbf u \in \mathcal U} \mathcal H(\mathbf x, \boldsymbol\lambda, \mathbf u),\]</div>
 <p>with <span class="math notranslate nohighlight">\(\quad\mathcal U = \{(u, \hat{\mathbf i})\,|\,0 \le u \le 1,\ \|\hat{\mathbf i}\|=1\}\)</span>.</p>
 <p>For this problem, the minimizer is:</p>
 <div class="cell docutils container">
@@ -1133,25 +1125,17 @@ Total CPU time: 1.01e+00
 <p>Here we still decrease <span class="math notranslate nohighlight">\(\epsilon\)</span> geometrically, but we compute a first-order predictor from the tangent to the solution manifold.</p>
 <p>Let the TPBVP terminal constraints be</p>
 <div class="math notranslate nohighlight">
-\[
-\mathbf c(\boldsymbol\lambda, \epsilon) = \mathbf 0,
-\]</div>
+\[\mathbf c(\boldsymbol\lambda, \epsilon) = \mathbf 0,\]</div>
 <p>where <span class="math notranslate nohighlight">\(\boldsymbol\lambda = [\lambda_x, \lambda_y, \lambda_z, \lambda_{vx}, \lambda_{vy}, \lambda_{vz}, \lambda_m, \lambda_0]^T\)</span>.
 For a small parameter change <span class="math notranslate nohighlight">\((\delta\boldsymbol\lambda, \delta\epsilon)\)</span>:</p>
 <div class="math notranslate nohighlight">
-\[
-\mathbf c(\boldsymbol\lambda + \delta\boldsymbol\lambda, \epsilon + \delta\epsilon) = \mathbf 0.
-\]</div>
+\[\mathbf c(\boldsymbol\lambda + \delta\boldsymbol\lambda, \epsilon + \delta\epsilon) = \mathbf 0.\]</div>
 <p>Linearizing gives</p>
 <div class="math notranslate nohighlight">
-\[
-\frac{\partial \mathbf c}{\partial \boldsymbol\lambda}\,\delta\boldsymbol\lambda + \frac{\partial \mathbf c}{\partial \epsilon}\,\delta\epsilon = \mathbf 0,
-\]</div>
+\[\frac{\partial \mathbf c}{\partial \boldsymbol\lambda}\,\delta\boldsymbol\lambda + \frac{\partial \mathbf c}{\partial \epsilon}\,\delta\epsilon = \mathbf 0,\]</div>
 <p>hence</p>
 <div class="math notranslate nohighlight">
-\[
-\delta\boldsymbol\lambda = -\mathbf A^{-1}\mathbf B\,\delta\epsilon,
-\]</div>
+\[\delta\boldsymbol\lambda = -\mathbf A^{-1}\mathbf B\,\delta\epsilon,\]</div>
 <p>with <span class="math notranslate nohighlight">\(\mathbf A = \frac{\partial \mathbf c}{\partial \boldsymbol\lambda}\)</span> and <span class="math notranslate nohighlight">\(\mathbf B = \frac{\partial \mathbf c}{\partial \epsilon}\)</span>.</p>
 <p>Most entries in <span class="math notranslate nohighlight">\(\mathbf A\)</span> and <span class="math notranslate nohighlight">\(\mathbf B\)</span> are obtained directly from a variational Taylor integrator. The normalization constraint involving <span class="math notranslate nohighlight">\(\lambda_0\)</span> is handled analytically.</p>
 <p>We now build a first-order variational system with variables <span class="math notranslate nohighlight">\([\lambda_x, \lambda_y, \lambda_z, \lambda_{vx}, \lambda_{vy}, \lambda_{vz}, \lambda_m, \lambda_0, \epsilon]\)</span>.</p>

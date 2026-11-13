@@ -566,9 +566,7 @@
 <p>For fixed transfer time and fixed final state, the <strong>maximum-initial-mass (MIM)</strong> problem asks for the largest admissible initial mass that still allows a feasible low-thrust transfer. In Pontryagin form, this leads to the same thrust-direction law as the minimum-time problem and, in the nondegenerate case, to full throttle along the trajectory.</p>
 <p>A practical consequence for continuation is that, instead of continuing in thrust, one can work on the smooth surface</p>
 <div class="math notranslate nohighlight">
-\[
-\mathcal{M}:(t_f, N_{\mathrm{rev}}) \mapsto m_0^*(t_f, N_{\mathrm{rev}}),
-\]</div>
+\[\mathcal{M}:(t_f, N_{\mathrm{rev}}) \mapsto m_0^*(t_f, N_{\mathrm{rev}}),\]</div>
 <p>and track iso-<span class="math notranslate nohighlight">\(\mathcal{M}\)</span> curves to recover multi-revolution minimum-time branches.</p>
 <p>In this notebook we formulate the TPBVP with the <code class="docutils literal notranslate"><span class="pre">pykep</span></code> time-optimal machinery, then modify the shooting function to fix <span class="math notranslate nohighlight">\(t_f\)</span> and solve for <span class="math notranslate nohighlight">\(m_0\)</span>, finally constructing and exploring the homotopy path on the MIM surface.</p>
 <section id="tpbvp-setup-in-pykep">
@@ -612,9 +610,7 @@
 </ul>
 <p>Mathematically, we will solve a root-finding problem of the form</p>
 <div class="math notranslate nohighlight">
-\[
-F(z)=0,
-\]</div>
+\[F(z)=0,\]</div>
 <p>where <span class="math notranslate nohighlight">\(z\)</span> contains the free initial mass and initial costates (plus optional free-final-time variable), and <span class="math notranslate nohighlight">\(F\)</span> collects terminal-constraint mismatches.</p>
 <p>When <code class="docutils literal notranslate"><span class="pre">free_time=True</span></code>, the shooting functions append one additional scalar Hamiltonian-based condition (<span class="math notranslate nohighlight">\(\mathcal H_0=0\)</span>) to close the numerical system during continuation (as discussed in the paper, this is to be considered as a gauge condition or a necessary condition distinguishing free-time from minimum-time problems).</p>
 <div class="cell docutils container">

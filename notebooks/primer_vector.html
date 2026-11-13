@@ -536,18 +536,13 @@ its use. The same plot can also be obtained, without having to go through the ma
 <hr class="docutils" />
 <p>a) Consider the following definition of the State Transition Matrix, <span class="math notranslate nohighlight">\(\mathbf M_{fs}\)</span>:</p>
 <div class="math notranslate nohighlight">
-\[
-  \mathbf M_{fs} := \frac{\partial \mathbf x_{f}}{\partial \mathbf x_{s}}
-  \]</div>
+\[  \mathbf M_{fs} := \frac{\partial \mathbf x_{f}}{\partial \mathbf x_{s}}\]</div>
 <p>Note how this definition does not depend on the dynamics. The STM allows to describe variations of the (final) state at <span class="math notranslate nohighlight">\(f\)</span> as:</p>
 <div class="math notranslate nohighlight">
-\[
-  \delta\mathbf x_f = \mathbf M_{fs} \delta \mathbf x_s
-  \]</div>
+\[  \delta\mathbf x_f = \mathbf M_{fs} \delta \mathbf x_s\]</div>
 <p>We also make use of the following definitions for the various blocks of the STM:</p>
 <div class="math notranslate nohighlight">
-\[\begin{split}
-  \mathbf M = \left[ 
+\[\begin{split}  \mathbf M = \left[ 
   \begin{array}{c|c} 
     \mathbf M^{rr} &amp; \mathbf M^{rv} \\ 
     \hline 
@@ -565,72 +560,51 @@ its use. The same plot can also be obtained, without having to go through the ma
     \hline 
     \mathbf M^{vx} 
   \end{array} 
-  \right] 
-  \end{split}\]</div>
+  \right] \end{split}\]</div>
 <hr class="docutils" />
 <p>b) Assume now to have a grid of <span class="math notranslate nohighlight">\(N\)</span> points along a multiple impulse trajectory and pick three indexes <span class="math notranslate nohighlight">\(i,j,k\)</span>.</p>
 <p>We ask the following question: what happens when we add three small <span class="math notranslate nohighlight">\(\delta\Delta V\)</span> at the selected nodes?</p>
 <p>To answer this question, we compute the variation of the final state due to intermidiate variations at the nodes using the STMs:</p>
 <div class="math notranslate nohighlight">
-\[
-  \delta \mathbf x_f = \mathbf M_{fi}\delta\mathbf x_i + \mathbf M_{fj}\delta\mathbf x_j + \mathbf M_{fk}\delta\mathbf x_k
-  \]</div>
+\[  \delta \mathbf x_f = \mathbf M_{fi}\delta\mathbf x_i + \mathbf M_{fj}\delta\mathbf x_j + \mathbf M_{fk}\delta\mathbf x_k\]</div>
 <p>which we set to zero, as we do not want the trajectory boundary cnstraints to change, only find a better <span class="math notranslate nohighlight">\(\Delta V\)</span>:</p>
 <div class="math notranslate nohighlight">
-\[
-  \mathbf 0 = \mathbf M_{fi}\delta\mathbf x_i + \mathbf M_{fj}\delta\mathbf x_j + \mathbf M_{fk}\delta\mathbf x_k
-  \]</div>
+\[  \mathbf 0 = \mathbf M_{fi}\delta\mathbf x_i + \mathbf M_{fj}\delta\mathbf x_j + \mathbf M_{fk}\delta\mathbf x_k\]</div>
 <p>which becomes (multiplying by <span class="math notranslate nohighlight">\(\mathbf M_{jf}\)</span>):</p>
 <div class="math notranslate nohighlight">
-\[
-  \mathbf M_{ji}\delta\mathbf x_i + \mathbf M_{jk}\delta\mathbf x_k + \delta\mathbf x_j = \mathbf 0
-  \]</div>
+\[  \mathbf M_{ji}\delta\mathbf x_i + \mathbf M_{jk}\delta\mathbf x_k + \delta\mathbf x_j = \mathbf 0\]</div>
 <hr class="docutils" />
 <p>c) The state variations <span class="math notranslate nohighlight">\(\delta\mathbf x\)</span> are, in our case, consequence of three <span class="math notranslate nohighlight">\(\delta\Delta \mathbf V\)</span>, so that the previous equations becomes:</p>
 <div class="math notranslate nohighlight">
-\[\begin{split}
-  \begin{align}
+\[\begin{split}  \begin{align}
   \mathbf M_i^{rv} \delta\Delta \mathbf V_i + \mathbf M_k^{rv} \delta\Delta \mathbf V_k = \mathbf 0\\
   \mathbf M_i^{vv} \delta\Delta \mathbf V_i + \mathbf M_k^{vv} \delta\Delta \mathbf V_k + \delta\Delta \mathbf V_j = \mathbf 0\\
-  \end{align}
-  \end{split}\]</div>
+  \end{align}\end{split}\]</div>
 <p>which becomes:</p>
 <div class="math notranslate nohighlight">
-\[\begin{split}
-  \begin{align}
+\[\begin{split}  \begin{align}
   \delta\Delta \mathbf V_i &amp;=&amp; - (\mathbf M_i^{rv})^{-1}\mathbf M_k^{rv} \delta\Delta \mathbf V_k = \mathbf A_{ik}\delta\Delta \mathbf V_k\\
   \delta\Delta \mathbf V_j &amp;=&amp; - \big(\mathbf M_i^{vv}\mathbf A_{ik} + \mathbf M_k^{vv} \big)  \delta\Delta \mathbf V_k = \mathbf A_{jk}\delta\Delta \mathbf V_k\\
-  \end{align}
-  \end{split}\]</div>
+  \end{align}\end{split}\]</div>
 <p>The matrices <span class="math notranslate nohighlight">\(\mathbf A\)</span> are telling us how the three variations of impulsive velocity changes applied in (<span class="math notranslate nohighlight">\(i\)</span>, <span class="math notranslate nohighlight">\(j\)</span>, <span class="math notranslate nohighlight">\(k\)</span>) must be related for the overall trajectory to not change its boundary conditions (i.e. <span class="math notranslate nohighlight">\(\mathbf x_f = \mathbf 0\)</span>).</p>
 <hr class="docutils" />
 <p>d) So far the three indexes we picked (i.e. <span class="math notranslate nohighlight">\(i,j,k\)</span>) were completely equivalent, now we assume that in <span class="math notranslate nohighlight">\(i,j\)</span> a finite <span class="math notranslate nohighlight">\(\Delta V\)</span> is already present, while in <span class="math notranslate nohighlight">\(k\)</span> only our additional <span class="math notranslate nohighlight">\(\delta\Delta \mathbf V\)</span> will be present.</p>
 <p>The total magnitude of the <span class="math notranslate nohighlight">\(\Delta \mathbf V\)</span> can then be expressed by:</p>
 <div class="math notranslate nohighlight">
-\[
-  J = \Delta V_{tot} = |\mathbf V_i + \delta\Delta \mathbf V_i | + |\mathbf V_j + \delta\Delta \mathbf V_j | + |\delta\Delta \mathbf V_k|
-  \]</div>
+\[  J = \Delta V_{tot} = |\mathbf V_i + \delta\Delta \mathbf V_i | + |\mathbf V_j + \delta\Delta \mathbf V_j | + |\delta\Delta \mathbf V_k|\]</div>
 <p>and its first order variation:</p>
 <div class="math notranslate nohighlight">
-\[
-  \delta J = \frac{\Delta\mathbf V_i}{|\Delta \mathbf V_i|}\cdot \delta\Delta \mathbf V_i + \frac{\Delta \mathbf V_j}{|\Delta \mathbf V_j|}\cdot \delta\Delta \mathbf V_j + |\delta\Delta \mathbf V_k|
-  \]</div>
+\[  \delta J = \frac{\Delta\mathbf V_i}{|\Delta \mathbf V_i|}\cdot \delta\Delta \mathbf V_i + \frac{\Delta \mathbf V_j}{|\Delta \mathbf V_j|}\cdot \delta\Delta \mathbf V_j + |\delta\Delta \mathbf V_k|\]</div>
 <p>e) The primer vector</p>
 <p>We introduce <span class="math notranslate nohighlight">\(\hat{\mathbf u} = \frac{\delta \Delta \mathbf V_k}{|\delta \Delta \mathbf V_k|}\)</span> as the unit vector along the direction of the <span class="math notranslate nohighlight">\(\delta \Delta V\)</span> added in <span class="math notranslate nohighlight">\(k\)</span>. Substituting and regrouping we have:</p>
 <div class="math notranslate nohighlight">
-\[
-  \delta J = |\delta\Delta \mathbf V_k| \left(1 + \left(\mathbf A_{ik}^T\frac{\Delta\mathbf V_i}{|\Delta \mathbf V_i|} + \mathbf A_{jk}^T\frac{\Delta\mathbf V_j}{|\Delta \mathbf V_j|} \right) \cdot \hat {\mathbf u}\right)
-  \]</div>
+\[  \delta J = |\delta\Delta \mathbf V_k| \left(1 + \left(\mathbf A_{ik}^T\frac{\Delta\mathbf V_i}{|\Delta \mathbf V_i|} + \mathbf A_{jk}^T\frac{\Delta\mathbf V_j}{|\Delta \mathbf V_j|} \right) \cdot \hat {\mathbf u}\right)\]</div>
 <p>which we rewrite as:</p>
 <div class="math notranslate nohighlight">
-\[
-  \delta J = |\delta\Delta \mathbf V_k| \left(1 - \mathbf p\cdot \hat {\mathbf u}\right)
-  \]</div>
+\[  \delta J = |\delta\Delta \mathbf V_k| \left(1 - \mathbf p\cdot \hat {\mathbf u}\right)\]</div>
 <p>where we have introduced the vector:</p>
 <div class="math notranslate nohighlight">
-\[
-  \boxed{\mathbf p = - \mathbf A_{ik}^T\frac{\Delta\mathbf V_i}{|\Delta \mathbf V_i|} - \mathbf A_{jk}^T\frac{\Delta\mathbf V_j}{|\Delta \mathbf V_j|}}
-  \]</div>
+\[  \boxed{\mathbf p = - \mathbf A_{ik}^T\frac{\Delta\mathbf V_i}{|\Delta \mathbf V_i|} - \mathbf A_{jk}^T\frac{\Delta\mathbf V_j}{|\Delta \mathbf V_j|}}\]</div>
 <p>which is of fundamental importance in space flight mechanics and is called <strong>primer vector</strong>.</p>
 <p>From the expression of <span class="math notranslate nohighlight">\(\delta J\)</span> it appears clear that if we want to be able to decrease the overall <span class="math notranslate nohighlight">\(\Delta V\)</span> adding in <span class="math notranslate nohighlight">\(k\)</span> one impulse it is necessary for the norm of the primer vector (computed in <span class="math notranslate nohighlight">\(k\)</span>) to be larger than 1.</p>
 </div>
@@ -795,7 +769,7 @@ We need to propagate at each impulse, add the impulse, then proceed. The various
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.legend.Legend at 0x7ffa722f52b0&gt;
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.legend.Legend at 0x79bb6922d2b0&gt;
 </pre></div>
 </div>
 <img alt="../_images/e61326bd0dfb6f9ef8ee4794aa68cbdbe3a3fa396105c25edcce95a65f7ec654.png" src="../_images/e61326bd0dfb6f9ef8ee4794aa68cbdbe3a3fa396105c25edcce95a65f7ec654.png" />

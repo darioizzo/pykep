@@ -530,9 +530,7 @@
 Since the points are considered fixed this effort has mainly an academic value, but it is informative in the study of the numerical properties of an optimization pipeline.
 The decision vector in this class, compatible with pygmo <span class="bibtex-citation" id="id1">[<a class="reference internal" href="../bibliography.html#id9" title="Francesco Biscani and Dario Izzo. A parallel global multiobjective framework for optimization: pagmo. Journal of Open Source Software, 5(53):2338, 2020.">BI20</a>]</span> UDPs (User Defined Problems), is:</p>
 <div class="math notranslate nohighlight">
-\[
-\mathbf x = [m_f, u_{x0}, u_{y0}, u_{z0}, u_{x1}, u_{y1}, u_{z1}, ..., T_{tof}]
-\]</div>
+\[\mathbf x = [m_f, u_{x0}, u_{y0}, u_{z0}, u_{x1}, u_{y1}, u_{z1}, ..., T_{tof}]\]</div>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
 <p>This notebook makes use of the commercial solver SNOPT 7 and to run needs a valid <code class="docutils literal notranslate"><span class="pre">snopt_7_c</span></code> library installed in the system. In case SNOPT7 is not available, you can still run the notebook using, for example <code class="docutils literal notranslate"><span class="pre">uda</span> <span class="pre">=</span> <span class="pre">pg.algorithm.nlopt(&quot;slsqp&quot;)</span></code> with minor modifications.</p>

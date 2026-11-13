@@ -548,19 +548,15 @@
 <p>In the Keplerian example, each node stores the seven-component state <span class="math notranslate nohighlight">\(\mathbf{x}_k=[x_k,y_k,z_k,v_{x,k},v_{y,k},v_{z,k},m_k]\)</span>: position, velocity and mass. A mesh with <span class="math notranslate nohighlight">\(n\)</span> segments therefore has <span class="math notranslate nohighlight">\(n+1\)</span> nodes and <span class="math notranslate nohighlight">\(7n\)</span> scalar continuity constraints.</p>
 <p>The control is held constant within each segment, which is the meaning of <em>zero-order hold</em>. For the Keplerian example, the four control components are</p>
 <div class="math notranslate nohighlight">
-\[
-\mathbf{u}_k = [T_k,\ i_{x,k},\ i_{y,k},\ i_{z,k}],
-\]</div>
+\[\mathbf{u}_k = [T_k,\ i_{x,k},\ i_{y,k},\ i_{z,k}],\]</div>
 <p>where <span class="math notranslate nohighlight">\(T_k\)</span> is the thrust magnitude and <span class="math notranslate nohighlight">\((i_{x,k},i_{y,k},i_{z,k})\)</span> is its direction in the inertial frame. A physical thrust direction has unit length. The generic leg does not enforce physical bounds or normalize the direction; these choices belong to the supplied dynamics and the optimization problem.</p>
 <p>Let <span class="math notranslate nohighlight">\(\Phi_k(\mathbf{x}_k;\mathbf{u}_k)\)</span> denote propagation from <span class="math notranslate nohighlight">\(t_k\)</span> to <span class="math notranslate nohighlight">\(t_{k+1}\)</span>. The parameter <code class="docutils literal notranslate"><span class="pre">cut</span></code>, between 0 and 1, sets the number of forward-propagated segments: <span class="math notranslate nohighlight">\(n_{\mathrm{fwd}}=\lfloor n\,\mathrm{cut}\rfloor\)</span>. Each forward segment starts at its own left-hand mesh node; each backward segment starts at its own right-hand mesh node. The defect is</p>
 <div class="math notranslate nohighlight">
-\[\begin{split}
-\mathbf{d}_k =
+\[\begin{split}\mathbf{d}_k =
 \begin{cases}
 \Phi_k(\mathbf{x}_k;\mathbf{u}_k)-\mathbf{x}_{k+1}, &amp; 0 \le k &lt; n_{\mathrm{fwd}}, \\
 \mathbf{x}_k-\Phi_k^{-1}(\mathbf{x}_{k+1};\mathbf{u}_k), &amp; n_{\mathrm{fwd}} \le k &lt; n.
-\end{cases}
-\end{split}\]</div>
+\end{cases}\end{split}\]</div>
 <p>Here <span class="math notranslate nohighlight">\(\Phi_k^{-1}\)</span> means integrating the same dynamics backward from <span class="math notranslate nohighlight">\(t_{k+1}\)</span> to <span class="math notranslate nohighlight">\(t_k\)</span>. Both directions describe the same continuous trajectory when the defects are zero, although their nonzero defect values can differ.</p>
 <p><code class="docutils literal notranslate"><span class="pre">compute_defects()</span></code> returns the defect components flattened in segment order. The leg also provides their analytical derivatives with respect to the node states, controls and time grid. Together, these derivatives form the <strong>Jacobian matrix</strong>.</p>
 <p>We start with the required imports:</p>
@@ -661,39 +657,31 @@
 </div>
 <p>We now compute the defects and their analytical sparse Jacobian. Stack the node states, controls, times and defects as</p>
 <div class="math notranslate nohighlight">
-\[\begin{split}
-\mathbf{X}=\begin{bmatrix}\mathbf{x}_0\\ \vdots\\ \mathbf{x}_n\end{bmatrix},
+\[\begin{split}\mathbf{X}=\begin{bmatrix}\mathbf{x}_0\\ \vdots\\ \mathbf{x}_n\end{bmatrix},
 \qquad
 \mathbf{U}=\begin{bmatrix}\mathbf{u}_0\\ \vdots\\ \mathbf{u}_{n-1}\end{bmatrix},
 \qquad
 \mathbf{T}=\begin{bmatrix}t_0\\ \vdots\\ t_n\end{bmatrix},
 \qquad
-\mathbf{D}=\begin{bmatrix}\mathbf{d}_0\\ \vdots\\ \mathbf{d}_{n-1}\end{bmatrix}.
-\end{split}\]</div>
+\mathbf{D}=\begin{bmatrix}\mathbf{d}_0\\ \vdots\\ \mathbf{d}_{n-1}\end{bmatrix}.\end{split}\]</div>
 <p>With <code class="docutils literal notranslate"><span class="pre">cut</span></code> held fixed, the defect Jacobian is</p>
 <div class="math notranslate nohighlight">
-\[
-J=\frac{\partial\mathbf{D}}{\partial(\mathbf{X},\mathbf{U},\mathbf{T})}
-=\begin{bmatrix}J_X &amp; J_U &amp; J_T\end{bmatrix},
-\]</div>
+\[J=\frac{\partial\mathbf{D}}{\partial(\mathbf{X},\mathbf{U},\mathbf{T})}
+=\begin{bmatrix}J_X &amp; J_U &amp; J_T\end{bmatrix},\]</div>
 <p>where each row corresponds to a defect component and each column to an input component:</p>
 <div class="math notranslate nohighlight">
-\[
-(J_X)_{ij}=\frac{\partial D_i}{\partial X_j},
+\[(J_X)_{ij}=\frac{\partial D_i}{\partial X_j},
 \qquad
 (J_U)_{ij}=\frac{\partial D_i}{\partial U_j},
 \qquad
-(J_T)_{ij}=\frac{\partial D_i}{\partial T_j}.
-\]</div>
+(J_T)_{ij}=\frac{\partial D_i}{\partial T_j}.\]</div>
 <p>For the seven-state, four-control example,</p>
 <div class="math notranslate nohighlight">
-\[
-J_X\in\mathbb{R}^{7n\times7(n+1)},
+\[J_X\in\mathbb{R}^{7n\times7(n+1)},
 \qquad
 J_U\in\mathbb{R}^{7n\times4n},
 \qquad
-J_T\in\mathbb{R}^{7n\times(n+1)}.
-\]</div>
+J_T\in\mathbb{R}^{7n\times(n+1)}.\]</div>
 <p><code class="docutils literal notranslate"><span class="pre">compute_defects_grad()</span></code> returns three flat arrays of sparse derivative values, corresponding to <span class="math notranslate nohighlight">\((J_X,J_U,J_T)\)</span>, rather than the dense matrix <span class="math notranslate nohighlight">\(J\)</span>. <code class="docutils literal notranslate"><span class="pre">defects_grad_sparsity()</span></code> returns the matching three arrays of <code class="docutils literal notranslate"><span class="pre">(row,</span> <span class="pre">column)</span></code> coordinates. Columns index each block’s own <code class="docutils literal notranslate"><span class="pre">states</span></code>, <code class="docutils literal notranslate"><span class="pre">controls</span></code> or <code class="docutils literal notranslate"><span class="pre">tgrid</span></code> vector, without offsets into a combined input vector.</p>
 <p>The values and coordinates have the same order within each block. Pairing a coordinate with its value tells us where that derivative belongs in the Jacobian. Structural entries are retained even when their numerical values are zero.</p>
 <div class="cell docutils container">

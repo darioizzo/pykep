@@ -567,15 +567,13 @@
 <h2>Manual construction of the TPBVP<a class="headerlink" href="#manual-construction-of-the-tpbvp" title="Link to this heading">#</a></h2>
 <p>We consider the dynamics of a spacecraft moving around a massive primary and equipped with a low-thrust propulsion system capable of delivering constant maximum thrust <span class="math notranslate nohighlight">\(T_{\max}\)</span>:</p>
 <div class="math notranslate nohighlight">
-\[\begin{split}
-\left\{
+\[\begin{split}\left\{
 \begin{array}{l}
 \dot{\mathbf r} = \mathbf v \\
 \dot{\mathbf v} = -\frac{\mu}{r^3}\mathbf r + c_1\frac{u}{m}\hat{\mathbf i} \\
 \dot m = -\frac{c_1}{c_2}u
 \end{array}
-\right.,
-\end{split}\]</div>
+\right.,\end{split}\]</div>
 <p>with control constraints <span class="math notranslate nohighlight">\(0 \le u \le 1\)</span> and <span class="math notranslate nohighlight">\(\|\hat{\mathbf i}\|=1\)</span>, where <span class="math notranslate nohighlight">\(c_1=T_{\max}\)</span> and <span class="math notranslate nohighlight">\(c_2=I_{sp}g_0\)</span>.</p>
 <p>Following PMP, we introduce one costate per state variable. Using <code class="docutils literal notranslate"><span class="pre">heyoka</span></code> as a symbolic manipulator, we define symbols for all time-dependent quantities:</p>
 <div class="cell docutils container">
@@ -612,9 +610,7 @@
 <p>For API consistency with the mass-optimal notebook, we keep an <span class="math notranslate nohighlight">\(\epsilon\)</span> slot in <code class="docutils literal notranslate"><span class="pre">heyoka</span></code> parameters (<code class="docutils literal notranslate"><span class="pre">hy.par[3]</span></code>), but it is not used in this time-optimal formulation.</p>
 <p>The performance index is</p>
 <div class="math notranslate nohighlight">
-\[
-J = \lambda_0\frac{c_1}{c_2}\int_0^T dt,
-\]</div>
+\[J = \lambda_0\frac{c_1}{c_2}\int_0^T dt,\]</div>
 <p>and the corresponding minimizer is already smooth in this setting (no continuation parameter is needed). Parameter ordering is kept as <span class="math notranslate nohighlight">\([\mu, c_1, c_2, \epsilon, \lambda_0]\)</span>, with <span class="math notranslate nohighlight">\(c_1=T_{\max}\)</span> and <span class="math notranslate nohighlight">\(c_2=I_{sp}g_0\)</span>.</p>
 <p>The dynamics can then be written as:</p>
 <div class="cell docutils container">
@@ -629,9 +625,7 @@ J = \lambda_0\frac{c_1}{c_2}\int_0^T dt,
 </div>
 <p>We introduce the Hamiltonian (<span class="math notranslate nohighlight">\(\mathbf x\)</span> is the full state, <span class="math notranslate nohighlight">\(\boldsymbol\lambda\)</span> the full costate, and <span class="math notranslate nohighlight">\(\mathbf u\)</span> the control tuple):</p>
 <div class="math notranslate nohighlight">
-\[
-\mathcal H(\mathbf x, \boldsymbol\lambda, \mathbf u) = \boldsymbol\lambda_r \cdot \mathbf f_r + \boldsymbol\lambda_v \cdot \mathbf f_v + \lambda_m f_m + \lambda_0\frac{c_1}{c_2}.
-\]</div>
+\[\mathcal H(\mathbf x, \boldsymbol\lambda, \mathbf u) = \boldsymbol\lambda_r \cdot \mathbf f_r + \boldsymbol\lambda_v \cdot \mathbf f_v + \lambda_m f_m + \lambda_0\frac{c_1}{c_2}.\]</div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Hamiltonian</span>
@@ -642,13 +636,11 @@ J = \lambda_0\frac{c_1}{c_2}\int_0^T dt,
 </div>
 <p>And write the resulting Hamiltonian system:</p>
 <div class="math notranslate nohighlight">
-\[\begin{split}
-\left\{
+\[\begin{split}\left\{
 \begin{array}{l}
 \dot{\mathbf x} = \frac{\partial \mathcal H}{\partial \mathbf \lambda} \\
 \dot{\mathbf \lambda} = - \frac{\partial \mathcal H}{\partial \mathbf x} \\
-\end{array}\right.
-\end{split}\]</div>
+\end{array}\right.\end{split}\]</div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Augmented equations of motion</span>
@@ -664,9 +656,7 @@ J = \lambda_0\frac{c_1}{c_2}\int_0^T dt,
 </div>
 <p>Pontryagin’s minimum principle requires pointwise minimization of the Hamiltonian over the admissible control set</p>
 <div class="math notranslate nohighlight">
-\[
-\mathbf u^*(\mathbf x, \boldsymbol\lambda) = \arg\min_{\mathbf u \in \mathcal U} \mathcal H(\mathbf x, \boldsymbol\lambda, \mathbf u),
-\]</div>
+\[\mathbf u^*(\mathbf x, \boldsymbol\lambda) = \arg\min_{\mathbf u \in \mathcal U} \mathcal H(\mathbf x, \boldsymbol\lambda, \mathbf u),\]</div>
 <p>with <span class="math notranslate nohighlight">\(\quad\mathcal U = \{(u,\hat{\mathbf i})\,|\,0 \le u \le 1,\ \|\hat{\mathbf i}\|=1\}\)</span>.</p>
 <p>In this time-optimal case, the minimizer is:</p>
 <div class="cell docutils container">
@@ -688,9 +678,7 @@ J = \lambda_0\frac{c_1}{c_2}\int_0^T dt,
 </div>
 <p>After substitution, controls become explicit functions of state and costate and the augmented dynamics close as</p>
 <div class="math notranslate nohighlight">
-\[
-H(\mathbf x, \boldsymbol\lambda) = \mathcal H(\mathbf x, \boldsymbol\lambda, \mathbf u^*).
-\]</div>
+\[H(\mathbf x, \boldsymbol\lambda) = \mathcal H(\mathbf x, \boldsymbol\lambda, \mathbf u^*).\]</div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">rhs</span> <span class="o">=</span> <span class="n">hy</span><span class="o">.</span><span class="n">subs</span><span class="p">(</span><span class="n">rhs</span><span class="p">,</span> <span class="n">argmin_H_full</span><span class="p">)</span>

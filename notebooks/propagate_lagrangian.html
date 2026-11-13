@@ -542,12 +542,10 @@
 <h1>Lagrange Propagation<a class="headerlink" href="#lagrange-propagation" title="Link to this heading">#</a></h1>
 <p>One of the most efficient ways to perform the numerical propagation of some Cartesian state assuming a Keplerian motion, is the use of the Lagrange coefficients. These are four scalar coefficients <span class="math notranslate nohighlight">\(F,G,F_t,G_t\)</span> defined by the relation:</p>
 <div class="math notranslate nohighlight">
-\[\begin{split}
-\begin{array}{l}
+\[\begin{split}\begin{array}{l}
 \mathbf r = F\mathbf r_0 + G\mathbf v_0 \\
 \mathbf v = F_t\mathbf r_0 + Gt\mathbf v_0
-\end{array}
-\end{split}\]</div>
+\end{array}\end{split}\]</div>
 <p>Analytical expressions for these coefficients are available in terms of the True Anomaly difference, the Eccentric Anomaly difference, as well as the Hyperbolic Anomaly difference or the Universal Anomaly difference between the state <span class="math notranslate nohighlight">\(\mathbf r_0, \mathbf v_0\)</span> and the state <span class="math notranslate nohighlight">\(\mathbf r, \mathbf v\)</span>.</p>
 <p>The details on these analytical expressions and their derivation can be found, for example, in the seminal book by Richard Battin: “Fundamentals of Astrodynamics.” <span class="bibtex-citation" id="id1">[<a class="reference internal" href="../bibliography.html#id3" title="Richard H Battin. An introduction to the mathematics and methods of astrodynamics. AIAA, 1999.">Bat99</a>]</span>.</p>
 <p>In <code class="docutils literal notranslate"><span class="pre">pykep</span></code> the <a class="reference internal" href="../propagation.html#pykep.propagate_lagrangian" title="pykep.propagate_lagrangian"><code class="xref py py-func docutils literal notranslate"><span class="pre">pykep.propagate_lagrangian()</span></code></a> <code class="xref py py-func docutils literal notranslate"><span class="pre">pykep.propagate_lagrangian_v()</span></code> implement the keplerian propagation algorithm based on the Lagrange coefficients, as well as the analytical computation of the resulting State Transition Matrix.</p>
@@ -585,7 +583,7 @@
 </div>
 <div class="cell_output docutils container">
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Only Keplerian Propagations
- Real time: 0.04632 seconds
+ Real time: 0.07666 seconds
 </pre></div>
 </div>
 </div>
@@ -604,7 +602,9 @@
 </div>
 <div class="cell_output docutils container">
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Keplerian Propagations with the STM computations
- Real time: 0.13280 seconds
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> Real time: 0.19904 seconds
 </pre></div>
 </div>
 </div>
@@ -668,27 +668,23 @@
 we now use <a class="reference internal" href="../propagation.html#pykep.propagate_lagrangian" title="pykep.propagate_lagrangian"><code class="xref py py-func docutils literal notranslate"><span class="pre">pykep.propagate_lagrangian()</span></code></a> to compute the gradient of the final state [<span class="math notranslate nohighlight">\(\mathbf r_f, \mathbf v_f\)</span>] with respect to the initial state [<span class="math notranslate nohighlight">\(\mathbf x_f = \mathbf r_0, \mathbf v_0\)</span>] as well as of the applied <span class="math notranslate nohighlight">\(\Delta \mathbf v_i\)</span>.  That is, as we shall see, all information stored in the STMs of this bi-impulsive transfer.</p>
 <p>This is actually rather straightforward after we get convinced that, indicating with <span class="math notranslate nohighlight">\(\mathbf M_{i}\)</span> the state transition matrix between the states [<span class="math notranslate nohighlight">\(\mathbf r_{i-1}^+, \mathbf v_{i-1}^+\)</span>] and [<span class="math notranslate nohighlight">\(\mathbf r_{i}^-, \mathbf v_{i}^-\)</span>], then the first order variations of the final state w.r.t. variations of the state at the nodes are:</p>
 <div class="math notranslate nohighlight">
-\[\begin{split}
-\begin{array}{r}
+\[\begin{split}\begin{array}{r}
 \mathbf M_{3}\mathbf M_{2} \mathbf M_{1} \delta \mathbf x_0 \\
 \mathbf M_{3}\mathbf M_{2} \delta \mathbf x_1 \\
 \mathbf M_{3} \delta \mathbf x_2
-\end{array}
-\end{split}\]</div>
+\end{array}\end{split}\]</div>
 <p>trivially, this allows to compute easily the seeked gradients.</p>
 <p>For example <span class="math notranslate nohighlight">\(\frac{\partial \mathbf x_f}{{\partial \Delta \mathbf v_1}}\)</span> will be <span class="math notranslate nohighlight">\(\mathbf M_{3}\mathbf M_{2} \mathbf I_v\)</span>.</p>
 <p>where we have introduced the matrix <span class="math notranslate nohighlight">\(\mathbf I_v\)</span> that selects the velocity components of the STM.</p>
 <div class="math notranslate nohighlight">
-\[\begin{split}
-\mathbf Iv = \left[\begin{array}{llllll}
+\[\begin{split}\mathbf Iv = \left[\begin{array}{llllll}
 0&amp;0&amp;0&amp;0&amp;0&amp;0\\
 0&amp;0&amp;0&amp;0&amp;0&amp;0\\
 0&amp;0&amp;0&amp;0&amp;0&amp;0\\
 0&amp;0&amp;0&amp;1&amp;0&amp;0\\
 0&amp;0&amp;0&amp;0&amp;1&amp;0\\
 0&amp;0&amp;0&amp;0&amp;0&amp;1\\
-\end{array}\right]
-\end{split}\]</div>
+\end{array}\right]\end{split}\]</div>
 <p>We have thus also shown how the complexity of computing the gradients is linear with the number of impulses in a trajectory leg since <span class="math notranslate nohighlight">\(N\)</span> impulses would result into the computation of <span class="math notranslate nohighlight">\(N\)</span> state transition matrices and <span class="math notranslate nohighlight">\(N\)</span> matrix multiplications. Lets see one specific exampl below:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -715,9 +711,7 @@ we now use <a class="reference internal" href="../propagation.html#pykep.propaga
 </div>
 <p>… and we are now ready to compute all the necessary gradients. Lets start with:</p>
 <div class="math notranslate nohighlight">
-\[
-\frac{\partial \mathbf x_f}{\partial \mathbf x_0} = \mathbf M_{3}\mathbf M_{2} \mathbf M_{1}
-\]</div>
+\[\frac{\partial \mathbf x_f}{\partial \mathbf x_0} = \mathbf M_{3}\mathbf M_{2} \mathbf M_{1}\]</div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">M3</span><span class="nd">@M2@M1</span><span class="p">)</span>
@@ -743,9 +737,7 @@ we now use <a class="reference internal" href="../propagation.html#pykep.propaga
 </div>
 <p>To then compute:</p>
 <div class="math notranslate nohighlight">
-\[
-\frac{\partial \mathbf x_f}{\partial \mathbf \Delta v_1} = \mathbf M_{2} \mathbf M_{1} \mathbf I_v
-\]</div>
+\[\frac{\partial \mathbf x_f}{\partial \mathbf \Delta v_1} = \mathbf M_{2} \mathbf M_{1} \mathbf I_v\]</div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">Iv</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">diag</span><span class="p">((</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">))[:,</span><span class="mi">3</span><span class="p">:]</span>
@@ -766,9 +758,7 @@ we now use <a class="reference internal" href="../propagation.html#pykep.propaga
 </div>
 <p>and:</p>
 <div class="math notranslate nohighlight">
-\[
-\frac{\partial \mathbf x_f}{\partial \mathbf \Delta v_2} = \mathbf M_{2} \mathbf I_v
-\]</div>
+\[\frac{\partial \mathbf x_f}{\partial \mathbf \Delta v_2} = \mathbf M_{2} \mathbf I_v\]</div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">M3</span><span class="nd">@Iv</span><span class="p">)</span>
