@@ -785,7 +785,7 @@ Defaults to True.</p>
 
 <dl class="py class">
 <dt class="sig sig-object py" id="pykep.trajopt.gym.tops_mee">
-<em class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">pykep.trajopt.gym.</span></span><span class="sig-name descname"><span class="pre">tops_mee</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">prob_name</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">cut</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.5</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">nseg</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">10</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">time_encoding</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'uniform'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">inequalities_for_tc</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pykep.trajopt.gym.tops_mee" title="Link to this definition">#</a></dt>
+<em class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">pykep.trajopt.gym.</span></span><span class="sig-name descname"><span class="pre">tops_mee</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">prob_name</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">cut</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.5</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">nseg</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">10</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">time_encoding</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'uniform'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">inequalities_for_tc</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ms</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pykep.trajopt.gym.tops_mee" title="Link to this definition">#</a></dt>
 <dd><p>Mean equinoctial elements problems from TOPS.</p>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
@@ -804,7 +804,8 @@ resulting NLP size and difficulty depend on the number of segments and on
 the selected time encoding. Different choices of <code class="docutils literal notranslate"><span class="pre">nseg</span></code> and
 <code class="docutils literal notranslate"><span class="pre">time_encoding</span></code> therefore provide a convenient way to regulate the
 dimensionality and complexity of the benchmark. The formulation is built on
-<a class="reference internal" href="trajopt.html#pykep.trajopt.zoh_point2point" title="pykep.trajopt.zoh_point2point"><code class="xref py py-class docutils literal notranslate"><span class="pre">zoh_point2point</span></code></a>, so the departure and arrival
+<a class="reference internal" href="trajopt.html#pykep.trajopt.zoh_point2point" title="pykep.trajopt.zoh_point2point"><code class="xref py py-class docutils literal notranslate"><span class="pre">zoh_point2point</span></code></a> or, with <code class="docutils literal notranslate"><span class="pre">ms=True</span></code>,
+<code class="xref py py-class docutils literal notranslate"><span class="pre">zoh_ms_point2point</span></code>. The departure and arrival
 states are fixed and moving-end effects are not accounted for.</p>
 <p>Construct a two-body MEE TOPS instance from a predefined gym case.</p>
 <dl>
@@ -828,6 +829,8 @@ states are fixed and moving-end effects are not accounted for.</p>
 <dl class="simple">
 <dt><em>inequalities_for_tc</em> (<a class="reference external" href="https://docs.python.org/3/builtins/functions.html#bool" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">bool</span></code></a>, optional): If True, throttle constraints are</dt><dd><p>formulated as inequalities (<code class="docutils literal notranslate"><span class="pre">|i_u|**2</span> <span class="pre">-</span> <span class="pre">1</span> <span class="pre">&lt;=</span> <span class="pre">0</span></code>), otherwise as equalities.
 Defaults to True.</p>
+</dd>
+<dt>ms (<a class="reference external" href="https://docs.python.org/3/builtins/functions.html#bool" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">bool</span></code></a>, optional): Use multiple shooting with seven state variables</dt><dd><p>at each interior node and seven defect constraints per segment. Default is False.</p>
 </dd>
 </dl>
 </dd>
@@ -883,7 +886,7 @@ accounted for.</p>
 
 <dl class="py class">
 <dt class="sig sig-object py" id="pykep.trajopt.gym.tops_cr3bp">
-<em class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">pykep.trajopt.gym.</span></span><span class="sig-name descname"><span class="pre">tops_cr3bp</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">prob_name</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">cut</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.5</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">nseg</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">60</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">time_encoding</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'uniform'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">inequalities_for_tc</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pykep.trajopt.gym.tops_cr3bp" title="Link to this definition">#</a></dt>
+<em class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">pykep.trajopt.gym.</span></span><span class="sig-name descname"><span class="pre">tops_cr3bp</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">prob_name</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">cut</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.5</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">nseg</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">60</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">time_encoding</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'uniform'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">inequalities_for_tc</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ms</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pykep.trajopt.gym.tops_cr3bp" title="Link to this definition">#</a></dt>
 <dd><p>CR3BP problems from TOPS.</p>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
@@ -902,8 +905,9 @@ the selected time encoding. Different choices of <code class="docutils literal n
 <code class="docutils literal notranslate"><span class="pre">time_encoding</span></code> therefore provide a convenient way to regulate the
 dimensionality and complexity of the benchmark. In this CR3BP formulation
 throttle constraints are not exposed as separate inequalities. The
-formulation is built on <a class="reference internal" href="trajopt.html#pykep.trajopt.zoh_point2point" title="pykep.trajopt.zoh_point2point"><code class="xref py py-class docutils literal notranslate"><span class="pre">zoh_point2point</span></code></a>, so the
-departure and arrival states are fixed and moving-end effects are not
+formulation is built on <a class="reference internal" href="trajopt.html#pykep.trajopt.zoh_point2point" title="pykep.trajopt.zoh_point2point"><code class="xref py py-class docutils literal notranslate"><span class="pre">zoh_point2point</span></code></a> or, with
+<code class="docutils literal notranslate"><span class="pre">ms=True</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">zoh_ms_point2point</span></code>. The departure
+and arrival states are fixed and moving-end effects are not
 accounted for.</p>
 <p>Construct a CR3BP TOPS instance from a predefined gym case.</p>
 <dl>
@@ -928,6 +932,8 @@ more segments than two-body problems. Defaults to 60.</p>
 <dl class="simple">
 <dt><em>inequalities_for_tc</em> (<a class="reference external" href="https://docs.python.org/3/builtins/functions.html#bool" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">bool</span></code></a>, optional): If True, throttle constraints are</dt><dd><p>formulated as inequalities (<code class="docutils literal notranslate"><span class="pre">|i_u|**2</span> <span class="pre">-</span> <span class="pre">1</span> <span class="pre">&lt;=</span> <span class="pre">0</span></code>), otherwise as equalities.
 Defaults to False.</p>
+</dd>
+<dt>ms (<a class="reference external" href="https://docs.python.org/3/builtins/functions.html#bool" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">bool</span></code></a>, optional): Use multiple shooting with seven state variables</dt><dd><p>at each interior node and seven defect constraints per segment. Default is False.</p>
 </dd>
 </dl>
 </dd>
