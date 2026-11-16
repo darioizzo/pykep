@@ -135,6 +135,10 @@
   
 
   
+    <button class="pst-navbar-icon sidebar-toggle secondary-toggle" aria-label="On this page">
+      <span class="fa-solid fa-outdent"></span>
+    </button>
+  
 </div>
 
     </header>
@@ -497,7 +501,9 @@
 <button class="btn btn-sm pst-navbar-icon search-button search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
     <i class="fa-solid fa-magnifying-glass fa-lg"></i>
 </button>
-
+<button class="sidebar-toggle secondary-toggle btn btn-sm pst-navbar-icon" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
 </div></div>
       
     </div>
@@ -513,6 +519,18 @@
     <div id="print-main-content">
         <div id="jb-print-toc">
             
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="pst-show_toc_level nav section-nav flex-column">
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">Zero-Order Hold: Multiple Shooting</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#two-body-dynamics-modified-equinoctial-elements">Two-body dynamics (Modified Equinoctial Elements)</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#circular-restricted-three-body-problem-cr3bp">Circular Restricted Three-Body Problem (CR3BP)</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#solar-sail-dynamics">Solar-sail dynamics</a></li>
+</ul>
+
+            </nav>
         </div>
     </div>
 </div>
@@ -583,7 +601,7 @@ Variables: 115 Equalities: 70 Inequalities: 10
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">pop</span> <span class="o">=</span> <span class="n">pg</span><span class="o">.</span><span class="n">population</span><span class="p">(</span><span class="n">prob</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
 <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">x</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">pop</span><span class="o">.</span><span class="n">get_x</span><span class="p">()):</span>
-    <span class="n">pop</span><span class="o">.</span><span class="n">set_x</span><span class="p">(</span><span class="n">i</span><span class="p">,</span> <span class="n">udp</span><span class="o">.</span><span class="n">guess_internal_states</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">ballistic</span><span class="o">=</span><span class="kc">True</span><span class="p">))</span>
+    <span class="n">pop</span><span class="o">.</span><span class="n">set_x</span><span class="p">(</span><span class="n">i</span><span class="p">,</span> <span class="n">udp</span><span class="o">.</span><span class="n">guess_internal_states</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">ballistic</span><span class="o">=</span><span class="kc">False</span><span class="p">))</span>
 </pre></div>
 </div>
 </div>
@@ -602,7 +620,7 @@ Variables: 115 Equalities: 70 Inequalities: 10
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(-2.5930433605880765e-08, 2.5416629238772526e-08)
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(-2.2872628180348187e-08, 2.6470715022708369e-08)
 </pre></div>
 </div>
 </div>
@@ -619,8 +637,8 @@ Variables: 115 Equalities: 70 Inequalities: 10
 </div>
 <div class="cell_output docutils container">
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Feasible: True
-Objective: -0.613944557626
-Final mass: 0.613944557626
+Objective: -0.599140027204
+Final mass: 0.599140027204
 Final tof: 2.0
 </pre></div>
 </div>
@@ -633,7 +651,7 @@ Final tof: 2.0
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/21c5d3433755680e4309f1825df22718f34de39786937a747be37ad0479b93ed.png" src="../_images/21c5d3433755680e4309f1825df22718f34de39786937a747be37ad0479b93ed.png" />
+<img alt="../_images/5fd950a28dc09e44ffb012c40cc09af729fa0754f17777beada52e09c9467664.png" src="../_images/5fd950a28dc09e44ffb012c40cc09af729fa0754f17777beada52e09c9467664.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -646,7 +664,275 @@ Final tof: 2.0
 <div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;Axes: xlabel='time grid', ylabel='throttle value (nd)'&gt;
 </pre></div>
 </div>
-<img alt="../_images/6fe641e5bfb6d92646c8977bec9f01ae1211b003ef5f6e0660faf5bf87b24454.png" src="../_images/6fe641e5bfb6d92646c8977bec9f01ae1211b003ef5f6e0660faf5bf87b24454.png" />
+<img alt="../_images/5af9034b87955e6ff8191ab53e35e846af6f10effe3073d6e7182d2aee5471b1.png" src="../_images/5af9034b87955e6ff8191ab53e35e846af6f10effe3073d6e7182d2aee5471b1.png" />
+</div>
+</div>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="two-body-dynamics-modified-equinoctial-elements">
+<h1>Two-body dynamics (Modified Equinoctial Elements)<a class="headerlink" href="#two-body-dynamics-modified-equinoctial-elements" title="Link to this heading">#</a></h1>
+<p>This section solves the TOPS MEE <code class="docutils literal notranslate"><span class="pre">P0</span></code> benchmark with multiple shooting, following the corresponding single-shooting example in <a class="reference internal" href="udp_zoh_point2point.html"><span class="std std-doc">Zero-Order Hold I</span></a>. As in the Cartesian example above, initialize the interior nodes before checking gradients or solving.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">prob_name</span> <span class="o">=</span> <span class="s2">"P0"</span>
+<span class="n">udp</span> <span class="o">=</span> <span class="n">pk</span><span class="o">.</span><span class="n">trajopt</span><span class="o">.</span><span class="n">gym</span><span class="o">.</span><span class="n">tops_mee</span><span class="p">(</span><span class="n">prob_name</span><span class="p">,</span> <span class="n">nseg</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span> <span class="n">time_encoding</span><span class="o">=</span><span class="s2">"softmax"</span><span class="p">,</span> <span class="n">ms</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">udp</span><span class="o">.</span><span class="n">extra_info</span><span class="p">)</span>
+
+<span class="n">prob</span> <span class="o">=</span> <span class="n">pg</span><span class="o">.</span><span class="n">problem</span><span class="p">(</span><span class="n">udp</span><span class="p">)</span>
+<span class="n">prob</span><span class="o">.</span><span class="n">c_tol</span> <span class="o">=</span> <span class="mf">1e-7</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">"Variables:"</span><span class="p">,</span> <span class="n">prob</span><span class="o">.</span><span class="n">get_nx</span><span class="p">(),</span> <span class="s2">"Equalities:"</span><span class="p">,</span> <span class="n">prob</span><span class="o">.</span><span class="n">get_nec</span><span class="p">(),</span> <span class="s2">"Inequalities:"</span><span class="p">,</span> <span class="n">prob</span><span class="o">.</span><span class="n">get_nic</span><span class="p">())</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Dionysus problem (doi: 10.2514/1.G000379) - Fixed time
+Variables: 115 Equalities: 70 Inequalities: 10
+</pre></div>
+</div>
+</div>
+</div>
+<p>Initialize the interior nodes from the coast trajectory before evaluating the multiple-shooting fitness. The propagated nodes must remain within their MEE state bounds.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">pop</span> <span class="o">=</span> <span class="n">pg</span><span class="o">.</span><span class="n">population</span><span class="p">(</span><span class="n">prob</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">x</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">pop</span><span class="o">.</span><span class="n">get_x</span><span class="p">()):</span>
+    <span class="n">pop</span><span class="o">.</span><span class="n">set_x</span><span class="p">(</span><span class="n">i</span><span class="p">,</span> <span class="n">udp</span><span class="o">.</span><span class="n">guess_internal_states</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">ballistic</span><span class="o">=</span><span class="kc">False</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Compare the sparse analytical gradient with finite differences, reconstructing the full Jacobian from pygmo’s reported sparsity coordinates.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">x</span> <span class="o">=</span> <span class="n">pop</span><span class="o">.</span><span class="n">champion_x</span>
+<span class="n">pattern</span> <span class="o">=</span> <span class="n">prob</span><span class="o">.</span><span class="n">gradient_sparsity</span><span class="p">()</span>
+<span class="n">jacobian</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="n">prob</span><span class="o">.</span><span class="n">get_nf</span><span class="p">(),</span> <span class="n">prob</span><span class="o">.</span><span class="n">get_nx</span><span class="p">()))</span>
+<span class="n">jacobian</span><span class="p">[</span><span class="n">pattern</span><span class="p">[:,</span> <span class="mi">0</span><span class="p">],</span> <span class="n">pattern</span><span class="p">[:,</span> <span class="mi">1</span><span class="p">]]</span> <span class="o">=</span> <span class="n">prob</span><span class="o">.</span><span class="n">gradient</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+<span class="n">numerical</span> <span class="o">=</span> <span class="n">pg</span><span class="o">.</span><span class="n">estimate_gradient_h</span><span class="p">(</span><span class="n">prob</span><span class="o">.</span><span class="n">fitness</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span> <span class="n">dx</span><span class="o">=</span><span class="mf">1e-8</span><span class="p">)</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="n">jacobian</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
+<span class="n">grad_err</span> <span class="o">=</span> <span class="n">numerical</span> <span class="o">-</span> <span class="n">jacobian</span>
+<span class="n">grad_err</span><span class="o">.</span><span class="n">min</span><span class="p">(),</span> <span class="n">grad_err</span><span class="o">.</span><span class="n">max</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(-1.6145659212374319e-06, 1.0150261879147277e-06)
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">pop</span> <span class="o">=</span> <span class="n">algo</span><span class="o">.</span><span class="n">evolve</span><span class="p">(</span><span class="n">pop</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">"Feasible:"</span><span class="p">,</span> <span class="n">prob</span><span class="o">.</span><span class="n">feasibility_f</span><span class="p">(</span><span class="n">pop</span><span class="o">.</span><span class="n">champion_f</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">"Objective:"</span><span class="p">,</span> <span class="n">pop</span><span class="o">.</span><span class="n">champion_f</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">"Final mass:"</span><span class="p">,</span> <span class="n">pop</span><span class="o">.</span><span class="n">champion_x</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">*</span> <span class="n">udp</span><span class="o">.</span><span class="n">MASS</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">"Final tof:"</span><span class="p">,</span> <span class="n">pop</span><span class="o">.</span><span class="n">champion_x</span><span class="p">[</span><span class="mi">4</span> <span class="o">*</span> <span class="n">udp</span><span class="o">.</span><span class="n">nseg</span> <span class="o">+</span> <span class="mi">1</span><span class="p">]</span> <span class="o">*</span> <span class="n">udp</span><span class="o">.</span><span class="n">TIME</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Feasible: True
+Objective: -0.629163222972
+Final mass: 0.629163222972
+Final tof: 60.7909197787
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">axes</span> <span class="o">=</span> <span class="n">udp</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">pop</span><span class="o">.</span><span class="n">champion_x</span><span class="p">,</span> <span class="n">N</span><span class="o">=</span><span class="mi">300</span><span class="p">,</span> <span class="n">mark_segments</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">s</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span> <span class="n">c</span><span class="o">=</span><span class="s2">"k"</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/f35c5826de6ce6f029fb25cddd7ee1cef19dba4fa3fd1599b5888713fac50e52.png" src="../_images/f35c5826de6ce6f029fb25cddd7ee1cef19dba4fa3fd1599b5888713fac50e52.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">udp</span><span class="o">.</span><span class="n">plot_throttle</span><span class="p">(</span><span class="n">pop</span><span class="o">.</span><span class="n">champion_x</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;Axes: xlabel='time grid', ylabel='throttle value (nd)'&gt;
+</pre></div>
+</div>
+<img alt="../_images/56a6f9e7868702622ba3cb7375b5caec8b4f43f4b408f3cc4f6a0edcaccd29fa.png" src="../_images/56a6f9e7868702622ba3cb7375b5caec8b4f43f4b408f3cc4f6a0edcaccd29fa.png" />
+</div>
+</div>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="circular-restricted-three-body-problem-cr3bp">
+<h1>Circular Restricted Three-Body Problem (CR3BP)<a class="headerlink" href="#circular-restricted-three-body-problem-cr3bp" title="Link to this heading">#</a></h1>
+<p>This section solves the TOPS CR3BP <code class="docutils literal notranslate"><span class="pre">P0</span></code> benchmark with multiple shooting, following the corresponding single-shooting example in <a class="reference internal" href="udp_zoh_point2point.html"><span class="std std-doc">Zero-Order Hold I</span></a>. The interior states are initialized before gradient checking and optimization.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">prob_name</span> <span class="o">=</span> <span class="s2">"P0"</span>
+<span class="n">udp</span> <span class="o">=</span> <span class="n">pk</span><span class="o">.</span><span class="n">trajopt</span><span class="o">.</span><span class="n">gym</span><span class="o">.</span><span class="n">tops_cr3bp</span><span class="p">(</span><span class="n">prob_name</span><span class="p">,</span> <span class="n">nseg</span><span class="o">=</span><span class="mi">20</span><span class="p">,</span> <span class="n">time_encoding</span><span class="o">=</span><span class="s2">"softmax"</span><span class="p">,</span> <span class="n">ms</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">udp</span><span class="o">.</span><span class="n">extra_info</span><span class="p">)</span>
+
+<span class="n">prob</span> <span class="o">=</span> <span class="n">pg</span><span class="o">.</span><span class="n">problem</span><span class="p">(</span><span class="n">udp</span><span class="p">)</span>
+<span class="n">prob</span><span class="o">.</span><span class="n">c_tol</span> <span class="o">=</span> <span class="mf">1e-7</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">"Variables:"</span><span class="p">,</span> <span class="n">prob</span><span class="o">.</span><span class="n">get_nx</span><span class="p">(),</span> <span class="s2">"Equalities:"</span><span class="p">,</span> <span class="n">prob</span><span class="o">.</span><span class="n">get_nec</span><span class="p">(),</span> <span class="s2">"Inequalities:"</span><span class="p">,</span> <span class="n">prob</span><span class="o">.</span><span class="n">get_nic</span><span class="p">())</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Halo 2 Halo in fixed tof
+Variables: 235 Equalities: 160 Inequalities: 0
+</pre></div>
+</div>
+</div>
+</div>
+<p>Initialize the interior nodes from the coast trajectory before evaluating the multiple-shooting fitness. Propagated nodes outside their bounds raise <code class="docutils literal notranslate"><span class="pre">ValueError</span></code>.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">pop</span> <span class="o">=</span> <span class="n">pg</span><span class="o">.</span><span class="n">population</span><span class="p">(</span><span class="n">prob</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">x</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">pop</span><span class="o">.</span><span class="n">get_x</span><span class="p">()):</span>
+    <span class="n">pop</span><span class="o">.</span><span class="n">set_x</span><span class="p">(</span><span class="n">i</span><span class="p">,</span> <span class="n">udp</span><span class="o">.</span><span class="n">guess_internal_states</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">ballistic</span><span class="o">=</span><span class="kc">False</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Compare the sparse analytical gradient with finite differences, reconstructing the full Jacobian from pygmo’s reported sparsity coordinates.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">x</span> <span class="o">=</span> <span class="n">pop</span><span class="o">.</span><span class="n">champion_x</span>
+<span class="n">pattern</span> <span class="o">=</span> <span class="n">prob</span><span class="o">.</span><span class="n">gradient_sparsity</span><span class="p">()</span>
+<span class="n">jacobian</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="n">prob</span><span class="o">.</span><span class="n">get_nf</span><span class="p">(),</span> <span class="n">prob</span><span class="o">.</span><span class="n">get_nx</span><span class="p">()))</span>
+<span class="n">jacobian</span><span class="p">[</span><span class="n">pattern</span><span class="p">[:,</span> <span class="mi">0</span><span class="p">],</span> <span class="n">pattern</span><span class="p">[:,</span> <span class="mi">1</span><span class="p">]]</span> <span class="o">=</span> <span class="n">prob</span><span class="o">.</span><span class="n">gradient</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+<span class="n">numerical</span> <span class="o">=</span> <span class="n">pg</span><span class="o">.</span><span class="n">estimate_gradient_h</span><span class="p">(</span><span class="n">prob</span><span class="o">.</span><span class="n">fitness</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span> <span class="n">dx</span><span class="o">=</span><span class="mf">1e-8</span><span class="p">)</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="n">jacobian</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
+<span class="n">grad_err</span> <span class="o">=</span> <span class="n">numerical</span> <span class="o">-</span> <span class="n">jacobian</span>
+<span class="n">grad_err</span><span class="o">.</span><span class="n">min</span><span class="p">(),</span> <span class="n">grad_err</span><span class="o">.</span><span class="n">max</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(-2.7337948571570792e-07, 2.3976052854202123e-07)
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">pop</span> <span class="o">=</span> <span class="n">algo</span><span class="o">.</span><span class="n">evolve</span><span class="p">(</span><span class="n">pop</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">"Feasible:"</span><span class="p">,</span> <span class="n">prob</span><span class="o">.</span><span class="n">feasibility_f</span><span class="p">(</span><span class="n">pop</span><span class="o">.</span><span class="n">champion_f</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">"Objective:"</span><span class="p">,</span> <span class="n">pop</span><span class="o">.</span><span class="n">champion_f</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">"Final mass:"</span><span class="p">,</span> <span class="n">pop</span><span class="o">.</span><span class="n">champion_x</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">"Final tof:"</span><span class="p">,</span> <span class="n">pop</span><span class="o">.</span><span class="n">champion_x</span><span class="p">[</span><span class="mi">4</span> <span class="o">*</span> <span class="n">udp</span><span class="o">.</span><span class="n">nseg</span> <span class="o">+</span> <span class="mi">1</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Feasible: False
+Objective: -0.979383503081
+Final mass: 0.979383503081
+Final tof: 5.0
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">axes</span> <span class="o">=</span> <span class="n">udp</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">pop</span><span class="o">.</span><span class="n">champion_x</span><span class="p">,</span> <span class="n">N</span><span class="o">=</span><span class="mi">1000</span><span class="p">,</span> <span class="n">mark_segments</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">s</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span> <span class="n">c</span><span class="o">=</span><span class="s2">"k"</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/5a929a87aa46eadd7de26977d6441c7372501838982bee8c409fdfc276d60235.png" src="../_images/5a929a87aa46eadd7de26977d6441c7372501838982bee8c409fdfc276d60235.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">udp</span><span class="o">.</span><span class="n">plot_throttle</span><span class="p">(</span><span class="n">pop</span><span class="o">.</span><span class="n">champion_x</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;Axes: xlabel='time grid', ylabel='throttle value (nd)'&gt;
+</pre></div>
+</div>
+<img alt="../_images/c23d9eed0af5f72e2a22a63889fd30fe79b442ee3827f4d32265811653815650.png" src="../_images/c23d9eed0af5f72e2a22a63889fd30fe79b442ee3827f4d32265811653815650.png" />
+</div>
+</div>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="solar-sail-dynamics">
+<h1>Solar-sail dynamics<a class="headerlink" href="#solar-sail-dynamics" title="Link to this heading">#</a></h1>
+<p>This section solves a TOPS solar-sail benchmark with multiple shooting, using <a class="reference internal" href="../gym.html#pykep.trajopt.gym.tops_ss" title="pykep.trajopt.gym.tops_ss"><code class="xref py py-class docutils literal notranslate"><span class="pre">pykep.trajopt.gym.tops_ss</span></code></a> and <code class="docutils literal notranslate"><span class="pre">ms=True</span></code>. As in the other MS examples, initialize the interior states before checking gradients or solving. Solar-sail controls are the cone and clock angles; there are no throttle or mass variables.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Load a TOPS solar-sail benchmark using multiple shooting</span>
+<span class="n">prob_name</span> <span class="o">=</span> <span class="s2">"P1"</span>
+<span class="n">udp</span> <span class="o">=</span> <span class="n">pk</span><span class="o">.</span><span class="n">trajopt</span><span class="o">.</span><span class="n">gym</span><span class="o">.</span><span class="n">tops_ss</span><span class="p">(</span><span class="n">prob_name</span><span class="p">,</span> <span class="n">nseg</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span> <span class="n">time_encoding</span><span class="o">=</span><span class="s2">"uniform"</span><span class="p">,</span> <span class="n">ms</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">udp</span><span class="o">.</span><span class="n">extra_info</span><span class="p">)</span>
+
+<span class="n">prob</span> <span class="o">=</span> <span class="n">pg</span><span class="o">.</span><span class="n">problem</span><span class="p">(</span><span class="n">udp</span><span class="p">)</span>
+<span class="n">prob</span><span class="o">.</span><span class="n">c_tol</span> <span class="o">=</span> <span class="mf">1e-7</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">"Variables:"</span><span class="p">,</span> <span class="n">prob</span><span class="o">.</span><span class="n">get_nx</span><span class="p">(),</span> <span class="s2">"Equalities:"</span><span class="p">,</span> <span class="n">prob</span><span class="o">.</span><span class="n">get_nec</span><span class="p">(),</span> <span class="s2">"Inequalities:"</span><span class="p">,</span> <span class="n">prob</span><span class="o">.</span><span class="n">get_nic</span><span class="p">())</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Eccentric (e=0.5, a=2) to highly-eccentric (e=0.9, a=10) orbit at periapsis (rp=1, nd)
+Variables: 75 Equalities: 60 Inequalities: 0
+</pre></div>
+</div>
+</div>
+</div>
+<p>Initialize the interior states from the sail trajectory before checking gradients or solving. The guessed states are subject to the configured six-dimensional node bounds.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">pop</span> <span class="o">=</span> <span class="n">pg</span><span class="o">.</span><span class="n">population</span><span class="p">(</span><span class="n">prob</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">x</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">pop</span><span class="o">.</span><span class="n">get_x</span><span class="p">()):</span>
+    <span class="n">pop</span><span class="o">.</span><span class="n">set_x</span><span class="p">(</span><span class="n">i</span><span class="p">,</span> <span class="n">udp</span><span class="o">.</span><span class="n">guess_internal_states</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">ballistic</span><span class="o">=</span><span class="kc">False</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Compare the sparse analytical gradient with finite differences, reconstructing the full Jacobian from pygmo’s reported sparsity coordinates.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">x</span> <span class="o">=</span> <span class="n">pop</span><span class="o">.</span><span class="n">champion_x</span>
+<span class="n">pattern</span> <span class="o">=</span> <span class="n">prob</span><span class="o">.</span><span class="n">gradient_sparsity</span><span class="p">()</span>
+<span class="n">jacobian</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="n">prob</span><span class="o">.</span><span class="n">get_nf</span><span class="p">(),</span> <span class="n">prob</span><span class="o">.</span><span class="n">get_nx</span><span class="p">()))</span>
+<span class="n">jacobian</span><span class="p">[</span><span class="n">pattern</span><span class="p">[:,</span> <span class="mi">0</span><span class="p">],</span> <span class="n">pattern</span><span class="p">[:,</span> <span class="mi">1</span><span class="p">]]</span> <span class="o">=</span> <span class="n">prob</span><span class="o">.</span><span class="n">gradient</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+<span class="n">numerical</span> <span class="o">=</span> <span class="n">pg</span><span class="o">.</span><span class="n">estimate_gradient_h</span><span class="p">(</span><span class="n">prob</span><span class="o">.</span><span class="n">fitness</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span> <span class="n">dx</span><span class="o">=</span><span class="mf">1e-8</span><span class="p">)</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="n">jacobian</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
+<span class="n">grad_err</span> <span class="o">=</span> <span class="n">numerical</span> <span class="o">-</span> <span class="n">jacobian</span>
+<span class="n">grad_err</span><span class="o">.</span><span class="n">min</span><span class="p">(),</span> <span class="n">grad_err</span><span class="o">.</span><span class="n">max</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(-1.2969877261070906e-06, 1.4632194941244236e-06)
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">pop</span> <span class="o">=</span> <span class="n">algo</span><span class="o">.</span><span class="n">evolve</span><span class="p">(</span><span class="n">pop</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">"Feasible:"</span><span class="p">,</span> <span class="n">prob</span><span class="o">.</span><span class="n">feasibility_f</span><span class="p">(</span><span class="n">pop</span><span class="o">.</span><span class="n">champion_f</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">"Objective:"</span><span class="p">,</span> <span class="n">pop</span><span class="o">.</span><span class="n">champion_f</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">"Final tof:"</span><span class="p">,</span> <span class="n">pop</span><span class="o">.</span><span class="n">champion_x</span><span class="p">[</span><span class="mi">2</span> <span class="o">*</span> <span class="n">udp</span><span class="o">.</span><span class="n">nseg</span><span class="p">]</span> <span class="o">*</span> <span class="n">udp</span><span class="o">.</span><span class="n">TIME</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Feasible: True
+Objective: 180.0
+Final tof: 180.0
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">axes</span> <span class="o">=</span> <span class="n">udp</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">pop</span><span class="o">.</span><span class="n">champion_x</span><span class="p">,</span> <span class="n">N</span><span class="o">=</span><span class="mi">300</span><span class="p">,</span> <span class="n">mark_segments</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">sail_size</span><span class="o">=</span><span class="mf">0.5</span><span class="p">,</span> <span class="n">s</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span> <span class="n">c</span><span class="o">=</span><span class="s2">"k"</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/21c069bde2f7610e188984472817a9bb25431a0e85b7a529e5aee1c475bcbe9d.png" src="../_images/21c069bde2f7610e188984472817a9bb25431a0e85b7a529e5aee1c475bcbe9d.png" />
 </div>
 </div>
 </section>
@@ -668,6 +954,27 @@ Final tof: 2.0
             </div>
             
             
+              
+                <dialog id="pst-secondary-sidebar-modal"></dialog>
+                <div id="pst-secondary-sidebar" class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item"><div
+    id="pst-page-navigation-heading-2"
+    class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav id="pst-page-toc-nav" class="page-toc" aria-labelledby="pst-page-navigation-heading-2">
+    <ul class="pst-show_toc_level nav section-nav flex-column">
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">Zero-Order Hold: Multiple Shooting</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#two-body-dynamics-modified-equinoctial-elements">Two-body dynamics (Modified Equinoctial Elements)</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#circular-restricted-three-body-problem-cr3bp">Circular Restricted Three-Body Problem (CR3BP)</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#solar-sail-dynamics">Solar-sail dynamics</a></li>
+</ul>
+
+  </nav></div>
+
+</div></div>
               
             
           </div>

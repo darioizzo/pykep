@@ -738,11 +738,11 @@ while the solar-sail variant is built on
 so they are not moving-end problems.</p>
 </div>
 <p>The TOPS benchmark problems, from Trajectory Optimisation Problems in
-Space, are low-thrust trajectory optimization
-problems described in json format. In this specific
-instance the spacecraft dynamics are modeled in Cartesian coordinates under
-two-body motion and. The transcription to a Non Linear Programming priblem (NLP) uses
-a forward-backward shooting scheme, which introduces highly nonlinear
+space, are low-thrust trajectory optimization
+problems transcribed into nonlinear programs by a direct method. In this
+instance the spacecraft is controlled by a solar sail. By default the
+transcription uses forward-backward single shooting; <code class="docutils literal notranslate"><span class="pre">ms=True</span></code> selects
+multiple shooting with bounded interior states.
 mismatch constraints, together with throttle constraints on the segment controls.</p>
 <p>The control is represented with a zero-order hold over each segment, so the
 resulting NLP size and difficulty depend on the number of segments and on
@@ -839,7 +839,7 @@ Defaults to True.</p>
 
 <dl class="py class">
 <dt class="sig sig-object py" id="pykep.trajopt.gym.tops_ss">
-<em class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">pykep.trajopt.gym.</span></span><span class="sig-name descname"><span class="pre">tops_ss</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">prob_name</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">cut</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.5</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">nseg</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">10</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">time_encoding</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'uniform'</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pykep.trajopt.gym.tops_ss" title="Link to this definition">#</a></dt>
+<em class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">pykep.trajopt.gym.</span></span><span class="sig-name descname"><span class="pre">tops_ss</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">prob_name</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">cut</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.5</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">nseg</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">10</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">time_encoding</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'uniform'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ms</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pykep.trajopt.gym.tops_ss" title="Link to this definition">#</a></dt>
 <dd><p>Solar sailing problems from TOPS.</p>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
@@ -858,9 +858,9 @@ the selected time encoding. Different choices of <code class="docutils literal n
 <code class="docutils literal notranslate"><span class="pre">time_encoding</span></code> therefore provide a convenient way to regulate the
 dimensionality and complexity of the benchmark. Unlike the non solar-sail
 TOPS instances, this formulation does not include throttle constraints. The
-formulation is built on <a class="reference internal" href="trajopt.html#pykep.trajopt.zoh_ss_point2point" title="pykep.trajopt.zoh_ss_point2point"><code class="xref py py-class docutils literal notranslate"><span class="pre">zoh_ss_point2point</span></code></a>, so the
-departure and arrival states are fixed and moving-end effects are not
-accounted for.</p>
+formulation is built on <a class="reference internal" href="trajopt.html#pykep.trajopt.zoh_ss_point2point" title="pykep.trajopt.zoh_ss_point2point"><code class="xref py py-class docutils literal notranslate"><span class="pre">zoh_ss_point2point</span></code></a> by
+default, or <code class="xref py py-class docutils literal notranslate"><span class="pre">zoh_ms_ss_point2point</span></code> when <code class="docutils literal notranslate"><span class="pre">ms=True</span></code>.
+The departure and arrival states remain fixed.</p>
 <p>Construct a solar-sailing TOPS instance from a predefined gym case.</p>
 <dl>
 <dt>Args:</dt><dd><dl class="simple">
@@ -880,6 +880,10 @@ accounted for.</p>
 </ul>
 <p>Defaults to <code class="docutils literal notranslate"><span class="pre">'uniform'</span></code>.</p>
 </div></blockquote>
+<dl class="simple">
+<dt><em>ms</em> (<a class="reference external" href="https://docs.python.org/3/builtins/functions.html#bool" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">bool</span></code></a>, optional): Use multiple shooting with bounded interior</dt><dd><p>states. Defaults to False.</p>
+</dd>
+</dl>
 </dd>
 </dl>
 </dd></dl>
