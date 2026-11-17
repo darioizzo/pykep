@@ -231,15 +231,7 @@
 <li class="toctree-l2"><a class="reference internal" href="notebooks/udp_sf_pl2pl.html">Sims-Flanagan: planet to plane low-thrust transfer</a></li>
 <li class="toctree-l2"><a class="reference internal" href="notebooks/udp_sf_pl2pl_alpha.html">Sims-Flanagan: planet to plane low-thrust transfer (with Alpha encoding)</a></li>
 <li class="toctree-l2"><a class="reference internal" href="notebooks/udp_zoh_point2point.html">Zero-Order Hold I</a></li>
-
-
-
-
 <li class="toctree-l2"><a class="reference internal" href="notebooks/udp_zoh_pl2pl.html">Zero-Order Hold II</a></li>
-
-
-
-
 <li class="toctree-l2"><a class="reference internal" href="notebooks/udp_mga.html">Multiple Gravity Assist (MGA)</a></li>
 <li class="toctree-l2"><a class="reference internal" href="notebooks/udp_mga_1dsm.html">Multiple Gravity Assist with one DSM (MGA-1DSM)</a></li>
 <li class="toctree-l2"><a class="reference internal" href="notebooks/udp_pl2pl_N_impulses.html">Multiple impulses: planet to planet transfer</a></li>
@@ -550,16 +542,22 @@
 </li>
       <li><a href="leg.html#pykep.leg.zoh_ms.compute_defects">compute_defects() (pykep.leg.zoh_ms method)</a>
 </li>
+      <li><a href="leg.html#pykep.leg.zoh_ms.compute_defects_grad">compute_defects_grad() (pykep.leg.zoh_ms method)</a>
+</li>
       <li><a href="leg.html#pykep.leg.sims_flanagan.compute_mc_grad">compute_mc_grad() (pykep.leg.sims_flanagan method)</a>
 
       <ul>
         <li><a href="leg.html#pykep.leg.zoh.compute_mc_grad">(pykep.leg.zoh method)</a>
 </li>
       </ul></li>
-      <li><a href="leg.html#pykep.leg.sims_flanagan.compute_mismatch_constraints">compute_mismatch_constraints() (pykep.leg.sims_flanagan method)</a>
-</li>
   </ul></td>
   <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="leg.html#pykep.leg.sims_flanagan.compute_mismatch_constraints">compute_mismatch_constraints() (pykep.leg.sims_flanagan method)</a>
+
+      <ul>
+        <li><a href="leg.html#pykep.leg.zoh.compute_mismatch_constraints">(pykep.leg.zoh method)</a>
+</li>
+      </ul></li>
       <li><a href="utils.html#pykep.utils.compute_softmax_and_jacobian">compute_softmax_and_jacobian() (in module pykep.utils)</a>
 </li>
       <li><a href="leg.html#pykep.leg.sims_flanagan.compute_tc_grad">compute_tc_grad() (pykep.leg.sims_flanagan method)</a>
@@ -574,8 +572,6 @@
 </li>
       <li><a href="propagation.html#pykep.ta.cr3bp_jacobi_C">cr3bp_jacobi_C() (in module pykep.ta)</a>
 </li>
-      <li><a href="leg.html#pykep.leg.sims_flanagan.cut">cut (pykep.leg.sims_flanagan property)</a>
-</li>
       <li><a href="lambert.html#pykep.lambert_problem.cw">cw (pykep.lambert_problem property)</a>
 </li>
   </ul></td>
@@ -585,6 +581,8 @@
 <table style="width: 100%" class="indextable genindextable"><tr>
   <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="udpla.html#pykep.udpla.de440s">de440s (class in pykep.udpla)</a>
+</li>
+      <li><a href="leg.html#pykep.leg.zoh_ms.defects_grad_sparsity">defects_grad_sparsity() (pykep.leg.zoh_ms method)</a>
 </li>
   </ul></td>
   <td style="width: 33%; vertical-align: top;"><ul>
@@ -880,15 +878,11 @@
 </li>
       <li><a href="plot.html#pykep.plot.make_3Daxis">make_3Daxis() (in module pykep.plot)</a>
 </li>
-      <li><a href="leg.html#pykep.leg.sims_flanagan.max_thrust">max_thrust (pykep.leg.sims_flanagan property)</a>
-</li>
       <li><a href="elements.html#pykep.mee2ic">mee2ic() (in module pykep)</a>
 </li>
       <li><a href="elements.html#pykep.mee2par">mee2par() (in module pykep)</a>
 </li>
       <li><a href="gym.html#pykep.trajopt.gym.messenger">messenger (pykep.trajopt.gym attribute)</a>
-</li>
-      <li><a href="leg.html#pykep.leg.sims_flanagan.mf">mf (pykep.leg.sims_flanagan property)</a>
 </li>
       <li><a href="trajopt.html#pykep.trajopt.mga">mga (class in pykep.trajopt)</a>
 </li>
@@ -910,14 +904,8 @@
 </li>
       <li><a href="epoch.html#pykep.epoch.mjd2000">mjd2000 (pykep.epoch property)</a>
 </li>
-      <li><a href="leg.html#pykep.leg.sims_flanagan.ms">ms (pykep.leg.sims_flanagan property)</a>
-</li>
       <li><a href="lambert.html#pykep.lambert_problem.mu">mu (pykep.lambert_problem property)</a>
-
-      <ul>
-        <li><a href="leg.html#pykep.leg.sims_flanagan.mu">(pykep.leg.sims_flanagan property)</a>
 </li>
-      </ul></li>
       <li><a href="planet.html#pykep.planet.mu_central_body">mu_central_body (pykep.planet property)</a>
 </li>
       <li><a href="planet.html#pykep.planet.mu_self">mu_self (pykep.planet property)</a>
@@ -938,21 +926,15 @@
 </li>
       <li><a href="utils.html#pykep.utils.naifid2name">naifid2name() (in module pykep.utils)</a>
 </li>
-      <li><a href="planet.html#pykep.planet.name">name (pykep.planet property)</a>
-</li>
   </ul></td>
   <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="planet.html#pykep.planet.name">name (pykep.planet property)</a>
+</li>
       <li><a href="utils.html#pykep.utils.name2naifid">name2naifid() (in module pykep.utils)</a>
 </li>
       <li><a href="lambert.html#pykep.lambert_problem.Nmax">Nmax (pykep.lambert_problem property)</a>
 </li>
       <li><a href="epoch.html#pykep.epoch.now">now() (pykep.epoch static method)</a>
-</li>
-      <li><a href="leg.html#pykep.leg.sims_flanagan.nseg">nseg (pykep.leg.sims_flanagan property)</a>
-</li>
-      <li><a href="leg.html#pykep.leg.sims_flanagan.nseg_bck">nseg_bck (pykep.leg.sims_flanagan property)</a>
-</li>
-      <li><a href="leg.html#pykep.leg.sims_flanagan.nseg_fwd">nseg_fwd (pykep.leg.sims_flanagan property)</a>
 </li>
       <li><a href="udpla.html#pykep.udpla.null_udpla">null_udpla (class in pykep.udpla)</a>
 </li>
@@ -1076,10 +1058,6 @@
 </li>
       <li><a href="utils.html#pykep.utils.rotation_matrix">rotation_matrix() (in module pykep.utils)</a>
 </li>
-      <li><a href="leg.html#pykep.leg.sims_flanagan.rvf">rvf (pykep.leg.sims_flanagan property)</a>
-</li>
-      <li><a href="leg.html#pykep.leg.sims_flanagan.rvs">rvs (pykep.leg.sims_flanagan property)</a>
-</li>
   </ul></td>
 </tr></table>
 
@@ -1118,8 +1096,6 @@
 <h2 id="T">T</h2>
 <table style="width: 100%" class="indextable genindextable"><tr>
   <td style="width: 33%; vertical-align: top;"><ul>
-      <li><a href="leg.html#pykep.leg.sims_flanagan.throttles">throttles (pykep.leg.sims_flanagan property)</a>
-</li>
       <li><a href="udpla.html#pykep.udpla.tle">tle (class in pykep.udpla)</a>
 </li>
       <li><a href="epoch.html#pykep.epoch.to_datetime">to_datetime() (pykep.epoch method)</a>
@@ -1127,11 +1103,7 @@
       <li><a href="trajopt.html#pykep.trajopt.mga.to_planet">to_planet() (pykep.trajopt.mga method)</a>
 </li>
       <li><a href="lambert.html#pykep.lambert_problem.tof">tof (pykep.lambert_problem property)</a>
-
-      <ul>
-        <li><a href="leg.html#pykep.leg.sims_flanagan.tof">(pykep.leg.sims_flanagan property)</a>
 </li>
-      </ul></li>
   </ul></td>
   <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="gym.html#pykep.trajopt.gym.tops_cr3bp">tops_cr3bp (class in pykep.trajopt.gym)</a>
@@ -1162,11 +1134,9 @@
   <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="lambert.html#pykep.lambert_problem.v0">v0 (pykep.lambert_problem property)</a>
 </li>
-      <li><a href="lambert.html#pykep.lambert_problem.v1">v1 (pykep.lambert_problem property)</a>
-</li>
   </ul></td>
   <td style="width: 33%; vertical-align: top;"><ul>
-      <li><a href="leg.html#pykep.leg.sims_flanagan.veff">veff (pykep.leg.sims_flanagan property)</a>
+      <li><a href="lambert.html#pykep.lambert_problem.v1">v1 (pykep.lambert_problem property)</a>
 </li>
       <li><a href="udpla.html#pykep.udpla.vsop2013">vsop2013 (class in pykep.udpla)</a>
 </li>

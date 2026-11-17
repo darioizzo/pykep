@@ -238,15 +238,7 @@
 <li class="toctree-l2"><a class="reference internal" href="udp_sf_pl2pl.html">Sims-Flanagan: planet to plane low-thrust transfer</a></li>
 <li class="toctree-l2"><a class="reference internal" href="udp_sf_pl2pl_alpha.html">Sims-Flanagan: planet to plane low-thrust transfer (with Alpha encoding)</a></li>
 <li class="toctree-l2"><a class="reference internal" href="udp_zoh_point2point.html">Zero-Order Hold I</a></li>
-
-
-
-
 <li class="toctree-l2"><a class="reference internal" href="udp_zoh_pl2pl.html">Zero-Order Hold II</a></li>
-
-
-
-
 <li class="toctree-l2"><a class="reference internal" href="udp_mga.html">Multiple Gravity Assist (MGA)</a></li>
 <li class="toctree-l2"><a class="reference internal" href="udp_mga_1dsm.html">Multiple Gravity Assist with one DSM (MGA-1DSM)</a></li>
 <li class="toctree-l2"><a class="reference internal" href="udp_pl2pl_N_impulses.html">Multiple impulses: planet to planet transfer</a></li>
@@ -544,16 +536,14 @@
   <section class="tex2jax_ignore mathjax_ignore" id="zero-order-hold-leg">
 <h1>Zero-Order-Hold leg<a class="headerlink" href="#zero-order-hold-leg" title="Link to this heading">#</a></h1>
 <p>The Zero-Order-Hold (ZOH, parameterized by the <em>cut</em> parameter) trajectory leg is implemented in <code class="docutils literal notranslate"><span class="pre">pykep</span></code> as <a class="reference internal" href="../leg.html#pykep.leg.zoh" title="pykep.leg.zoh"><code class="xref py py-class docutils literal notranslate"><span class="pre">pykep.leg.zoh</span></code></a>. The method is described in <span class="bibtex-citation" id="id1">[<a class="reference internal" href="../bibliography.html#id21" title="Dario Izzo, Harry Holt, Giacomo Acciarini, Laurent Beauregard, and Yuri Shimane. A practical guide to implementing generic zero-hold interplanetary trajectory legs. In Proceedings of the 30th International Symposium on Space Flight Dynamics (ISSFD). Toulouse, France, 2026. Oral presentation.">IHA+26</a>]</span> as a ZOH <span class="math notranslate nohighlight">\(_\alpha\)</span> transcription. Conceptually, it extends the Sims-Flanagan leg by modeling thrust as a piecewise-constant continuous acceleration over each segment, while supporting generic dynamics and nonuniform segment durations.</p>
-<p>Let the mesh contain <span class="math notranslate nohighlight">\(n\)</span> segments, with initial and final states <span class="math notranslate nohighlight">\(\mathbf{x}_0\)</span> and <span class="math notranslate nohighlight">\(\mathbf{x}_n\)</span> at times <span class="math notranslate nohighlight">\(t_0\)</span> and <span class="math notranslate nohighlight">\(t_n\)</span>, and time grid <span class="math notranslate nohighlight">\(\{t_k\}_{k=0}^{n}\)</span>. On each segment <span class="math notranslate nohighlight">\(k\)</span>, the control is
-$<span class="math notranslate nohighlight">\(
-\mathbf{u}_k = [T_k,\ i_{x,k},\ i_{y,k},\ i_{z,k}], \qquad k=0,\ldots,n-1,
-\)</span><span class="math notranslate nohighlight">\(
-where \)</span>T_k<span class="math notranslate nohighlight">\( is the thrust magnitude and \)</span>(i_{x,k}, i_{y,k}, i_{z,k})<span class="math notranslate nohighlight">\( specifies the thrust direction in the selected frame. The full control vector is \)</span>\mathbf{u}=[\mathbf{u}<em>0,\ldots,\mathbf{u}</em>{n-1}]$.</p>
-<p>The cut defines <span class="math notranslate nohighlight">\(n_{\mathrm{fwd}}=\lfloor n\,\mathrm{cut}\rfloor\)</span> forward segments and <span class="math notranslate nohighlight">\(n_{\mathrm{bck}}=n-n_{\mathrm{fwd}}\)</span> backward segments. Both endpoint states are propagated to the matching time <span class="math notranslate nohighlight">\(t_c=t_{n_{\mathrm{fwd}}}\)</span>, and the leg returns the single mismatch constraint
-$<span class="math notranslate nohighlight">\(
-\mathbf{m}=\mathbf{x}_{\mathrm{fwd}}(t_c)-\mathbf{x}_{\mathrm{bck}}(t_c),
-\)</span><span class="math notranslate nohighlight">\(
-where the two states are obtained by forward and backward propagation, respectively. Feasibility requires \)</span>\mathbf{m}=\mathbf{0}$. The class provides the analytical Jacobians of this mismatch with respect to the endpoint states, controls, and time-grid variables, making it suitable for gradient-based trajectory optimization (including multiphase and moving-endpoint formulations).</p>
+<p>Let the mesh contain <span class="math notranslate nohighlight">\(n\)</span> segments, with initial and final states <span class="math notranslate nohighlight">\(\mathbf{x}_0\)</span> and <span class="math notranslate nohighlight">\(\mathbf{x}_n\)</span> at times <span class="math notranslate nohighlight">\(t_0\)</span> and <span class="math notranslate nohighlight">\(t_n\)</span>, and time grid <span class="math notranslate nohighlight">\(\{t_k\}_{k=0}^{n}\)</span>. On each segment <span class="math notranslate nohighlight">\(k\)</span>, the control is</p>
+<div class="math notranslate nohighlight">
+\[\mathbf{u}_k = [T_k,\ i_{x,k},\ i_{y,k},\ i_{z,k}], \qquad k=0,\ldots,n-1,\]</div>
+<p>where <span class="math notranslate nohighlight">\(T_k\)</span> is the thrust magnitude and <span class="math notranslate nohighlight">\((i_{x,k}, i_{y,k}, i_{z,k})\)</span> specifies the thrust direction in the selected frame. The full control vector is <span class="math notranslate nohighlight">\(\mathbf{u}=[\mathbf{u}_0,\ldots,\mathbf{u}_{n-1}]\)</span>.</p>
+<p>The cut defines <span class="math notranslate nohighlight">\(n_{\mathrm{fwd}}=\lfloor n\,\mathrm{cut}\rfloor\)</span> forward segments and <span class="math notranslate nohighlight">\(n_{\mathrm{bck}}=n-n_{\mathrm{fwd}}\)</span> backward segments. Both endpoint states are propagated to the matching time <span class="math notranslate nohighlight">\(t_c=t_{n_{\mathrm{fwd}}}\)</span>, and the leg returns the single mismatch constraint</p>
+<div class="math notranslate nohighlight">
+\[\mathbf{m}=\mathbf{x}_{\mathrm{fwd}}(t_c)-\mathbf{x}_{\mathrm{bck}}(t_c),\]</div>
+<p>where the two states are obtained by forward and backward propagation, respectively. Feasibility requires <span class="math notranslate nohighlight">\(\mathbf{m}=\mathbf{0}\)</span>. The class provides the analytical Jacobians of this mismatch with respect to the endpoint states, controls, and time-grid variables, making it suitable for gradient-based trajectory optimization (including multiphase and moving-endpoint formulations).</p>
 <p>We start with the required imports:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -678,10 +668,10 @@ where the two states are obtained by forward and backward propagation, respectiv
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>state0 7.36503014337e-07
-state1 3.11317393604e-08
-controls 4.93084539046e-07
-tgrid 1.36511101499e-07
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>state0 2.39000027162e-08
+state1 2.0002588753e-06
+controls 1.70596038947e-06
+tgrid 3.08274812712e-07
 </pre></div>
 </div>
 </div>
@@ -693,7 +683,7 @@ tgrid 1.36511101499e-07
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">ax</span> <span class="o">=</span> <span class="n">pk</span><span class="o">.</span><span class="n">plot</span><span class="o">.</span><span class="n">make_3Daxis</span><span class="p">()</span>
 <span class="n">pk</span><span class="o">.</span><span class="n">plot</span><span class="o">.</span><span class="n">add_planet_orbit</span><span class="p">(</span><span class="n">ax</span><span class="p">,</span> <span class="n">pl0</span><span class="p">,</span> <span class="n">units</span><span class="o">=</span><span class="n">pk</span><span class="o">.</span><span class="n">AU</span><span class="p">)</span>
 <span class="n">pk</span><span class="o">.</span><span class="n">plot</span><span class="o">.</span><span class="n">add_planet_orbit</span><span class="p">(</span><span class="n">ax</span><span class="p">,</span> <span class="n">pl1</span><span class="p">,</span> <span class="n">units</span><span class="o">=</span><span class="n">pk</span><span class="o">.</span><span class="n">AU</span><span class="p">)</span>
-<span class="n">fwd</span><span class="p">,</span> <span class="n">bck</span> <span class="o">=</span> <span class="n">leg</span><span class="o">.</span><span class="n">get_state_info</span><span class="p">(</span><span class="mi">100</span><span class="p">)</span>
+<span class="n">fwd</span><span class="p">,</span> <span class="n">bck</span><span class="p">,</span> <span class="n">_</span> <span class="o">=</span> <span class="n">leg</span><span class="o">.</span><span class="n">get_state_info</span><span class="p">(</span><span class="mi">100</span><span class="p">)</span>
 <span class="k">for</span> <span class="n">segment</span> <span class="ow">in</span> <span class="n">fwd</span><span class="p">:</span>
     <span class="n">ax</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">segment</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">],</span> <span class="n">segment</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">],</span> <span class="n">segment</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="mi">2</span><span class="p">],</span> <span class="n">c</span> <span class="o">=</span> <span class="s1">'blue'</span><span class="p">)</span> 
     <span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">segment</span><span class="p">[:,</span><span class="mi">0</span><span class="p">],</span> <span class="n">segment</span><span class="p">[:,</span><span class="mi">1</span><span class="p">],</span> <span class="n">segment</span><span class="p">[:,</span><span class="mi">2</span><span class="p">],</span> <span class="n">c</span><span class="o">=</span> <span class="s1">'blue'</span><span class="p">)</span> 
@@ -706,21 +696,7 @@ tgrid 1.36511101499e-07
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
-<span class="ne">ValueError</span><span class="g g-Whitespace">                                </span>Traceback (most recent call last)
-<span class="n">Cell</span> <span class="n">In</span><span class="p">[</span><span class="mi">7</span><span class="p">],</span> <span class="n">line</span> <span class="mi">4</span>
-<span class="g g-Whitespace">      </span><span class="mi">1</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">pk</span><span class="o">.</span><span class="n">plot</span><span class="o">.</span><span class="n">make_3Daxis</span><span class="p">()</span>
-<span class="g g-Whitespace">      </span><span class="mi">2</span> <span class="n">pk</span><span class="o">.</span><span class="n">plot</span><span class="o">.</span><span class="n">add_planet_orbit</span><span class="p">(</span><span class="n">ax</span><span class="p">,</span> <span class="n">pl0</span><span class="p">,</span> <span class="n">units</span><span class="o">=</span><span class="n">pk</span><span class="o">.</span><span class="n">AU</span><span class="p">)</span>
-<span class="g g-Whitespace">      </span><span class="mi">3</span> <span class="n">pk</span><span class="o">.</span><span class="n">plot</span><span class="o">.</span><span class="n">add_planet_orbit</span><span class="p">(</span><span class="n">ax</span><span class="p">,</span> <span class="n">pl1</span><span class="p">,</span> <span class="n">units</span><span class="o">=</span><span class="n">pk</span><span class="o">.</span><span class="n">AU</span><span class="p">)</span>
-<span class="ne">----&gt; </span><span class="mi">4</span> <span class="n">fwd</span><span class="p">,</span> <span class="n">bck</span> <span class="o">=</span> <span class="n">leg</span><span class="o">.</span><span class="n">get_state_info</span><span class="p">(</span><span class="mi">100</span><span class="p">)</span>
-<span class="g g-Whitespace">      </span><span class="mi">5</span> <span class="k">for</span> <span class="n">segment</span> <span class="ow">in</span> <span class="n">fwd</span><span class="p">:</span>
-<span class="g g-Whitespace">      </span><span class="mi">6</span>     <span class="n">ax</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">segment</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">],</span> <span class="n">segment</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">],</span> <span class="n">segment</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="mi">2</span><span class="p">],</span> <span class="n">c</span> <span class="o">=</span> <span class="s1">'blue'</span><span class="p">)</span>
-<span class="g g-Whitespace">      </span><span class="mi">7</span>     <span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">segment</span><span class="p">[:,</span><span class="mi">0</span><span class="p">],</span> <span class="n">segment</span><span class="p">[:,</span><span class="mi">1</span><span class="p">],</span> <span class="n">segment</span><span class="p">[:,</span><span class="mi">2</span><span class="p">],</span> <span class="n">c</span><span class="o">=</span> <span class="s1">'blue'</span><span class="p">)</span>
-
-<span class="ne">ValueError</span>: too many values to unpack (expected 2)
-</pre></div>
-</div>
-<img alt="../_images/ddeca6d1f01bdce17adb71ae482a3d0b8dad78ed876bd5f1b91f6a42c677045b.png" src="../_images/ddeca6d1f01bdce17adb71ae482a3d0b8dad78ed876bd5f1b91f6a42c677045b.png" />
+<img alt="../_images/50beca3fe33767603e06aec00df5e51a40b89608ffc9750d22a90ce740439da1.png" src="../_images/50beca3fe33767603e06aec00df5e51a40b89608ffc9750d22a90ce740439da1.png" />
 </div>
 </div>
 </section>
@@ -836,7 +812,7 @@ tgrid 1.36511101499e-07
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/a7f6416012af0333789fcade9fb7c58c55c13259c23788d1730047b1a93b72fe.png" src="../_images/a7f6416012af0333789fcade9fb7c58c55c13259c23788d1730047b1a93b72fe.png" />
+<img alt="../_images/f9223ea351b109b3cf634a9cc07df5338129aeb84499b3d48627905be2a1d67d.png" src="../_images/f9223ea351b109b3cf634a9cc07df5338129aeb84499b3d48627905be2a1d67d.png" />
 </div>
 </div>
 <p>Select two points on the orbit to define initial and final boundary states for a ZOH leg.</p>
@@ -883,7 +859,7 @@ tgrid 1.36511101499e-07
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>The mismatch constraints are:  [-4.168110301350225e-12, -5.252465129501616e-13, -1.0881432900098286e-41, -5.813849401903326e-12, 2.1009860518006462e-12, -9.693482126966922e-42, 0.0]
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>The mismatch constraints are:  [1.3815615318435448e-12, -8.102407633714392e-13, -6.907700779889186e-42, -1.6724399642953358e-12, -9.325873406851315e-13, 2.0786511095178255e-42, 0.0]
 </pre></div>
 </div>
 </div>
@@ -915,7 +891,7 @@ tgrid 1.36511101499e-07
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/69b761b80e6f16afc79d89acb54e4c4c848c85899d2576e2d1bfee886ae407e3.png" src="../_images/69b761b80e6f16afc79d89acb54e4c4c848c85899d2576e2d1bfee886ae407e3.png" />
+<img alt="../_images/62e1c7220fbebfe6e5615920c067c9cfa5a70b860a3878c0c7ed021d7ac090ef.png" src="../_images/62e1c7220fbebfe6e5615920c067c9cfa5a70b860a3878c0c7ed021d7ac090ef.png" />
 </div>
 </div>
 <p>This no-thrust case yields a near-zero mismatch, as expected from consistency with the reference dynamics.</p>
@@ -931,7 +907,7 @@ tgrid 1.36511101499e-07
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>The mismatch constraints are:  [-1.0037172748750471, -0.31101434941352546, -2.102304274565298e-30, 0.91693944082219, 0.09178632008572529, 2.6689693736228807e-31, -0.6719599164459205]
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>The mismatch constraints are:  [-1.3539612327440473, -1.935545644518785, -1.8710854056595884e-30, -0.9502043354383363, 1.7296605777256633, -6.04810805609416e-31, -0.5649793931698486]
 </pre></div>
 </div>
 </div>
@@ -943,7 +919,7 @@ tgrid 1.36511101499e-07
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/62971b3d62032fbaecde93112f6ff30f7205cf8f94ad8906e0c40a7be850b314.png" src="../_images/62971b3d62032fbaecde93112f6ff30f7205cf8f94ad8906e0c40a7be850b314.png" />
+<img alt="../_images/a215978c6e55a87c76807be0b5a1e2ef447ef6ab111f22cfa27e3c03200d117c.png" src="../_images/a215978c6e55a87c76807be0b5a1e2ef447ef6ab111f22cfa27e3c03200d117c.png" />
 </div>
 </div>
 <p>The result is consistent: introducing non-zero controls with fixed boundaries generally increases mismatch unless controls are optimized.</p>

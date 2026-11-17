@@ -238,15 +238,7 @@
 <li class="toctree-l2"><a class="reference internal" href="udp_sf_pl2pl.html">Sims-Flanagan: planet to plane low-thrust transfer</a></li>
 <li class="toctree-l2"><a class="reference internal" href="udp_sf_pl2pl_alpha.html">Sims-Flanagan: planet to plane low-thrust transfer (with Alpha encoding)</a></li>
 <li class="toctree-l2"><a class="reference internal" href="udp_zoh_point2point.html">Zero-Order Hold I</a></li>
-
-
-
-
 <li class="toctree-l2"><a class="reference internal" href="udp_zoh_pl2pl.html">Zero-Order Hold II</a></li>
-
-
-
-
 <li class="toctree-l2"><a class="reference internal" href="udp_mga.html">Multiple Gravity Assist (MGA)</a></li>
 <li class="toctree-l2"><a class="reference internal" href="udp_mga_1dsm.html">Multiple Gravity Assist with one DSM (MGA-1DSM)</a></li>
 <li class="toctree-l2"><a class="reference internal" href="udp_pl2pl_N_impulses.html">Multiple impulses: planet to planet transfer</a></li>
@@ -545,19 +537,19 @@
 <h1>Zero-Order-Hold Multiple Shooting leg<a class="headerlink" href="#zero-order-hold-multiple-shooting-leg" title="Link to this heading">#</a></h1>
 <p>The Zero-Order-Hold Multiple Shooting (ZOH-MS) trajectory leg is available as <a class="reference internal" href="../leg.html#pykep.leg.zoh_ms" title="pykep.leg.zoh_ms"><code class="xref py py-class docutils literal notranslate"><span class="pre">pykep.leg.zoh_ms</span></code></a>, implemented in C++. The pure-Python version, <code class="xref py py-class docutils literal notranslate"><span class="pre">pykep.leg.zoh_ms_py</span></code>, has the same public interface and is intended to be a reference implementation.</p>
 <p>In ‘pykep’ version of the multiple shooting technique, we divide the trajectory into short segments and store a state at every mesh node. We propagate each segment and compare the result with the state stored at the other end. This difference is called a <strong>continuity defect</strong> or simply <strong>defect</strong>. If every defect is zero, the segments join into one continuous trajectory. Segments are propagated forward or backward depending on the <code class="docutils literal notranslate"><span class="pre">cut</span></code> parameter, making the multiple shooting leg directly comparable to the <a class="reference internal" href="../leg.html#pykep.leg.zoh" title="pykep.leg.zoh"><code class="xref py py-class docutils literal notranslate"><span class="pre">pykep.leg.zoh</span></code></a> leg based on single fwd-bck shooting.</p>
-<p>In the Keplerian example, each node stores the seven-component state <span class="math notranslate nohighlight">\(\mathbf{x}_k=[x_k,y_k,z_k,v_{x,k},v_{y,k},v_{z,k},m_k]\)</span>: position, velocity and mass. A mesh with <span class="math notranslate nohighlight">\(n\)</span> segments therefore has <span class="math notranslate nohighlight">\(n+1\)</span> nodes and <span class="math notranslate nohighlight">\(7n\)</span> scalar continuity constraints.</p>
+<p>In the Keplerian example, each node stores the seven-component state <span class="math notranslate nohighlight">\(\mathbf{x}_k=[x_k,y_k,z_k,v_{x,k},v_{y,k},v_{z,k},m_k]\)</span>: position, velocity and mass. A mesh with <span class="math notranslate nohighlight">\(n\)</span> segments has <span class="math notranslate nohighlight">\(n+1\)</span> nodes and <span class="math notranslate nohighlight">\(7n\)</span> scalar continuity constraints (one per segment).</p>
 <p>The control is held constant within each segment, which is the meaning of <em>zero-order hold</em>. For the Keplerian example, the four control components are</p>
 <div class="math notranslate nohighlight">
 \[\mathbf{u}_k = [T_k,\ i_{x,k},\ i_{y,k},\ i_{z,k}],\]</div>
 <p>where <span class="math notranslate nohighlight">\(T_k\)</span> is the thrust magnitude and <span class="math notranslate nohighlight">\((i_{x,k},i_{y,k},i_{z,k})\)</span> is its direction in the inertial frame. A physical thrust direction has unit length. The generic leg does not enforce physical bounds or normalize the direction; these choices belong to the supplied dynamics and the optimization problem.</p>
-<p>Let <span class="math notranslate nohighlight">\(\Phi_k(\mathbf{x}_k;\mathbf{u}_k)\)</span> denote propagation from <span class="math notranslate nohighlight">\(t_k\)</span> to <span class="math notranslate nohighlight">\(t_{k+1}\)</span>. The parameter <code class="docutils literal notranslate"><span class="pre">cut</span></code>, between 0 and 1, sets the number of forward-propagated segments: <span class="math notranslate nohighlight">\(n_{\mathrm{fwd}}=\lfloor n\,\mathrm{cut}\rfloor\)</span>. Each forward segment starts at its own left-hand mesh node; each backward segment starts at its own right-hand mesh node. The defect is</p>
+<p>Let <span class="math notranslate nohighlight">\(\Phi_k(\mathbf{x}_k;\mathbf{u}_k)\)</span> denote propagation from <span class="math notranslate nohighlight">\(t_k\)</span> to <span class="math notranslate nohighlight">\(t_{k+1}\)</span>. The parameter <code class="docutils literal notranslate"><span class="pre">cut</span></code>, between 0 and 1, sets the number of forward-propagated segments: <span class="math notranslate nohighlight">\(n_{\mathrm{fwd}}=\lfloor n\,\mathrm{cut}\rfloor\)</span>. Each forward segment starts at its own left-hand mesh node; each backward segment starts at its own right-hand mesh node. The defect vector is</p>
 <div class="math notranslate nohighlight">
 \[\begin{split}\mathbf{d}_k =
 \begin{cases}
 \Phi_k(\mathbf{x}_k;\mathbf{u}_k)-\mathbf{x}_{k+1}, &amp; 0 \le k &lt; n_{\mathrm{fwd}}, \\
 \mathbf{x}_k-\Phi_k^{-1}(\mathbf{x}_{k+1};\mathbf{u}_k), &amp; n_{\mathrm{fwd}} \le k &lt; n.
 \end{cases}\end{split}\]</div>
-<p>Here <span class="math notranslate nohighlight">\(\Phi_k^{-1}\)</span> means integrating the same dynamics backward from <span class="math notranslate nohighlight">\(t_{k+1}\)</span> to <span class="math notranslate nohighlight">\(t_k\)</span>. Both directions describe the same continuous trajectory when the defects are zero, although their nonzero defect values can differ.</p>
+<p>Here <span class="math notranslate nohighlight">\(\Phi_k^{-1}\)</span> means integrating the same dynamics backward from <span class="math notranslate nohighlight">\(t_{k+1}\)</span> to <span class="math notranslate nohighlight">\(t_k\)</span>. Any choice of the cut parameter yields the same continuous trajectory when the defects are zero, although their nonzero defect values can differ as the number of forward and backward segments changes.</p>
 <p><code class="docutils literal notranslate"><span class="pre">compute_defects()</span></code> returns the defect components flattened in segment order. The leg also provides their analytical derivatives with respect to the node states, controls and time grid. Together, these derivatives form the <strong>Jacobian matrix</strong>.</p>
 <p>We start with the required imports:</p>
 <div class="cell docutils container">

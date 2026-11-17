@@ -238,15 +238,7 @@
 <li class="toctree-l2"><a class="reference internal" href="udp_sf_pl2pl.html">Sims-Flanagan: planet to plane low-thrust transfer</a></li>
 <li class="toctree-l2"><a class="reference internal" href="udp_sf_pl2pl_alpha.html">Sims-Flanagan: planet to plane low-thrust transfer (with Alpha encoding)</a></li>
 <li class="toctree-l2 current active"><a class="current reference internal" href="#">Zero-Order Hold I</a></li>
-
-
-
-
 <li class="toctree-l2"><a class="reference internal" href="udp_zoh_pl2pl.html">Zero-Order Hold II</a></li>
-
-
-
-
 <li class="toctree-l2"><a class="reference internal" href="udp_mga.html">Multiple Gravity Assist (MGA)</a></li>
 <li class="toctree-l2"><a class="reference internal" href="udp_mga_1dsm.html">Multiple Gravity Assist with one DSM (MGA-1DSM)</a></li>
 <li class="toctree-l2"><a class="reference internal" href="udp_pl2pl_N_impulses.html">Multiple impulses: planet to planet transfer</a></li>
@@ -526,16 +518,12 @@
             </div>
             <nav aria-label="Page">
                 <ul class="pst-show_toc_level nav section-nav flex-column">
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">Zero-Order Hold I</a><ul class="pst-show_toc_level nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#decision-variables-and-time-grid">Decision variables and time grid</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#two-body-dynamics-cartesian">Two-body dynamics (Cartesian)</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#two-body-dynamics-modified-equinoctial-elements">Two-body dynamics (Modified Equinoctial Elements)</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#circular-restricted-three-body-problem">Circular Restricted Three-Body Problem</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#solar-sail-dynamics">Solar-sail dynamics</a></li>
 </ul>
-</li>
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#two-body-dynamics-cartesian">Two-body dynamics (Cartesian)</a></li>
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#two-body-dynamics-modified-equinoctial-elements">Two-body dynamics (Modified Equinoctial Elements)</a></li>
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#circular-restricted-three-body-problem">Circular Restricted Three-Body Problem</a></li>
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#solar-sail-dynamics">Solar-sail dynamics</a></li>
-</ul>
-
             </nav>
         </div>
     </div>
@@ -586,18 +574,18 @@
 <span class="n">ipopt</span><span class="o">.</span><span class="n">set_string_options</span><span class="p">({</span><span class="s2">"sb"</span><span class="p">:</span> <span class="s2">"yes"</span><span class="p">})</span>
 <span class="n">algo</span> <span class="o">=</span> <span class="n">pg</span><span class="o">.</span><span class="n">algorithm</span><span class="p">(</span><span class="n">ipopt</span><span class="p">)</span>
 
-<span class="n">path_to_snopt72</span> <span class="o">=</span> <span class="s2">"/opt/lib/libsnopt7_c.so"</span>
-<span class="n">path_to_snopt72</span> <span class="o">=</span> <span class="s2">"/Users/dario.izzo/opt/lib/libsnopt7_c.dylib"</span>
-<span class="n">snopt</span> <span class="o">=</span> <span class="n">ppnf</span><span class="o">.</span><span class="n">snopt7</span><span class="p">(</span><span class="n">library</span><span class="o">=</span><span class="n">path_to_snopt72</span><span class="p">,</span> <span class="n">minor_version</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">screen_output</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
-<span class="n">snopt</span><span class="o">.</span><span class="n">set_integer_option</span><span class="p">(</span><span class="s2">"Major iterations limit"</span><span class="p">,</span> <span class="mi">2000</span><span class="p">)</span>
-<span class="n">snopt</span><span class="o">.</span><span class="n">set_integer_option</span><span class="p">(</span><span class="s2">"Iterations limit"</span><span class="p">,</span> <span class="mi">20000</span><span class="p">)</span>
-<span class="n">snopt</span><span class="o">.</span><span class="n">set_numeric_option</span><span class="p">(</span><span class="s2">"Major optimality tolerance"</span><span class="p">,</span> <span class="mf">1e-3</span><span class="p">)</span>
-<span class="n">snopt</span><span class="o">.</span><span class="n">set_numeric_option</span><span class="p">(</span><span class="s2">"Major feasibility tolerance"</span><span class="p">,</span> <span class="mf">1e-12</span><span class="p">)</span>
+<span class="c1"># If you want to use SNOPT instead of IPOPT, uncomment the following lines and set the correct path to the SNOPT library.</span>
+<span class="c1">#path_to_snopt72 = "..."</span>
+<span class="c1">#snopt = ppnf.snopt7(library=path_to_snopt72, minor_version=2, screen_output=False)</span>
+<span class="c1">#snopt.set_integer_option("Major iterations limit", 2000)</span>
+<span class="c1">#snopt.set_integer_option("Iterations limit", 20000)</span>
+<span class="c1">#snopt.set_numeric_option("Major optimality tolerance", 1e-3)</span>
+<span class="c1">#snopt.set_numeric_option("Major feasibility tolerance", 1e-12)</span>
 
-<span class="n">algo</span> <span class="o">=</span> <span class="n">pg</span><span class="o">.</span><span class="n">algorithm</span><span class="p">(</span><span class="n">snopt</span><span class="p">)</span>
+<span class="n">algo</span> <span class="o">=</span> <span class="n">pg</span><span class="o">.</span><span class="n">algorithm</span><span class="p">(</span><span class="n">ipopt</span><span class="p">)</span>
 
 
-<span class="k">def</span><span class="w"> </span><span class="nf">make_initial_population</span><span class="p">(</span><span class="n">prob</span><span class="p">,</span> <span class="n">udp</span><span class="p">):</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">make_initial_population</span><span class="p">(</span><span class="n">prob</span><span class="p">,</span> <span class="n">udp</span><span class="p">,</span> <span class="n">use_ms</span><span class="o">=</span><span class="n">use_ms</span><span class="p">):</span>
     <span class="n">pop</span> <span class="o">=</span> <span class="n">pg</span><span class="o">.</span><span class="n">population</span><span class="p">(</span><span class="n">prob</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
     <span class="k">if</span> <span class="n">use_ms</span><span class="p">:</span>
         <span class="n">pop</span><span class="o">.</span><span class="n">set_x</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">udp</span><span class="o">.</span><span class="n">guess_internal_states</span><span class="p">(</span><span class="n">pop</span><span class="o">.</span><span class="n">champion_x</span><span class="p">))</span>
@@ -619,9 +607,8 @@
 </div>
 </div>
 </section>
-</section>
-<section class="tex2jax_ignore mathjax_ignore" id="two-body-dynamics-cartesian">
-<h1>Two-body dynamics (Cartesian)<a class="headerlink" href="#two-body-dynamics-cartesian" title="Link to this heading">#</a></h1>
+<section id="two-body-dynamics-cartesian">
+<h2>Two-body dynamics (Cartesian)<a class="headerlink" href="#two-body-dynamics-cartesian" title="Link to this heading">#</a></h2>
 <p>A TOPS two-body transfer using Cartesian states.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -702,8 +689,8 @@ Final tof: 11.0
 </div>
 </div>
 </section>
-<section class="tex2jax_ignore mathjax_ignore" id="two-body-dynamics-modified-equinoctial-elements">
-<h1>Two-body dynamics (Modified Equinoctial Elements)<a class="headerlink" href="#two-body-dynamics-modified-equinoctial-elements" title="Link to this heading">#</a></h1>
+<section id="two-body-dynamics-modified-equinoctial-elements">
+<h2>Two-body dynamics (Modified Equinoctial Elements)<a class="headerlink" href="#two-body-dynamics-modified-equinoctial-elements" title="Link to this heading">#</a></h2>
 <p>The same TOPS transfer represented with modified equinoctial states.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -783,8 +770,8 @@ Final tof: 60.7909197787
 </div>
 </div>
 </section>
-<section class="tex2jax_ignore mathjax_ignore" id="circular-restricted-three-body-problem">
-<h1>Circular Restricted Three-Body Problem<a class="headerlink" href="#circular-restricted-three-body-problem" title="Link to this heading">#</a></h1>
+<section id="circular-restricted-three-body-problem">
+<h2>Circular Restricted Three-Body Problem<a class="headerlink" href="#circular-restricted-three-body-problem" title="Link to this heading">#</a></h2>
 <p>A TOPS CR3BP case with model parameters configured by the gym wrapper.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -861,8 +848,8 @@ Final tof: 5.0
 </div>
 </div>
 </section>
-<section class="tex2jax_ignore mathjax_ignore" id="solar-sail-dynamics">
-<h1>Solar-sail dynamics<a class="headerlink" href="#solar-sail-dynamics" title="Link to this heading">#</a></h1>
+<section id="solar-sail-dynamics">
+<h2>Solar-sail dynamics<a class="headerlink" href="#solar-sail-dynamics" title="Link to this heading">#</a></h2>
 <p>The solar-sail wrapper uses the same <code class="docutils literal notranslate"><span class="pre">use_ms</span></code> setting. Its controls are the cone and clock angles; it has no mass or throttle variables.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -925,6 +912,7 @@ Final tof: 180.0
 </div>
 </div>
 </section>
+</section>
 
 
                 </article>
@@ -973,16 +961,12 @@ Final tof: 180.0
   </div>
   <nav id="pst-page-toc-nav" class="page-toc" aria-labelledby="pst-page-navigation-heading-2">
     <ul class="pst-show_toc_level nav section-nav flex-column">
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">Zero-Order Hold I</a><ul class="pst-show_toc_level nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#decision-variables-and-time-grid">Decision variables and time grid</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#two-body-dynamics-cartesian">Two-body dynamics (Cartesian)</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#two-body-dynamics-modified-equinoctial-elements">Two-body dynamics (Modified Equinoctial Elements)</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#circular-restricted-three-body-problem">Circular Restricted Three-Body Problem</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#solar-sail-dynamics">Solar-sail dynamics</a></li>
 </ul>
-</li>
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#two-body-dynamics-cartesian">Two-body dynamics (Cartesian)</a></li>
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#two-body-dynamics-modified-equinoctial-elements">Two-body dynamics (Modified Equinoctial Elements)</a></li>
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#circular-restricted-three-body-problem">Circular Restricted Three-Body Problem</a></li>
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#solar-sail-dynamics">Solar-sail dynamics</a></li>
-</ul>
-
   </nav></div>
 
 </div></div>
