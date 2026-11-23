@@ -606,7 +606,8 @@ but that requires learning from a vast database of precomputed trajectories and 
 <dd><p>The Maximum Initial Mass from a hop transfer. A hop transfer is fixed time randevouz between two planets.
 This function is slower then its approximations <a class="reference internal" href="#pykep.mima_from_hop" title="pykep.mima_from_hop"><code class="xref py py-class docutils literal notranslate"><span class="pre">mima_from_hop</span></code></a> and <a class="reference internal" href="#pykep.mima2_from_hop" title="pykep.mima2_from_hop"><code class="xref py py-class docutils literal notranslate"><span class="pre">mima2_from_hop</span></code></a>,
 if succesfull, returns the exact solution to the problem. Behind the scene Potryagin Maximum Principle
-is applied to the problem and the TPBVP is solved using ipopt / heyoka.</p>
+is applied to the problem and the TPBVP is solved by single shooting using <a class="reference external" href="https://docs.scipy.org/doc/scipy/reference/generated/scipy.optimize.root.html#scipy.optimize.root" title="(in SciPy v1.18.0)"><code class="xref py py-func docutils literal notranslate"><span class="pre">scipy.optimize.root()</span></code></a>
+(MINPACK hybrid method) and heyoka.</p>
 <p>Args:</p>
 <blockquote>
 <div><p><em>pl_s</em> (<a class="reference internal" href="planet.html#pykep.planet" title="pykep.planet"><code class="xref py py-class docutils literal notranslate"><span class="pre">planet</span></code></a>): the source planet</p>
@@ -615,10 +616,10 @@ is applied to the problem and the TPBVP is solved using ipopt / heyoka.</p>
 <p><em>when_f</em> (<a class="reference internal" href="epoch.html#pykep.epoch" title="pykep.epoch"><code class="xref py py-class docutils literal notranslate"><span class="pre">epoch</span></code></a>): the final epoch</p>
 <p><em>Tmax</em> (<a class="reference external" href="https://docs.python.org/3/builtins/functions.html#float" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code></a>, optional): Maximum spacecraft thrust.</p>
 <p><em>veff</em> (<a class="reference external" href="https://docs.python.org/3/builtins/functions.html#float" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code></a>, optional): Isp*G0.</p>
-<p><em>MASS</em> (<a class="reference external" href="https://docs.python.org/3/builtins/functions.html#float" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code></a>, optional): Units to use to scale the mass intrnally. It also influences the bounds for the MIM in the
-optimization problem.</p>
-<p><em>max_trials</em> (<a class="reference external" href="https://docs.python.org/3/builtins/functions.html#int" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code></a>, optional): Maximum number of trials to find the MIM. If the algorithm does not converge, it will
-return None.</p>
+<p><em>MASS</em> (<a class="reference external" href="https://docs.python.org/3/builtins/functions.html#float" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code></a>, optional): Units to use to scale the mass intrnally. It also influences the range of the random
+initial guesses for the MIM.</p>
+<p><em>max_trials</em> (<a class="reference external" href="https://docs.python.org/3/builtins/functions.html#int" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code></a>, optional): Maximum number of random initial guesses tried to find the MIM. If the algorithm does not converge,
+it will return None.</p>
 </div></blockquote>
 <dl class="simple">
 <dt>Returns:</dt><dd><p><a class="reference external" href="https://docs.python.org/3/builtins/functions.html#float" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code></a>: The Maximum Initial Mass</p>
