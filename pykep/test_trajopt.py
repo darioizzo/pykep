@@ -712,6 +712,24 @@ class trajopt_zoh_ss_pl2pl_tests(_ut.TestCase):
                 _check_dense_gradient(self, udp, x)
 
 
+class trajopt_pontryagin_equinoctial_time_tests(_ut.TestCase):
+    def test_gradient(self):
+        """We test the analytical gradient for free and fixed number of revolutions."""
+        for n_rev in (-1, 1):
+            with self.subTest(n_rev=n_rev):
+                udp = _pk.trajopt.pontryagin_equinoctial_time(
+                    n_rev=n_rev, lambda0=None, with_gradient=True
+                )
+                lb, ub = udp.get_bounds()
+                x = np.array(lb) + 0.37 * (np.array(ub) - np.array(lb))
+                # Scatter the sparse gradient into a dense matrix and compare with finite differences
+                analytical = np.zeros((len(udp.fitness(x)), len(x)))
+                for (i, j), v in zip(udp.gradient_sparsity(), udp.gradient(x)):
+                    analytical[i, j] = v
+                numerical = pg.estimate_gradient_h(udp.fitness, x).reshape(analytical.shape)
+                np.testing.assert_allclose(analytical, numerical, rtol=1e-4, atol=1e-4)
+
+
 class trajopt_zoh_ms_ss_tests(_ut.TestCase):
     def _check_sparse_gradient(self, udp, x):
         # Compare the sparse variational Jacobian with independent input perturbations.

@@ -57,6 +57,8 @@ class leg_zoh_test(_ut.TestCase):
 
         with self.assertRaises(ValueError):
             _pk.leg.zoh_py(state0[:-1], controls, state1, tgrid, 0.5, [ta, ta_var])
+        with self.assertRaises(ValueError):
+            _pk.leg.zoh_py(state0, controls, state1, tgrid, 1.5, [ta, ta_var])
 
         leg = _pk.leg.zoh_py(state0, controls, state1, tgrid, 0.5, [ta, ta_var])
 

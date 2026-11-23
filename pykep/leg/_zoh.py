@@ -74,6 +74,8 @@ class zoh:
         # Convenient quantities
         if self.dim_controls <= 0:
             raise ValueError("The control dimension must be positive")
+        if cut < 0.0 or cut > 1.0:
+            raise ValueError("The cut parameter of a zoh leg must be in the [0, 1] interval")
         self.nseg = len(self.controls) // self.dim_controls
         self.nseg_fwd = int(self.nseg * cut)
         self.nseg_bck = self.nseg - self.nseg_fwd

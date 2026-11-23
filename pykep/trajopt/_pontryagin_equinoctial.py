@@ -621,19 +621,19 @@ class pontryagin_equinoctial_time:
         sl = self.ta_var.get_vslice(order=1, component=5)
         tmp = self.ta_var.state[sl]
         if self.n_rev < 0.0:
-            tmp = 2 * _np.sin(self.ta_var.state[5] - self.eqf[5]) * tmp
+            tmp = 2 * _np.sin(self.ta_var.state[5] - eqf[5]) * tmp
         retval.extend(list(tmp)[:final_idx])
         # tof derivative
         tmp = dyn[5] - dLdt
         if self.n_rev < 0.0:
-            tmp = 2 * _np.sin(self.ta_var.state[5] - self.eqf[5]) * tmp
+            tmp = 2 * _np.sin(self.ta_var.state[5] - eqf[5]) * tmp
         retval.append(tmp)
         
         # Constraint (lm)
         sl = self.ta_var.get_vslice(order=1, component=13)
         retval.extend(list(self.ta_var.state[sl])[:final_idx])
         # tof derivative
-        retval.append(dyn[6])
+        retval.append(dyn[13])
         
         # Constraint norm on lambdas (only if present)
         if self.lambda0 == None:

@@ -125,7 +125,7 @@ class de440s(spice):
         Returns:
             :class:`str`: The body name
         """
-        return self.body + " - de440s"
+        return str(self.body) + " - de440s"
     
     def kernel_file():
         """The full path for the kernel file "de440s.bsp" shipped in `pykep`
