@@ -565,6 +565,16 @@ class mit_tests(_ut.TestCase):
         self.assertTrue(float_rel_error(np.linalg.norm(p), 2.6981957244221193) < 1e-12)
         self.assertTrue(float_rel_error(np.linalg.norm(Aik), 3.7165788775706137) < 1e-12)
         self.assertTrue(float_rel_error(np.linalg.norm(Ajk), 5.1268002110392725) < 1e-12)
+
+    def test_mim_from_hop(self):
+        """We test that the maximum initial mass matches a reference value from an independent solver (IPOPT)."""
+        earth = _pk.planet(_pk.udpla.jpl_lp("earth"))
+        mars = _pk.planet(_pk.udpla.jpl_lp("mars"))
+        mim = _pk.trajopt.mim_from_hop(
+            earth, mars, _pk.epoch(8000.0), _pk.epoch(8400.0), 0.6, 4000 * _pk.G0, max_trials=50
+        )
+        self.assertTrue(float_rel_error(mim, 1989.9462) < 1e-5)
+
 class trajopt_zoh_point2point_tests(_ut.TestCase):
     def test_gradient_uniform(self):
         ta = _pk.ta.get_zoh_kep(1e-14)
